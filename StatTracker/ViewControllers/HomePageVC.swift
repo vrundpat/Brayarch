@@ -10,48 +10,33 @@ import UIKit
 
 class HomePageVC: UIViewController {
     
-    let nextButton = UIButton()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
-                
-        // Do any additional setup after loading the view.
-        setUpNextButton()
+        view.backgroundColor = .white
+        setUpGuardianSearchBar_TableView()
     }
     
-    func setUpNextButton() {
-        nextButton.backgroundColor = .black
-        nextButton.setTitleColor(.white, for: .normal)
-        nextButton.setTitle("Next Page", for: .normal)
+    func setUpGuardianSearchBar_TableView() {
+        let tableSearchview = GuardianTableVC()
+        addChildViewController(child: tableSearchview)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.searchController = tableSearchview.guardianSearchController
+    }
+    
+    func addChildViewController(child: UIViewController) {
         
-        // Add onClick handler
-        nextButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        view.addSubview(nextButton)
+        // Add child to current view controller
+        self.addChild(child)
+        self.view.addSubview(child.view)
+        child.view.frame = view.bounds
         
-        // Constraints
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nextButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-
+        // Register child view controller
+        child.didMove(toParent: self)
     }
-    
-    @objc func buttonClicked() {
-        let statPage = StatPageVC()
-        navigationController?.pushViewController(statPage, animated: true)
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+
+
+
+
+
