@@ -11,8 +11,9 @@ import UIKit
 class GuardianTableVC: UIViewController {
     
     var data: [String] = ["Apples", "Oranges", "Pears", "Bananas", "Plums"]
-    var filteredData: [String]!
+    var filteredData: [String] = []
     var isFiltering = false
+    var height = 0
     
     lazy var guardianTableView: UITableView = {
         
@@ -32,17 +33,30 @@ class GuardianTableVC: UIViewController {
            return search_controller
        }()
         
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+        guardianTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if(keyPath == "contentSize"){
+            if let newvalue = change?[.newKey] {
+                let contentHeight: CGFloat = guardianTableView.contentSize.height
+                // print(contentHeight)
+                height = Int(contentHeight)
+                print(height)
+            }
+        }
+    }
+    
+
     func setUpTableView() {
         view.addSubview(guardianTableView)
         guardianTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         guardianTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        guardianTableView.heightAnchor.constraint(equalToConstant: CGFloat(150 + (data.count * 50))).isActive = true
+        guardianTableView.heightAnchor.constraint(equalToConstant: CGFloat(100 + data.count * 50)).isActive = true
         guardianTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         guardianTableView.delegate = self
         guardianTableView.dataSource = self
@@ -53,7 +67,7 @@ class GuardianTableVC: UIViewController {
 
 // Extension for the table view's functionality
 extension GuardianTableVC: UITableViewDelegate, UITableViewDataSource {
-        
+            
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredData.count
@@ -80,9 +94,7 @@ extension GuardianTableVC: UITableViewDelegate, UITableViewDataSource {
 
 // Extensions for the search bar's functionality
 extension GuardianTableVC: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if searchText == "" {
             filteredData = data
             isFiltering = false
@@ -90,13 +102,14 @@ extension GuardianTableVC: UISearchBarDelegate {
         } else {
             filteredData = []
             isFiltering = true
-        
+            
             for test in data {
                 if test.lowercased().contains(searchText.lowercased()) {
                     filteredData.append(test)
                 }
             }
         }
+        
         guardianTableView.reloadData()
     }
     
