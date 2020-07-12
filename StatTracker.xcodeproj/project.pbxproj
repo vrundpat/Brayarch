@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3273D35724BA320200FC47AE /* GuardianTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianTableVC.swift */; };
+		3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */; };
 		32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18224B8EA3900839B36 /* AppDelegate.swift */; };
 		32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18424B8EA3900839B36 /* SceneDelegate.swift */; };
 		32C5C18924B8EA3D00839B36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C5C18824B8EA3D00839B36 /* Assets.xcassets */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3273D35624BA320200FC47AE /* GuardianTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianTableVC.swift; sourceTree = "<group>"; };
+		3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianSearchTableVC.swift; sourceTree = "<group>"; };
 		32C5C17F24B8EA3900839B36 /* StatTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C5C18224B8EA3900839B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C5C18424B8EA3900839B36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			children = (
 				32C5C1B424B8F05C00839B36 /* HomePageVC.swift */,
 				32C5C1B724B8F41200839B36 /* StatPageVC.swift */,
-				3273D35624BA320200FC47AE /* GuardianTableVC.swift */,
+				3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
-				3273D35724BA320200FC47AE /* GuardianTableVC.swift in Sources */,
+				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */,

@@ -10,17 +10,26 @@ import UIKit
 
 class HomePageVC: UIViewController {
     
+    let tableSearchview = GuardianSearchTableVC()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         setUpGuardianSearchBar_TableView()
     }
-    
+        
     func setUpGuardianSearchBar_TableView() {
-        let tableSearchview = GuardianTableVC()
         addChildViewController(child: tableSearchview)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
         navigationItem.searchController = tableSearchview.guardianSearchController
+        
+        navigationItem.title = "StatTracker"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black
     }
     
     func addChildViewController(child: UIViewController) {
