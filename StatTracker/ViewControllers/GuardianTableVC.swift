@@ -46,15 +46,11 @@ class GuardianTableVC: UIViewController {
         if(keyPath == "contentSize"){
             if let newvalue = change?[.newKey] {
                 let contentHeight: CGFloat = guardianTableView.contentSize.height
-                // print(contentHeight)
                 height = contentHeight
-                //view.setNeedsUpdateConstraints()
-                print(height!)
             }
         }
     }
-    
-
+        
     func setUpTableView() {
         
         guardianTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -92,6 +88,10 @@ extension GuardianTableVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = data[indexPath.row]
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(StatPageVC(), animated: true)
     }
 }
 
