@@ -20,13 +20,15 @@ class GuardianTableVC: UIViewController {
     
     lazy var  guardianSearchController: UISearchController = {
            
-           let search_controller = UISearchController()
-           search_controller.searchBar.placeholder = "Search.."
-           search_controller.searchBar.sizeToFit()
-           search_controller.searchBar.delegate = self
+        let search_controller = UISearchController()
+        search_controller.searchBar.placeholder = "Search.."
+        search_controller.searchBar.sizeToFit()
+        search_controller.searchBar.delegate = self
+        search_controller.dimsBackgroundDuringPresentation = false
+        search_controller.searchBar.tintColor = .black
            
-           return search_controller
-       }()
+        return search_controller
+    }()
     
     var data: [String] = ["Apples", "Oranges", "Pears", "Bananas", "Plums"]
     var filteredData: [String] = []
