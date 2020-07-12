@@ -10,11 +10,6 @@ import UIKit
 
 class GuardianTableVC: UIViewController {
     
-    var data: [String] = ["Apples", "Oranges", "Pears", "Bananas", "Plums"]
-    var filteredData: [String] = []
-    var isFiltering = false
-    var height = 0
-    
     lazy var guardianTableView: UITableView = {
         
         let table_view = UITableView()
@@ -32,12 +27,19 @@ class GuardianTableVC: UIViewController {
            
            return search_controller
        }()
-        
+    
+    var data: [String] = ["Apples", "Oranges", "Pears", "Bananas", "Plums"]
+    var filteredData: [String] = []
+    var isFiltering = false
+    var height: CGFloat!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.isHidden = true
+        view.addSubview(guardianTableView)
         setUpTableView()
         guardianTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -45,19 +47,21 @@ class GuardianTableVC: UIViewController {
             if let newvalue = change?[.newKey] {
                 let contentHeight: CGFloat = guardianTableView.contentSize.height
                 // print(contentHeight)
-                height = Int(contentHeight)
-                print(height)
+                height = contentHeight
+                //view.setNeedsUpdateConstraints()
+                print(height!)
             }
         }
     }
     
 
     func setUpTableView() {
-        view.addSubview(guardianTableView)
+        
         guardianTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         guardianTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        guardianTableView.heightAnchor.constraint(equalToConstant: CGFloat(100 + data.count * 50)).isActive = true
         guardianTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        guardianTableView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        
         guardianTableView.delegate = self
         guardianTableView.dataSource = self
         guardianTableView.register(UITableViewCell.self, forCellReuseIdentifier: "guardianCell")
@@ -117,5 +121,10 @@ extension GuardianTableVC: UISearchBarDelegate {
         isFiltering = false
         filteredData = data
         guardianTableView.reloadData()
+        view.isHidden = true
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        view.isHidden = false
     }
 }
