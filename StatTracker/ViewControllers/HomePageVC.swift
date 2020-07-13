@@ -18,7 +18,7 @@ class HomePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setUpPlatformButtons()
+        setUpPlatformButtonsStackView()
         setUpGuardianSearchTableVC()
         setUpNavigationSearchController()
     }
@@ -40,34 +40,15 @@ class HomePageVC: UIViewController {
         navigationController?.navigationBar.barStyle = .black
     }
     
-    func setUpPlatformButtons() {
-        var i = 0
-        
-        for button in self.platformButtons {
-            
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle(self.platformFormButtonTitles[self.platformButtons.firstIndex(of: button)!], for: .normal)
-            button.addTarget(self, action: #selector(platformButtonClicked), for: .touchUpInside)
-            view.addSubview(button)
-            
-            if button == self.platformButtons[0] {
-                button.setUpButtonConstraints(diff: 0, parent: self)
-                button.isTriggered = true
-            }
-            else {
-                i += 110
-                button.setUpButtonConstraints(diff: i, parent: self)
-                button.isTriggered = false
-            }
-       }
+    func setUpPlatformButtonsStackView() {
+        let platformButtonStackView = PlatFormButtonStackView()
+        platformButtonStackView.apiDataModel = self.apiDataModel
+
+        view.addSubview(platformButtonStackView)
+        platformButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        platformButtonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-    
-    @objc func platformButtonClicked(sender: PlatformButton) {
-        sender.isTriggered = true
-        for button in self.platformButtons { if button != sender { button.isTriggered = false } }
-        self.apiDataModel.apiEssentials.memberShipType = self.platformButtons.firstIndex(of: sender)! + 1
-    }
-    
+
     func addChildViewController(child: UIViewController) {
         
         // Add child to current view controller

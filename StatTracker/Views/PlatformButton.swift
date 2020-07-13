@@ -26,10 +26,8 @@ class PlatformButton: UIButton {
         }
     }
     
-    func setUpButtonConstraints(diff: Int, parent: UIViewController) {
-        self.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: CGFloat(45 + diff)).isActive = true
+    func setUpButtonConstraints() {
         self.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
         self.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
-        self.centerYAnchor.constraint(equalTo: parent.view.centerYAnchor).isActive = true
     }
 }
