@@ -18,6 +18,7 @@
 		32C5C1A524B8EA3E00839B36 /* StatTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1A424B8EA3E00839B36 /* StatTrackerUITests.swift */; };
 		32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B424B8F05C00839B36 /* HomePageVC.swift */; };
 		32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B724B8F41200839B36 /* StatPageVC.swift */; };
+		32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		32C5C1A624B8EA3E00839B36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32C5C1B424B8F05C00839B36 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		32C5C1B724B8F41200839B36 /* StatPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageVC.swift; sourceTree = "<group>"; };
+		32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +127,11 @@
 				32C5C18224B8EA3900839B36 /* AppDelegate.swift */,
 				32C5C18424B8EA3900839B36 /* SceneDelegate.swift */,
 				32C5C1B624B8F26400839B36 /* ViewControllers */,
+				328B07C224BBC07900C83C1D /* ApiCalls */,
+				32F80CFA24BCB0E200B9EFEC /* Model */,
 				32C5C18824B8EA3D00839B36 /* Assets.xcassets */,
 				32C5C19024B8EA3D00839B36 /* Info.plist */,
 				32C5C18A24B8EA3D00839B36 /* Preview Content */,
-				328B07C224BBC07900C83C1D /* ApiCalls */,
 			);
 			path = StatTracker;
 			sourceTree = "<group>";
@@ -164,9 +167,25 @@
 			children = (
 				32C5C1B424B8F05C00839B36 /* HomePageVC.swift */,
 				32C5C1B724B8F41200839B36 /* StatPageVC.swift */,
-				3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */,
+				32F80CFD24BCB96000B9EFEC /* Child ViewControllers */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		32F80CFA24BCB0E200B9EFEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32F80CFD24BCB96000B9EFEC /* Child ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */,
+			);
+			path = "Child ViewControllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +320,7 @@
 			files = (
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
+				32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */,
 				328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */,
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,

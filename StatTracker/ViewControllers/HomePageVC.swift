@@ -10,20 +10,25 @@ import UIKit
 
 class HomePageVC: UIViewController {
     
+    var apiDataModel: APIEssentialsController!
     let tableSearchview = GuardianSearchTableVC()
-        
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setUpGuardianSearchBar_TableView()
+        setUpGuardianSearchTableVC()
+        setUpNavigationSearchController()
     }
         
-    func setUpGuardianSearchBar_TableView() {
+    func setUpGuardianSearchTableVC() {
         addChildViewController(child: tableSearchview)
-        
+        tableSearchview.apiDataModel = self.apiDataModel
+    }
+    
+    func setUpNavigationSearchController() {
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
-        
+                        
         navigationItem.searchController = tableSearchview.guardianSearchController
         
         navigationItem.title = "StatTracker"
@@ -43,9 +48,4 @@ class HomePageVC: UIViewController {
         child.didMove(toParent: self)
     }
 }
-
-
-
-
-
 

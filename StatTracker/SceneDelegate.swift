@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let homeScreen = HomePageVC()
+        homeScreen.apiDataModel = APIEssentialsController()
         let navigationContorller = UINavigationController(rootViewController: homeScreen)
         
         window?.rootViewController = navigationContorller

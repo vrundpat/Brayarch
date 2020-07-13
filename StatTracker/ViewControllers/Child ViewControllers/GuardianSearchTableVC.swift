@@ -11,6 +11,8 @@ import UIKit
 
 class GuardianSearchTableVC: UIViewController {
     
+    var apiDataModel: APIEssentialsController!
+    
     lazy var guardianTableView: UITableView = {
         
         let table_view = UITableView()
@@ -41,18 +43,21 @@ class GuardianSearchTableVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.isHidden = true
-        view.addSubview(guardianTableView)
         setUpTableView()
     }
         
     func setUpTableView() {
+        view.isHidden = true
+        view.addSubview(guardianTableView)
         guardianTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         guardianTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         guardianTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        // guardianTableView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         guardianTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
         guardianTableView.delegate = self
@@ -65,9 +70,7 @@ class GuardianSearchTableVC: UIViewController {
 // Extension for the table view's functionality
 extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
             
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data.count }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -83,8 +86,7 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(StatPageVC(), animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { navigationController?.pushViewController(StatPageVC(), animated: true)
     }
 }
 
@@ -95,7 +97,7 @@ extension GuardianSearchTableVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText != "" {
-            let searchPlayersStruct = SearchPlayersRequest(searchText: searchText.lowercased())
+            let searchPlayersStruct = SearchPlayersRequest(searchText: searchText.lowercased(), memberShipType: self.apiDataModel.apiEssentials.memberShipType)
             searchPlayersStruct.searchPlayers { [weak self] result in
                 switch result {
                     case .failure(let error):
@@ -104,15 +106,12 @@ extension GuardianSearchTableVC: UISearchBarDelegate {
                         self?.data = players
                 }
             }
-        } else { data = [] }
-
-        guardianTableView.reloadData()
+        }  else { self.data = [] }
     }
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        data = []
-        guardianTableView.reloadData()
+        self.data = []
         view.isHidden = true
     }
     
