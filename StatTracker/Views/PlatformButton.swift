@@ -26,12 +26,10 @@ class PlatformButton: UIButton {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func setUpButtonConstraints(diff: Int, parent: UIViewController) {
+        self.leadingAnchor.constraint(equalTo: parent.view.leadingAnchor, constant: CGFloat(45 + diff)).isActive = true
+        self.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
+        self.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
+        self.centerYAnchor.constraint(equalTo: parent.view.centerYAnchor).isActive = true
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

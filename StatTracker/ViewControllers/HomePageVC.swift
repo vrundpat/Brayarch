@@ -42,22 +42,29 @@ class HomePageVC: UIViewController {
     
     func setUpPlatformButtons() {
         var i = 0
+        
         for button in self.platformButtons {
-            view.addSubview(button)
-            button.isTriggered = false
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle(self.platformFormButtonTitles[self.platformButtons.firstIndex(of: button)!], for: .normal)
             button.addTarget(self, action: #selector(platformButtonClicked), for: .touchUpInside)
-            button.frame = CGRect(x: 50 + i, y: 350, width: 100, height: 50)
-            i += 110
-        }
+            view.addSubview(button)
+            
+            if button == self.platformButtons[0] {
+                button.setUpButtonConstraints(diff: 0, parent: self)
+                button.isTriggered = true
+            }
+            else {
+                i += 110
+                button.setUpButtonConstraints(diff: i, parent: self)
+                button.isTriggered = false
+            }
+       }
     }
     
     @objc func platformButtonClicked(sender: PlatformButton) {
         sender.isTriggered = true
-        for button in self.platformButtons {
-            if button != sender { button.isTriggered = false }
-        }
-        
+        for button in self.platformButtons { if button != sender { button.isTriggered = false } }
         self.apiDataModel.apiEssentials.memberShipType = self.platformButtons.firstIndex(of: sender)! + 1
     }
     
@@ -72,4 +79,3 @@ class HomePageVC: UIViewController {
         child.didMove(toParent: self)
     }
 }
-

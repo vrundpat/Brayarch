@@ -96,8 +96,8 @@ extension GuardianSearchTableVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText != "" {
-            let searchPlayersStruct = SearchPlayersRequest(searchText: searchText.lowercased(), memberShipType: self.apiDataModel.apiEssentials.memberShipType)
-            searchPlayersStruct.searchPlayers { [weak self] result in
+            let searchPlayersStruct = SearchPlayersRequest(searchText: searchText, memberShipType: self.apiDataModel.apiEssentials.memberShipType)
+                searchPlayersStruct.searchPlayers { [weak self] result in
                 switch result {
                     case .failure(let error):
                         print(error)

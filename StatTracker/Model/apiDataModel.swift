@@ -13,5 +13,5 @@ struct APIEssentials {
 }
 
 class APIEssentialsController {
-    var apiEssentials = APIEssentials(memberShipType: 3)
+    var apiEssentials = APIEssentials(memberShipType: 1)
 }
