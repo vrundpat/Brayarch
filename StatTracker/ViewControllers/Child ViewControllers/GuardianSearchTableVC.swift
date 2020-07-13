@@ -13,16 +13,6 @@ class GuardianSearchTableVC: UIViewController {
     
     var apiDataModel: APIEssentialsController!
     
-    lazy var guardianTableView: UITableView = {
-        
-        let table_view = UITableView()
-        table_view.translatesAutoresizingMaskIntoConstraints = false
-        table_view.backgroundColor = .black
-        table_view.separatorColor = .black
-        return table_view
-        
-    }()
-    
     lazy var  guardianSearchController: UISearchController = {
 
         let search_controller = UISearchController()
@@ -33,6 +23,16 @@ class GuardianSearchTableVC: UIViewController {
         search_controller.searchBar.tintColor = .black
         return search_controller
 
+    }()
+    
+    lazy var guardianTableView: UITableView = {
+        
+        let table_view = UITableView()
+        table_view.translatesAutoresizingMaskIntoConstraints = false
+        table_view.backgroundColor = .black
+        table_view.separatorColor = .black
+        return table_view
+        
     }()
         
     var data = [PlayerInfo]() {
@@ -80,7 +80,6 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "guardianCell", for: indexPath)
         
         cell.textLabel?.text = data[indexPath.row].displayName
-        
         cell.backgroundColor = .black
         cell.textLabel?.textColor = .white
         return cell
