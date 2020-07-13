@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */; };
+		328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752124BBD3330063CE3D /* FindPlayers.swift */; };
+		328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */; };
 		32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18224B8EA3900839B36 /* AppDelegate.swift */; };
 		32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18424B8EA3900839B36 /* SceneDelegate.swift */; };
 		32C5C18924B8EA3D00839B36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C5C18824B8EA3D00839B36 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianSearchTableVC.swift; sourceTree = "<group>"; };
+		328C752124BBD3330063CE3D /* FindPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlayers.swift; sourceTree = "<group>"; };
+		328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayersRequest.swift; sourceTree = "<group>"; };
 		32C5C17F24B8EA3900839B36 /* StatTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C5C18224B8EA3900839B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C5C18424B8EA3900839B36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		328B07C224BBC07900C83C1D /* ApiCalls */ = {
+			isa = PBXGroup;
+			children = (
+				328C752324BBD5770063CE3D /* CallModels */,
+				328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */,
+			);
+			path = ApiCalls;
+			sourceTree = "<group>";
+		};
+		328C752324BBD5770063CE3D /* CallModels */ = {
+			isa = PBXGroup;
+			children = (
+				328C752124BBD3330063CE3D /* FindPlayers.swift */,
+			);
+			path = CallModels;
+			sourceTree = "<group>";
+		};
 		32C5C17624B8EA3900839B36 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +128,7 @@
 				32C5C18824B8EA3D00839B36 /* Assets.xcassets */,
 				32C5C19024B8EA3D00839B36 /* Info.plist */,
 				32C5C18A24B8EA3D00839B36 /* Preview Content */,
+				328B07C224BBC07900C83C1D /* ApiCalls */,
 			);
 			path = StatTracker;
 			sourceTree = "<group>";
@@ -278,6 +300,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
+				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
+				328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */,
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,

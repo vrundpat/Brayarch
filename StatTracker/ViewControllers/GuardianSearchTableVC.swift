@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class GuardianSearchTableVC: UIViewController {
     
     lazy var guardianTableView: UITableView = {
@@ -21,7 +22,7 @@ class GuardianSearchTableVC: UIViewController {
     }()
     
     lazy var  guardianSearchController: UISearchController = {
-           
+
         let search_controller = UISearchController()
         search_controller.searchBar.placeholder = "Search.."
         search_controller.searchBar.sizeToFit()
@@ -29,38 +30,30 @@ class GuardianSearchTableVC: UIViewController {
         search_controller.obscuresBackgroundDuringPresentation = false
         search_controller.searchBar.tintColor = .black
         return search_controller
-        
+
     }()
-    
-    var data: [String] = ["Apples", "Oranges", "Pears", "Bananas", "Plums"]
-    var filteredData: [String] = []
-    var isFiltering = false
-    var height: CGFloat!
-           
+        
+    var data = [PlayerInfo]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.guardianTableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isHidden = true
         view.addSubview(guardianTableView)
         setUpTableView()
-        guardianTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if(keyPath == "contentSize"){
-            if let newvalue = change?[.newKey] {
-                let contentHeight: CGFloat = guardianTableView.contentSize.height
-                height = contentHeight
-                
-            }
-        }
     }
         
     func setUpTableView() {
         guardianTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         guardianTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         guardianTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        guardianTableView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        // guardianTableView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        guardianTableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
         guardianTableView.delegate = self
         guardianTableView.dataSource = self
@@ -73,11 +66,7 @@ class GuardianSearchTableVC: UIViewController {
 extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
             
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredData.count
-        } else {
-            return data.count
-        }
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,11 +75,8 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "guardianCell", for: indexPath)
-        if isFiltering {
-            cell.textLabel?.text = filteredData[indexPath.row]
-        } else {
-            cell.textLabel?.text = data[indexPath.row]
-        }
+        
+        cell.textLabel?.text = data[indexPath.row].displayName
         
         cell.backgroundColor = .black
         cell.textLabel?.textColor = .white
@@ -105,34 +91,30 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
 
 // Extensions for the search bar's functionality
 extension GuardianSearchTableVC: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            filteredData = data
-            isFiltering = false
-            
-        } else {
-            filteredData = []
-            isFiltering = true
-            
-            for test in data {
-                if test.lowercased().contains(searchText.lowercased()) {
-                    filteredData.append(test)
+        
+        if searchText != "" {
+            let searchPlayersStruct = SearchPlayersRequest(searchText: searchText.lowercased())
+            searchPlayersStruct.searchPlayers { [weak self] result in
+                switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let players):
+                        self?.data = players
                 }
             }
-        }
-        
+        } else { data = [] }
+
         guardianTableView.reloadData()
     }
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isFiltering = false
-        filteredData = data
+        data = []
         guardianTableView.reloadData()
         view.isHidden = true
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        view.isHidden = false
-    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) { view.isHidden = false }
 }
