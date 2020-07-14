@@ -10,8 +10,8 @@ import UIKit
 
 class PlatFormButtonStackView: UIStackView {
     
-    let platformButtons = [PlatformButton(), PlatformButton(), PlatformButton()]
-    let platformFormButtonTitles = ["Xbox", "PS4", "Steam"]
+    let platformButtons = [PlatformButton(), PlatformButton(), PlatformButton(), PlatformButton()]
+    let platformButtonTitles = ["Xbox", "PS4", "Steam", "Stadia"]
     var apiDataModel: APIEssentialsController!
 
     override init(frame: CGRect) {
@@ -22,7 +22,7 @@ class PlatFormButtonStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
         
-        // If running storyboard
+        // Storyboard
             // super.init(coder: coder)
             // setUpStackView()
     }
@@ -38,7 +38,7 @@ class PlatFormButtonStackView: UIStackView {
     func setUpPlatformButtons() {
         for button in platformButtons {
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle(self.platformFormButtonTitles[self.platformButtons.firstIndex(of: button)!], for: .normal)
+            button.setTitle(self.platformButtonTitles[self.platformButtons.firstIndex(of: button)!], for: .normal)
             button.addTarget(self, action: #selector(platformButtonClicked), for: .touchUpInside)
             
             if button == self.platformButtons[0] {

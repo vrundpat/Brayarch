@@ -16,13 +16,20 @@ class GuardianSearchTableVC: UIViewController {
     lazy var  guardianSearchController: UISearchController = {
 
         let search_controller = UISearchController()
-        search_controller.searchBar.placeholder = "Search.."
+        search_controller.searchBar.placeholder = "Find your Guradian..."
         search_controller.searchBar.sizeToFit()
         search_controller.searchBar.delegate = self
         search_controller.obscuresBackgroundDuringPresentation = false
         search_controller.searchBar.tintColor = .black
-        return search_controller
+        
+        if let textField = search_controller.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = .white
+            textField.backgroundColor = .black
 
+            textField.alpha = CGFloat(0.4)
+        }
+        
+        return search_controller
     }()
     
     lazy var guardianTableView: UITableView = {
@@ -31,8 +38,9 @@ class GuardianSearchTableVC: UIViewController {
         table_view.translatesAutoresizingMaskIntoConstraints = false
         table_view.backgroundColor = .black
         table_view.separatorColor = .black
+        table_view.alpha = CGFloat(0.7)
         return table_view
-        
+    
     }()
         
     var data = [PlayerInfo]() {
@@ -80,6 +88,7 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "guardianCell", for: indexPath)
         
         cell.textLabel?.text = data[indexPath.row].displayName
+        cell.textLabel?.font = UIFont(name: "APpleSDGothicNeo-SemiBold", size: 16)
         cell.backgroundColor = .black
         cell.textLabel?.textColor = .white
         return cell

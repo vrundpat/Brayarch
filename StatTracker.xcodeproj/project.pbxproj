@@ -11,6 +11,7 @@
 		328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752124BBD3330063CE3D /* FindPlayers.swift */; };
 		328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */; };
 		32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */; };
+		32BB483624BE2B92001530CA /* bgVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 32BB483524BE2B92001530CA /* bgVideo.mp4 */; };
 		32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18224B8EA3900839B36 /* AppDelegate.swift */; };
 		32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18424B8EA3900839B36 /* SceneDelegate.swift */; };
 		32C5C18924B8EA3D00839B36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C5C18824B8EA3D00839B36 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		328C752124BBD3330063CE3D /* FindPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlayers.swift; sourceTree = "<group>"; };
 		328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayersRequest.swift; sourceTree = "<group>"; };
 		32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatFormButtonStackView.swift; sourceTree = "<group>"; };
+		32BB483524BE2B92001530CA /* bgVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgVideo.mp4; path = ../../../bgVideo.mp4; sourceTree = "<group>"; };
 		32C5C17F24B8EA3900839B36 /* StatTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C5C18224B8EA3900839B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C5C18424B8EA3900839B36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		32C5C18124B8EA3900839B36 /* StatTracker */ = {
 			isa = PBXGroup;
 			children = (
+				32BB483524BE2B92001530CA /* bgVideo.mp4 */,
 				32C5C18224B8EA3900839B36 /* AppDelegate.swift */,
 				32C5C18424B8EA3900839B36 /* SceneDelegate.swift */,
 				32C5C1B624B8F26400839B36 /* ViewControllers */,
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C5C18C24B8EA3D00839B36 /* Preview Assets.xcassets in Resources */,
+				32BB483624BE2B92001530CA /* bgVideo.mp4 in Resources */,
 				32C5C18924B8EA3D00839B36 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
