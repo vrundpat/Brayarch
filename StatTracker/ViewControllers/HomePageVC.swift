@@ -12,15 +12,21 @@ class HomePageVC: UIViewController {
     
     var apiDataModel: APIEssentialsController!
     let tableSearchview = GuardianSearchTableVC()
-    let platformButtons = [PlatformButton(), PlatformButton(), PlatformButton()]
-    let platformFormButtonTitles = ["Xbox", "PS4", "Steam"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        setUpRootView()
         setUpPlatformButtonsStackView()
         setUpGuardianSearchTableVC()
         setUpNavigationSearchController()
+    }
+    
+    func setUpRootView() {
+        let backgroundImg = UIImage(named: "rootBg3")
+        let backgroundImageView = UIImageView(frame: self.view.frame)
+        backgroundImageView.image = backgroundImg
+        view.insertSubview(backgroundImageView, at: 0)
     }
         
     func setUpGuardianSearchTableVC() {
