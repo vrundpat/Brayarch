@@ -24,17 +24,17 @@ class HomePageVC: UIViewController {
         view.backgroundColor = .black
 
         setUpBackground()
+        setUpDescriptionLabel()
         setUpPlatformButtonsStackView()
         setUpGuardianSearchTableVC()
         setUpNavigationSearchController()
     }
     
+    @objc func playerItemDidReachEnd() {
+        player!.seek(to: CMTime.zero)
+    }
+    
     func setUpBackground() {
-//        let backgroundImg = UIImage(named: "rootBg3")
-//        let backgroundImageView = UIImageView(frame: self.view.frame)
-//        backgroundImageView.image = backgroundImg
-//        view.insertSubview(backgroundImageView, at: 0)
-        
         let path = Bundle.main.path(forResource: "bgVideo", ofType: "mp4")
         player = AVPlayer(url: URL(fileURLWithPath: path!))
         player!.actionAtItemEnd = AVPlayer.ActionAtItemEnd.none
@@ -45,11 +45,8 @@ class HomePageVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player!.currentItem)
         player!.seek(to: CMTime.zero)
         player!.play()
+        
         self.player?.isMuted = true
-    }
-    
-    @objc func playerItemDidReachEnd() {
-        player!.seek(to: CMTime.zero)
     }
         
     func setUpGuardianSearchTableVC() {
@@ -62,10 +59,7 @@ class HomePageVC: UIViewController {
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         
         navigationItem.searchController = tableSearchview.guardianSearchController
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Find your Guardian...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        
-
+            
         navigationItem.title = "StatTracker"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .white
@@ -78,7 +72,24 @@ class HomePageVC: UIViewController {
 
         view.addSubview(platformButtonStackView)
         platformButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        platformButtonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
+        platformButtonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    func setUpDescriptionLabel() {
+        let descriptionText = UILabel()
+        
+        descriptionText.translatesAutoresizingMaskIntoConstraints = false
+        
+        descriptionText.text = "Choose your platform, and find your Guardian."
+        descriptionText.font = UIFont(name: "DINAlternate-Bold", size: 16)
+        descriptionText.textColor = .white
+        descriptionText.alpha = CGFloat(0.5)
+        
+        view.addSubview(descriptionText)
+
+        descriptionText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        descriptionText.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50).isActive = true
+        descriptionText.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
     }
 
     func addChildViewController(child: UIViewController) {

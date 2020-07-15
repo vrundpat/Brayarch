@@ -25,7 +25,6 @@ class GuardianSearchTableVC: UIViewController {
         if let textField = search_controller.searchBar.value(forKey: "searchField") as? UITextField {
             textField.textColor = .white
             textField.backgroundColor = .black
-
             textField.alpha = CGFloat(0.4)
         }
         
@@ -43,18 +42,8 @@ class GuardianSearchTableVC: UIViewController {
     
     }()
         
-    var data = [PlayerInfo]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.guardianTableView.reloadData()
-            }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+    var data = [PlayerInfo]() { didSet { DispatchQueue.main.async { self.guardianTableView.reloadData() } } }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
@@ -81,7 +70,8 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data.count }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        // return UITableView.automaticDimension
+        return 65
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +84,20 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { navigationController?.pushViewController(StatPageVC(), animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destinationViewController = StatPageVC()
+        
+        let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: data[indexPath.row].membershipId)
+            characterIdsStruct.getCharacterIds { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let characterIds):
+                    print(characterIds)
+            }
+        }
+        
+        navigationController?.pushViewController(destinationViewController, animated: true)
     }
 }
 
