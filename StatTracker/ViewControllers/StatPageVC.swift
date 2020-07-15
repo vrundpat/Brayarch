@@ -9,6 +9,12 @@
 import UIKit
 
 class StatPageVC: UIViewController {
+    
+    var UserCharacterStats = [GameModes]() {
+        didSet {
+            print("StatPageVC: \(UserCharacterStats)")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

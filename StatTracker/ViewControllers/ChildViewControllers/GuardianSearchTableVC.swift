@@ -12,6 +12,7 @@ import UIKit
 class GuardianSearchTableVC: UIViewController {
     
     var apiDataModel: APIEssentialsController!
+    var characterStatArray = [GameModes]()
     
     lazy var  guardianSearchController: UISearchController = {
 
@@ -63,33 +64,32 @@ class GuardianSearchTableVC: UIViewController {
     }
     
     func makeFetchCharacterIdsRequest(destinyMembershipId: String) {
-        
         let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: destinyMembershipId)
             characterIdsStruct.getCharacterIds { [weak self] result in
-            switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let characterIds):
-                    print("Characters: \(characterIds.count)")
-                    for id in characterIds {
-                        self?.getCharacterStats(memberShipId: destinyMembershipId, char_id: id)
+                switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let characterIds):
+                        
+                        for id in characterIds {
+                            self?.getCharacterStats(memberShipId: destinyMembershipId, char_id: id)
+                        }
                 }
             }
-        }
-        
     }
     
     func getCharacterStats(memberShipId: String, char_id: String) {
 
         let characterStatsStruct = FetchCharacterStatsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: memberShipId, characterId: char_id)
             characterStatsStruct.getCharacterStats { [weak self] result in
-            switch result {
-                case .failure(let error):
-                    print(error)
-            case .success(let characterStats):
-                print("Quickplay Kills: \(characterStats.pvpQuickplay?.allTime.kills.basic.value)")
+                switch result {
+                    case .failure(let error):
+                        print(error)
+                case .success(let characterStats):
+                    print("Get character stats call was made!")
+                    self?.characterStatArray.append(characterStats)
+                }
             }
-        }
     }
 }
 
@@ -116,9 +116,13 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let destinationViewController = StatPageVC()
-        self.makeFetchCharacterIdsRequest(destinyMembershipId: data[indexPath.row].membershipId)
-        navigationController?.pushViewController(destinationViewController, animated: true)
+        self.makeFetchCharacterIdsRequest(destinyMembershipId: self.data[indexPath.row].membershipId)
+        do { sleep(3) }
+        print("After all API async Calls: \(self.characterStatArray.count)")
+        let destinationVC = StatPageVC()
+        destinationVC.UserCharacterStats = self.characterStatArray
+        navigationController?.pushViewController(destinationVC, animated: true)
+        self.characterStatArray.removeAll()
     }
 }
 
