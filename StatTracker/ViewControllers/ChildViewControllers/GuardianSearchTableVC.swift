@@ -61,6 +61,36 @@ class GuardianSearchTableVC: UIViewController {
         guardianTableView.dataSource = self
         guardianTableView.register(UITableViewCell.self, forCellReuseIdentifier: "guardianCell")
     }
+    
+    func makeFetchCharacterIdsRequest(destinyMembershipId: String) {
+        
+        let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: destinyMembershipId)
+            characterIdsStruct.getCharacterIds { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let characterIds):
+                    print("Characters: \(characterIds.count)")
+                    for id in characterIds {
+                        self?.getCharacterStats(memberShipId: destinyMembershipId, char_id: id)
+                }
+            }
+        }
+        
+    }
+    
+    func getCharacterStats(memberShipId: String, char_id: String) {
+
+        let characterStatsStruct = FetchCharacterStatsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: memberShipId, characterId: char_id)
+            characterStatsStruct.getCharacterStats { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    print(error)
+            case .success(let characterStats):
+                print("Quickplay Kills: \(characterStats.pvpQuickplay?.allTime.kills.basic.value)")
+            }
+        }
+    }
 }
 
 
@@ -85,18 +115,9 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let destinationViewController = StatPageVC()
-        
-        let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: data[indexPath.row].membershipId)
-            characterIdsStruct.getCharacterIds { [weak self] result in
-            switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let characterIds):
-                    print(characterIds)
-            }
-        }
-        
+        self.makeFetchCharacterIdsRequest(destinyMembershipId: data[indexPath.row].membershipId)
         navigationController?.pushViewController(destinationViewController, animated: true)
     }
 }

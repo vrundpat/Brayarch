@@ -1,33 +1,35 @@
 //
-//  FetchCharacterIds.swift
+//  FetchCharacterStatsRequest.swift
 //  StatTracker
 //
-//  Created by Vrund Patel on 7/14/20.
+//  Created by Vrund Patel on 7/15/20.
 //  Copyright © 2020 Vrund Patel. All rights reserved.
 //
 
 import Foundation
 
-enum FetchCharacterIdsRequestError: Error {
+
+enum FetchCharacterStatsRequestError: Error {
     case noDataAvailable
     case cannotProcessData
 }
 
 
-struct FetchCharacterIdsRequest {
+struct FetchCharacterStatsRequest {
     
     var resourceURL: URLRequest
     let API_KEY = "ba1b26f5d69a4c1180a5686d4e5b2cf2"
 
-    init(memberShipType: Int, destinyMembershipId: String) {
-        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Profile/\(destinyMembershipId)/?components=100"
+    init(memberShipType: Int, destinyMembershipId: String, characterId: String) {
+        
+        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Account/\(destinyMembershipId)/Character/\(characterId)/Stats/?modes=10,12,19,37,48,63,75,69,70,84"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
 
         self.resourceURL = URLRequest(url: resourceURL)
         self.resourceURL.addValue(API_KEY, forHTTPHeaderField: "X-API-Key")
     }
 
-    func getCharacterIds(completion: @escaping(Result<[String], FetchCharacterIdsRequestError>) -> Void) {
+    func getCharacterStats(completion: @escaping(Result<GameModes, FetchCharacterStatsRequestError>) -> Void) {
 
         let dataTask = URLSession.shared.dataTask(with: resourceURL) { data, response, error in
 
@@ -38,10 +40,9 @@ struct FetchCharacterIdsRequest {
 
             do {
                 let decoder = JSONDecoder()
-                let getCharacterIdsResponse = try decoder.decode(FetchCharacterIdsResponse.self, from: jsonData)
-
-                let characterIds = getCharacterIdsResponse.Response.profile.data.characterIds
-                completion(.success(characterIds))
+                let getCharacterStatsResponse = try decoder.decode(FetchCharacterStats.self, from: jsonData)
+                let characterStats = getCharacterStatsResponse.Response
+                completion(.success(characterStats))
 
             } catch {
                 completion(.failure(.cannotProcessData))

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */; };
+		3285800F24BF6DE300E8EAA1 /* FetchCharacterStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */; };
+		3285801124BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3285801024BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift */; };
 		328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752124BBD3330063CE3D /* FindPlayers.swift */; };
 		328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */; };
 		32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianSearchTableVC.swift; sourceTree = "<group>"; };
+		3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharacterStats.swift; sourceTree = "<group>"; };
+		3285801024BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharacterStatsRequest.swift; sourceTree = "<group>"; };
 		328C752124BBD3330063CE3D /* FindPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlayers.swift; sourceTree = "<group>"; };
 		328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayersRequest.swift; sourceTree = "<group>"; };
 		32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatFormButtonStackView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				328C752324BBD5770063CE3D /* CallModels */,
 				328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */,
 				32C2D01724BE8E8600A172CF /* FetchCharacterIdsRequest.swift */,
+				3285801024BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift */,
 			);
 			path = ApiCalls;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 			children = (
 				328C752124BBD3330063CE3D /* FindPlayers.swift */,
 				32C2D01524BE874D00A172CF /* FetchCharacterIds.swift */,
+				3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */,
 			);
 			path = CallModels;
 			sourceTree = "<group>";
@@ -346,7 +352,9 @@
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
 				32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */,
 				328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */,
+				3285801124BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift in Sources */,
 				32C2D01624BE874D00A172CF /* FetchCharacterIds.swift in Sources */,
+				3285800F24BF6DE300E8EAA1 /* FetchCharacterStats.swift in Sources */,
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
 				32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */,
