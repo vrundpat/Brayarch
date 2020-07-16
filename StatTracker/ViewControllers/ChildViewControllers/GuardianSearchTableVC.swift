@@ -117,7 +117,7 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.makeFetchCharacterIdsRequest(destinyMembershipId: self.data[indexPath.row].membershipId)
-        do { sleep(3) }
+        do { sleep(4) }
         print("After all API async Calls: \(self.characterStatArray.count)")
         let destinationVC = StatPageVC()
         destinationVC.UserCharacterStats = self.characterStatArray

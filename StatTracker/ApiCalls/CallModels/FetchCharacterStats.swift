@@ -19,13 +19,13 @@ struct FetchCharacterStats: Decodable {
 
 struct GameModes: Decodable {
     var allPvE:             PVE_AllTime?
-    var pvpQuickplay:       GameModeAllTime?
-    var pvpCompetitive:     GameModeAllTime?
-    var trials_of_osiris:   GameModeAllTime?
-    var ironBanner:         GameModeAllTime?
-    var pvecomp_gambit:     GameModeAllTime? // Gambit
-    var pvecomp_mamba:      GameModeAllTime? // Gambit Prime
-        
+    var pvpQuickplay:       PVPGameModeAllTime?
+    var pvpCompetitive:     PVPGameModeAllTime?
+    var trials_of_osiris:   PVPGameModeAllTime?
+    var ironBanner:         PVPGameModeAllTime?
+    var pvecomp_gambit:     GambitModeAllTime? // Gambit
+    var pvecomp_mamba:      GambitModeAllTime? // Gambit Prime
+    
     private enum GameModeTypes: String, CodingKey {
         case allPvE             = "allPvE"
         case pvpQuickplay       = "pvpQuickplay"
@@ -40,36 +40,34 @@ struct GameModes: Decodable {
         let values = try decoder.container(keyedBy: GameModeTypes.self)
         
         allPvE              = try? values.decode(PVE_AllTime.self, forKey: .allPvE)
-        pvpQuickplay        = try? values.decode(GameModeAllTime.self, forKey: .pvpQuickplay)
-        pvpCompetitive      = try? values.decode(GameModeAllTime.self, forKey: .pvpCompetitive)
-        trials_of_osiris    = try? values.decode(GameModeAllTime.self, forKey: .trials_of_osiris)
-        ironBanner          = try? values.decode(GameModeAllTime.self, forKey: .ironBanner)
-        pvecomp_gambit      = try? values.decode(GameModeAllTime.self, forKey: .pvecomp_gambit)
-        pvecomp_mamba       = try? values.decode(GameModeAllTime.self, forKey: .pvecomp_mamba)
+        pvpQuickplay        = try? values.decode(PVPGameModeAllTime.self, forKey: .pvpQuickplay)
+        pvpCompetitive      = try? values.decode(PVPGameModeAllTime.self, forKey: .pvpCompetitive)
+        trials_of_osiris    = try? values.decode(PVPGameModeAllTime.self, forKey: .trials_of_osiris)
+        ironBanner          = try? values.decode(PVPGameModeAllTime.self, forKey: .ironBanner)
+        pvecomp_gambit      = try? values.decode(GambitModeAllTime.self, forKey: .pvecomp_gambit)
+        pvecomp_mamba       = try? values.decode(GambitModeAllTime.self, forKey: .pvecomp_mamba)
     }
 }
 
-struct GameModeAllTime: Decodable {
-    var allTime: GameModeAllTimeStats
+struct PVPGameModeAllTime: Decodable {
+    var allTime: PVPGameModeAllTimeStats
 }
 
 
-struct GameModeAllTimeStats: Decodable {
-    var activitiesEntered:      StatsPGA
-    var activitiesWon:          StatsPGA
-    var averageScorePerLife:    StatsPGA
-    var bestSingleGameKills:    StatsPGA
-    var opponentsDefeated:      StatsPGA
-    var efficiency:             StatsPGA
-    var killsDeathsRatio:       StatsPGA
-    var killsDeathsAssists:     StatsPGA
+struct PVPGameModeAllTimeStats: Decodable {
+    var activitiesEntered:      StatsNoPGA
+    var activitiesWon:          StatsNoPGA
+    var bestSingleGameKills:    StatsNoPGA
+    var opponentsDefeated:      StatsNoPGA
+    var efficiency:             StatsNoPGA
+    var killsDeathsRatio:       StatsNoPGA
+    var killsDeathsAssists:     StatsNoPGA
     
-    var assists:                StatsNoPGA
-    var kills:                  StatsNoPGA
-    var deaths:                 StatsNoPGA
-    var score:                  StatsNoPGA
-    var precisionKills:         StatsNoPGA
-    var suicides:               StatsNoPGA
+    var assists:                StatsPGA
+    var kills:                  StatsPGA
+    var deaths:                 StatsPGA
+    var precisionKills:         StatsPGA
+    var suicides:               StatsPGA
 }
 
 
@@ -115,6 +113,48 @@ struct PVE_AllTimeStats: Decodable {
     var weaponKillsGrenadeLauncher:     StatsPGA
     var weaponKillsSuper:               StatsPGA
     var weaponKillsMelee:               StatsPGA
+}
+
+
+// For Gambit
+
+struct GambitModeAllTime: Decodable {
+    var allTime: GambitModeAllTimeStats
+}
+
+struct GambitModeAllTimeStats: Decodable {
+    var activitiesEntered:              StatsNoPGA
+    var activitiesWon:                  StatsNoPGA
+    var bestSingleGameKills:            StatsNoPGA
+    var opponentsDefeated:              StatsNoPGA
+    var weaponBestType:                 StatsNoPGA
+    var winLossRatio:                   StatsNoPGA
+
+    // Gambit specific stats
+    var invasions:                      StatsNoPGA
+    var invasionKills:                  StatsNoPGA
+    var invasionDeaths:                 StatsNoPGA
+    var invaderKills:                   StatsNoPGA
+    var invaderDeaths:                  StatsNoPGA
+    var primevalKills:                  StatsNoPGA
+    var blockerKills:                   StatsNoPGA
+    var mobKills:                       StatsNoPGA
+    var highValueKills:                 StatsNoPGA
+    var motesPickedUp:                  StatsNoPGA
+    var motesDeposited:                 StatsNoPGA
+    var motesDenied:                    StatsNoPGA
+    var motesLost:                      StatsNoPGA
+    var primevalDamage:                 StatsNoPGA
+    var roundsPlayed:                   StatsNoPGA
+    var roundsWon:                      StatsNoPGA
+
+    
+    var assists:                        StatsPGA
+    var kills:                          StatsPGA
+    var deaths:                         StatsPGA
+    var precisionKills:                 StatsPGA
+    var suicides:                       StatsPGA
+    var orbsDropped:                    StatsPGA
 }
 
 
