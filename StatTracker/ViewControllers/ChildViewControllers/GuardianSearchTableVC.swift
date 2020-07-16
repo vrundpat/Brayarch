@@ -72,13 +72,13 @@ class GuardianSearchTableVC: UIViewController {
                     case .success(let characterIds):
                         
                         for id in characterIds {
-                            self?.getCharacterStats(memberShipId: destinyMembershipId, char_id: id)
+                            self?.makeFetchCharacterStatsRequest(memberShipId: destinyMembershipId, char_id: id)
                         }
                 }
             }
     }
     
-    func getCharacterStats(memberShipId: String, char_id: String) {
+    func makeFetchCharacterStatsRequest(memberShipId: String, char_id: String) {
 
         let characterStatsStruct = FetchCharacterStatsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: memberShipId, characterId: char_id)
             characterStatsStruct.getCharacterStats { [weak self] result in

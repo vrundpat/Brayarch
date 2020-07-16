@@ -12,7 +12,7 @@ class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
-            print("StatPageVC: \(UserCharacterStats)")
+            print("Stats Received")
         }
     }
 
@@ -21,3 +21,4 @@ class StatPageVC: UIViewController {
         view.backgroundColor = .red
     }
 }
+
