@@ -23,7 +23,7 @@ class StatPageVC: UIViewController {
         }
     }
     
-    let cellId = "cell"
+    let cellId = "statCell"
     let rootCV_CellPadding = 16
     
     lazy var  rootCollectionView: UICollectionView = {
@@ -33,7 +33,8 @@ class StatPageVC: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(PvPStatDisplayCollectionView.self, forCellWithReuseIdentifier: cellId)
+
         return collectionView
     }()
 
@@ -73,18 +74,12 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - CGFloat(2 * rootCV_CellPadding), height: (view.frame.height / 3) - CGFloat(rootCV_CellPadding))
+        return CGSize(width: view.frame.width, height: CGFloat(400))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .blue
-        let title = UILabel(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 50))
-        title.text = self.UserCharacterStats[currentDisplayedCharacterIndex].allPvE?.allTime.kills.basic.displayValue
-        title.textAlignment = .center
-        title.textColor = .black
-        cell.contentView.addSubview(title)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
+        cell.setUpCellCollectionView()
         return cell
     }
 }
-

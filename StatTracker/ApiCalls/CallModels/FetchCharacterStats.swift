@@ -81,7 +81,7 @@ struct PVE_AllTimeStats: Decodable {
     var activitiesCleared: StatsNoPGA
     var activitiesEntered: StatsNoPGA
     var opponentsDefeated: StatsNoPGA
-    var killsDeathsRatio: StatsNoPGA
+    var killsDeathsRatio:  StatsNoPGA
     var highestLightLevel: StatsNoPGA
     
     
