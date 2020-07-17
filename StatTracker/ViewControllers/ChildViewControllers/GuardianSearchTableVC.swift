@@ -118,9 +118,11 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         
         self.makeFetchCharacterIdsRequest(destinyMembershipId: self.data[indexPath.row].membershipId)
         do { sleep(4) }
+        
         print("After all API async Calls: \(self.characterStatArray.count)")
         let destinationVC = StatPageVC()
         destinationVC.UserCharacterStats = self.characterStatArray
+        destinationVC.currentUserBeingDisplayed = self.data[indexPath.row].displayName
         navigationController?.pushViewController(destinationVC, animated: true)
         self.characterStatArray.removeAll()
     }
