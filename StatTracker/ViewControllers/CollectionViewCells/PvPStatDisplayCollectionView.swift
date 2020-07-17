@@ -12,6 +12,11 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
     
     let cellId = "pveCell"
     let cellPadding = 16
+    var pvpStats = [GameModes]() {
+        didSet {
+            CellCollectionView.reloadData()
+        }
+    }
     
     lazy var  CellCollectionView: UICollectionView = {
         
@@ -27,7 +32,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpCellCollectionView()
+        // setUpCellCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +71,8 @@ extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStats
         cell.cornerRadiusFromParent = 25
+        cell.pvpStats = self.pvpStats
+        cell.setUpRootStackView()
         return cell
     }
 }

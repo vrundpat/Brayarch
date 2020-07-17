@@ -12,7 +12,7 @@ class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
-            print("Stats Received")
+            print(UserCharacterStats[0].pvpQuickplay?.allTime.kills)
         }
     }
     
@@ -79,6 +79,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
+        cell.pvpStats = self.UserCharacterStats
         cell.setUpCellCollectionView()
         return cell
     }
