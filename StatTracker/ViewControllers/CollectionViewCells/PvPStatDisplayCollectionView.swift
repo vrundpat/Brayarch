@@ -30,7 +30,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
         collectionView.backgroundColor = .darkGray
         return collectionView
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         // setUpCellCollectionView()

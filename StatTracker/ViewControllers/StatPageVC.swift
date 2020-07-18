@@ -39,6 +39,21 @@ class StatPageVC: UIViewController {
         return collectionView
     }()
     
+//    lazy var changebutton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle("Change", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = .black
+//        button.addTarget(self, action: #selector(toggle), for: .touchUpInside)
+//        return button
+//    }()
+    
+    @objc func toggle() {
+        if currentDisplayedCharacterIndex != UserCharacterStats.count - 1 { currentDisplayedCharacterIndex += 1 }
+        else { currentDisplayedCharacterIndex = 0 }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -48,6 +63,7 @@ class StatPageVC: UIViewController {
     
     func setUpRootCollectionView() {
         view.addSubview(rootCollectionView)
+//        view.addSubview(changebutton)
         rootCollectionView.backgroundColor = .lightGray
         
         // Constriants
@@ -55,6 +71,11 @@ class StatPageVC: UIViewController {
         rootCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         rootCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         rootCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+        
+//        changebutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+//        changebutton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+//        changebutton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        changebutton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
         
         // Delegate & Data Source
         rootCollectionView.delegate = self
