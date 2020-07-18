@@ -13,6 +13,9 @@ class StackViewText: UIStackView {
     var titles = [String]()
     var vals = [String]()
     
+    var textColor = UIColor()
+    var bgColor = UIColor()
+    
     let sample1 = OverlappedText()
     let sample2 = OverlappedText()
     let sample3 = OverlappedText()
@@ -42,6 +45,16 @@ class StackViewText: UIStackView {
         sample3.vals = self.vals[2]
         sample4.vals = self.vals[3]
         
+        sample1.textColor = self.textColor
+        sample2.textColor = self.textColor
+        sample3.textColor = self.textColor
+        sample4.textColor = self.textColor
+        
+        sample1.bgColor = self.bgColor
+        sample2.bgColor = self.bgColor
+        sample3.bgColor = self.bgColor
+        sample4.bgColor = self.bgColor
+
         sample1.setUpOverlayText()
         sample2.setUpOverlayText()
         sample3.setUpOverlayText()
@@ -64,6 +77,8 @@ class OverlappedText: UIStackView {
     
     var titles = String()
     var vals = String()
+    var textColor = UIColor()
+    var bgColor = UIColor()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,6 +108,8 @@ class OverlappedText: UIStackView {
         textLabel1.textContainerInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         textLabel1.showsVerticalScrollIndicator = false
         textLabel1.showsHorizontalScrollIndicator = false
+        textLabel1.textColor = self.textColor
+        textLabel1.backgroundColor = self.bgColor
         
         textLabel2.isEditable = false
         textLabel2.backgroundColor = UIColor.yellow
@@ -103,5 +120,7 @@ class OverlappedText: UIStackView {
         textLabel2.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         textLabel2.showsVerticalScrollIndicator = false
         textLabel2.showsHorizontalScrollIndicator = false
+        textLabel2.textColor = self.textColor
+        textLabel2.backgroundColor = self.bgColor
     }
 }

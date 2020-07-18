@@ -12,7 +12,12 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
     
     let cellId = "pveCell"
     let cellPadding = 16
-    var pvpStats = [GameModes]()
+    var pvpStats = [PVPGameModeAllTime?]()
+    var titles = [String]()
+    var values = [String]()
+    var img = [String]()
+    var bgColor = [UIColor]()
+    var textColor = [UIColor]()
     var currentIndex = Int() {
         didSet {
             CellCollectionView.reloadData()
@@ -27,7 +32,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(PvPStats.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = .white
         return collectionView
     }()
         
@@ -58,7 +63,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
 
 extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
+        return pvpStats.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -66,14 +71,19 @@ extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: contentView.frame.width - CGFloat(2 * cellPadding), height: (contentView.frame.height - CGFloat(cellPadding)))
+//        if pvpStats.count > 1 {
+//            return CGSize(width: contentView.frame.width - CGFloat(2 * cellPadding), height: (contentView.frame.height - CGFloat(cellPadding)))
+        return CGSize(width: contentView.frame.width - CGFloat(cellPadding), height: (contentView.frame.height - CGFloat(cellPadding)))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStats
         cell.cornerRadiusFromParent = 25
-        cell.pvpStats = self.pvpStats
+        cell.pvpStats = self.pvpStats[indexPath.row]
         cell.currentIndex = self.currentIndex
+        cell.imageName = img[indexPath.row]
+        cell.bgColor = self.bgColor[indexPath.row]
+        cell.textColor = self.textColor[indexPath.row]
         cell.setUpRootStackView()
         return cell
     }

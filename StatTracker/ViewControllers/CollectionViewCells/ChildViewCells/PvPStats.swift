@@ -16,15 +16,17 @@ class PvPStats: UICollectionViewCell {
         }
     }
     
-    var pvpStats = [GameModes]()
+    var pvpStats: PVPGameModeAllTime?
     var currentIndex = Int()
+    var imageName = String()
+    var bgColor = UIColor()
+    var textColor = UIColor()
     
     let sample1 = StackViewText()
     let sample2 = StackViewText()
     
     var lbl: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "rootBg4")
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = 25
@@ -67,6 +69,7 @@ class PvPStats: UICollectionViewCell {
         rootStackView.addArrangedSubview(lbl)
         rootStackView.addArrangedSubview(statHolderStackView)
         
+        lbl.image = UIImage(named: imageName)
         lbl.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
         lbl.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         lbl.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
@@ -74,11 +77,10 @@ class PvPStats: UICollectionViewCell {
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
-        if let pvp = self.pvpStats[currentIndex].pvpQuickplay {
+        if let pvp = self.pvpStats {
             sample1.vals = ["\(pvp.allTime.kills.basic.displayValue)", "\(pvp.allTime.assists.basic.displayValue)", "\(pvp.allTime.deaths.basic.displayValue)", "\(pvp.allTime.activitiesEntered.basic.displayValue)"]
             
             sample2.vals = ["\(pvp.allTime.suicides.basic.displayValue)", "\(pvp.allTime.killsDeathsRatio.basic.displayValue)", "\(pvp.allTime.killsDeathsAssists.basic.displayValue)", "\(pvp.allTime.efficiency.basic.displayValue)"]
-
         } else {
             sample1.vals = ["0", "0", "0", "0"]
             sample2.vals = ["0", "0", "0", "0"]
@@ -86,6 +88,13 @@ class PvPStats: UICollectionViewCell {
         
         sample1.titles = ["Kills", "Assists", "Deaths", "Matches"]
         sample2.titles = ["Suicides", "KD", "KAD", "Efficiency"]
+        
+        sample1.bgColor = self.bgColor
+        sample2.bgColor = self.bgColor
+        
+        sample1.textColor = self.textColor
+        sample2.textColor = self.textColor
+        
         sample1.setUpStack()
         sample2.setUpStack()
         

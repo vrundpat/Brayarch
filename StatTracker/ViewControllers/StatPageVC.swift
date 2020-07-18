@@ -12,8 +12,9 @@ class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
-            print(UserCharacterStats[0].pvpQuickplay)
+            // print(UserCharacterStats[0].pvpQuickplay)
             print("Stats Received")
+            UserCharacterStats.sort(by: self.sortCharacters(this:that:))
         }
     }
     
@@ -38,17 +39,7 @@ class StatPageVC: UIViewController {
 
         return collectionView
     }()
-    
-//    lazy var changebutton: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Change", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.backgroundColor = .black
-//        button.addTarget(self, action: #selector(toggle), for: .touchUpInside)
-//        return button
-//    }()
-    
+
     @objc func toggle() {
         if currentDisplayedCharacterIndex != UserCharacterStats.count - 1 { currentDisplayedCharacterIndex += 1 }
         else { currentDisplayedCharacterIndex = 0 }
@@ -57,14 +48,14 @@ class StatPageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        navigationItem.title = self.currentUserBeingDisplayed
         currentDisplayedCharacterIndex = 0
         setUpRootCollectionView()
     }
     
     func setUpRootCollectionView() {
         view.addSubview(rootCollectionView)
-//        view.addSubview(changebutton)
-        rootCollectionView.backgroundColor = .lightGray
+        rootCollectionView.backgroundColor = .black
         
         // Constriants
         rootCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -72,14 +63,13 @@ class StatPageVC: UIViewController {
         rootCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         rootCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         
-//        changebutton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-//        changebutton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-//        changebutton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        changebutton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
-        
         // Delegate & Data Source
         rootCollectionView.delegate = self
         rootCollectionView.dataSource = self
+    }
+    
+    func sortCharacters(this: GameModes, that: GameModes) -> Bool {
+        return Int((this.allPvE?.allTime.kills.basic.value)!) > Int((that.allPvE?.allTime.kills.basic.value)!)
     }
 }
 
@@ -88,11 +78,11 @@ class StatPageVC: UIViewController {
 extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -101,8 +91,35 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
-        cell.pvpStats = self.UserCharacterStats
-        cell.currentIndex = self.currentDisplayedCharacterIndex
+        
+        if indexPath.section == 0 {
+            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].pvpQuickplay
+            let statArray = [stats, self.UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive]
+            cell.pvpStats = statArray
+            cell.currentIndex = self.currentDisplayedCharacterIndex
+            cell.img = ["valor", "glory"]
+            cell.bgColor = [.black, .black]
+            cell.textColor = [.orange, .red]
+        }
+        else if indexPath.section == 1 {
+            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris
+            let statArray = [stats]
+            cell.pvpStats = statArray
+            cell.currentIndex = self.currentDisplayedCharacterIndex
+            cell.img = ["trials2"]
+            cell.bgColor = [.black]
+            cell.textColor = [.yellow]
+        }
+        else if indexPath.section == 2 {
+            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner
+            let statArray = [stats]
+            cell.pvpStats = statArray
+            cell.currentIndex = self.currentDisplayedCharacterIndex
+            cell.img = ["ironbanner"]
+            cell.bgColor = [.black]
+            cell.textColor = [.yellow]
+        }
+        
         cell.setUpCellCollectionView()
         return cell
     }
