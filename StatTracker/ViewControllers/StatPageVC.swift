@@ -12,7 +12,8 @@ class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
-            print(UserCharacterStats[0].pvpQuickplay?.allTime.kills)
+            print(UserCharacterStats[0].pvpQuickplay)
+            print("Stats Received")
         }
     }
     
@@ -37,7 +38,7 @@ class StatPageVC: UIViewController {
 
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -53,7 +54,7 @@ class StatPageVC: UIViewController {
         rootCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         rootCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         rootCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        rootCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        rootCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         
         // Delegate & Data Source
         rootCollectionView.delegate = self
@@ -80,6 +81,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
         cell.pvpStats = self.UserCharacterStats
+        cell.currentIndex = self.currentDisplayedCharacterIndex
         cell.setUpCellCollectionView()
         return cell
     }

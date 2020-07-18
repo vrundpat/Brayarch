@@ -17,15 +17,27 @@ class PvPStats: UICollectionViewCell {
     }
     
     var pvpStats = [GameModes]()
+    var currentIndex = Int()
+    
+    let sample1 = StackViewText()
+    let sample2 = StackViewText()
     
     var lbl: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "rootBg3")
+        iv.image = UIImage(named: "rootBg4")
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = 25
         iv.clipsToBounds = true
         return iv
+    }()
+    
+    var rootStackView: UIStackView = {
+        let rootSV = UIStackView()
+        rootSV.translatesAutoresizingMaskIntoConstraints = false
+        rootSV.axis = .vertical
+        rootSV.backgroundColor = .white
+        return rootSV
     }()
     
     var statHolderStackView: UIStackView = {
@@ -37,14 +49,6 @@ class PvPStats: UICollectionViewCell {
         return stackView
     }()
     
-    var rootStackView: UIStackView = {
-        let rootSV = UIStackView()
-        rootSV.translatesAutoresizingMaskIntoConstraints = false
-        rootSV.axis = .vertical
-        rootSV.backgroundColor = .white
-        return rootSV
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -54,6 +58,7 @@ class PvPStats: UICollectionViewCell {
     }
     
     func setUpRootStackView() {
+        
         contentView.addSubview(rootStackView)
         
         rootStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
@@ -69,27 +74,25 @@ class PvPStats: UICollectionViewCell {
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
-        let sample1 = StackViewText()
-        let sample2 = StackViewText()
-        
-        if let pvp = self.pvpStats[0].pvpQuickplay {
-            sample1.vals = ["\(pvp.allTime.kills.basic.displayValue)", "\(pvp.allTime.assists.basic.displayValue)", "\(pvp.allTime.deaths.basic.displayValue)"]
+        if let pvp = self.pvpStats[currentIndex].pvpQuickplay {
+            sample1.vals = ["\(pvp.allTime.kills.basic.displayValue)", "\(pvp.allTime.assists.basic.displayValue)", "\(pvp.allTime.deaths.basic.displayValue)", "\(pvp.allTime.activitiesEntered.basic.displayValue)"]
+            
+            sample2.vals = ["\(pvp.allTime.suicides.basic.displayValue)", "\(pvp.allTime.killsDeathsRatio.basic.displayValue)", "\(pvp.allTime.killsDeathsAssists.basic.displayValue)", "\(pvp.allTime.efficiency.basic.displayValue)"]
 
-        } else { sample1.vals = ["0", "0", "0"] }
+        } else {
+            sample1.vals = ["0", "0", "0", "0"]
+            sample2.vals = ["0", "0", "0", "0"]
+        }
         
-        sample1.titles = ["Kills", "Assists", "Deaths"]
-        sample2.titles = ["test1", "test2", "test3"]
-        sample2.vals = ["1", "2", "3"]
-        
+        sample1.titles = ["Kills", "Assists", "Deaths", "Matches"]
+        sample2.titles = ["Suicides", "KD", "KAD", "Efficiency"]
         sample1.setUpStack()
         sample2.setUpStack()
         
-        sample2.textLabel1.layer.masksToBounds = true
-        sample2.textLabel3.layer.masksToBounds = true
-        sample2.textLabel1.roundCorners(corners: [.layerMinXMaxYCorner], radius: CGFloat(25))
-        sample2.textLabel3.roundCorners(corners: [.layerMaxXMaxYCorner], radius: CGFloat(25))
-
-
+        // Corner Radius
+        sample2.sample1.textLabel2.roundCorners(corners: [.layerMinXMaxYCorner], radius: CGFloat(20))
+        sample2.sample4.textLabel2.roundCorners(corners: [.layerMaxXMaxYCorner], radius: CGFloat(20))
+        
         statHolderStackView.addArrangedSubview(sample1)
         statHolderStackView.addArrangedSubview(sample2)
     }
@@ -102,53 +105,4 @@ extension UIView {
       self.layer.cornerRadius = radius
       self.layer.maskedCorners = corners
    }
-}
-
-
-
-class StackViewText: UIStackView {
-    
-    var titles = [String]()
-    var vals = [String]()
-    
-    let textLabel1 = UILabel()
-    let textLabel2 = UILabel()
-    let textLabel3 = UILabel()
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setUpStack() {
-                        
-        axis = .horizontal
-        distribution = .fillEqually
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        addArrangedSubview(textLabel1)
-        addArrangedSubview(textLabel2)
-        addArrangedSubview(textLabel3)
-        
-        textLabel1.backgroundColor = UIColor.yellow
-        textLabel1.text  = "\(self.titles[0]): \(self.vals[0])"
-        textLabel1.textAlignment = .center
-        textLabel1.translatesAutoresizingMaskIntoConstraints = false
-        
-        textLabel2.backgroundColor = UIColor.yellow
-        textLabel2.text  = "\(self.titles[1]): \(self.vals[1])"
-        textLabel2.textAlignment = .center
-        textLabel2.translatesAutoresizingMaskIntoConstraints = false
-        
-        textLabel3.text  = "\(self.titles[2]): \(self.vals[2])"
-        textLabel3.textAlignment = .center
-        textLabel3.translatesAutoresizingMaskIntoConstraints = false
-        textLabel3.backgroundColor = .blue
-        textLabel3.layer.masksToBounds = false
-    }
-    
 }
