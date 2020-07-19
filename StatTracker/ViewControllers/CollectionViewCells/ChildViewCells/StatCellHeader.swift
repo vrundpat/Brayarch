@@ -18,13 +18,17 @@ class StatCellHeader: UICollectionReusableView {
         return stackView
     }()
     
-    let title: UILabel = {
-        let titleLbl = UILabel()
-        titleLbl.translatesAutoresizingMaskIntoConstraints = false
-        titleLbl.text = "PvP: Quickplay & Competitive"
-        titleLbl.textColor = .red
-        titleLbl.backgroundColor = .yellow
-        return titleLbl
+    let title: UITextView = {
+        let titleView = UITextView()
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.text = "PvP: Quickplay & Competitive"
+        titleView.textColor = .white
+        titleView.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.6)
+        titleView.font = UIFont(name: "DINAlternate-Bold", size: 28)
+        titleView.textContainerInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        titleView.textAlignment = .center
+        titleView.layer.masksToBounds = true
+        return titleView
     }()
     
     let swipeText: UITextView = {
@@ -32,9 +36,17 @@ class StatCellHeader: UICollectionReusableView {
         textView.text = "Swipe >>"
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.backgroundColor = .red
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        textView.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.6)
         textView.textAlignment = .right
         return textView
+    }()
+    
+    let underline: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -52,10 +64,12 @@ class StatCellHeader: UICollectionReusableView {
         headerStackView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
         headerStackView.addArrangedSubview(title)
+        headerStackView.addArrangedSubview(underline)
         headerStackView.addArrangedSubview(swipeText)
-        
-        title.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-        swipeText.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+
+        title.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.73).isActive = true
+        underline.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.02).isActive = true
+        swipeText.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
     }
     
 }

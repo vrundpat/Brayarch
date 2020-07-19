@@ -12,7 +12,6 @@ class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
-            // print(UserCharacterStats[0].pvpQuickplay)
             print("Stats Received")
             UserCharacterStats.sort(by: self.sortCharacters(this:that:))
         }
@@ -128,7 +127,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
     // Header
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
