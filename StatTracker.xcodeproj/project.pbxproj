@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
 		326CE20924C1F37800A79D8F /* PvPStatDisplayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20824C1F37800A79D8F /* PvPStatDisplayCollectionView.swift */; };
 		326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* PvPStats.swift */; };
 		326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20E24C2175B00A79D8F /* Extensions.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
 		326CE20824C1F37800A79D8F /* PvPStatDisplayCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStatDisplayCollectionView.swift; sourceTree = "<group>"; };
 		326CE20B24C2115100A79D8F /* PvPStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStats.swift; sourceTree = "<group>"; };
 		326CE20E24C2175B00A79D8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				326CE20B24C2115100A79D8F /* PvPStats.swift */,
 				32BB064D24C273F4007F0AD7 /* TextStackView.swift */,
+				321D440124C3CDAA007796C0 /* StatCellHeader.swift */,
 			);
 			path = ChildViewCells;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */,
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
 				326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */,
+				321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */,
 				32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

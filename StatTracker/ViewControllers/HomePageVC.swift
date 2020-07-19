@@ -14,8 +14,6 @@ class HomePageVC: UIViewController {
     
     // For Background Video
     var player: AVPlayer?
-    
-    
     var apiDataModel: APIEssentialsController!
     let tableSearchview = GuardianSearchTableVC()
     

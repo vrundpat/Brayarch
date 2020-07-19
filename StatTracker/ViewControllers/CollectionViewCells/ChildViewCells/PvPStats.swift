@@ -25,11 +25,10 @@ class PvPStats: UICollectionViewCell {
     let sample1 = StackViewText()
     let sample2 = StackViewText()
     
-    var lbl: UIImageView = {
+    var gameModeImage: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.layer.cornerRadius = 25
         iv.clipsToBounds = true
         return iv
     }()
@@ -41,7 +40,7 @@ class PvPStats: UICollectionViewCell {
         rootSV.backgroundColor = .white
         return rootSV
     }()
-    
+
     var statHolderStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +49,7 @@ class PvPStats: UICollectionViewCell {
         stackView.distribution = .fillEqually
         return stackView
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -66,14 +65,14 @@ class PvPStats: UICollectionViewCell {
         rootStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         rootStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
         
-        rootStackView.addArrangedSubview(lbl)
+        rootStackView.addArrangedSubview(gameModeImage)
         rootStackView.addArrangedSubview(statHolderStackView)
         
-        lbl.image = UIImage(named: imageName)
-        lbl.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
-        lbl.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
-        lbl.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-
+        gameModeImage.image = UIImage(named: imageName)
+        gameModeImage.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
+        gameModeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
+        gameModeImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         

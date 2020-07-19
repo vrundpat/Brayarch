@@ -26,6 +26,7 @@ class StatPageVC: UIViewController {
     }
     
     let cellId = "statCell"
+    let headerId = "statCellHeader"
     let rootCV_CellPadding = 16
     
     lazy var  rootCollectionView: UICollectionView = {
@@ -36,7 +37,8 @@ class StatPageVC: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(PvPStatDisplayCollectionView.self, forCellWithReuseIdentifier: cellId)
-
+        collectionView.register(StatCellHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        
         return collectionView
     }()
 
@@ -122,5 +124,16 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         
         cell.setUpCellCollectionView()
         return cell
+    }
+    
+    // Header
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StatCellHeader
+        header.setUpHeader()
+        return header
     }
 }

@@ -13,8 +13,6 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
     let cellId = "pveCell"
     let cellPadding = 16
     var pvpStats = [PVPGameModeAllTime?]()
-    var titles = [String]()
-    var values = [String]()
     var img = [String]()
     var bgColor = [UIColor]()
     var textColor = [UIColor]()
@@ -28,6 +26,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 51
         let collectionView = UICollectionView(frame: self.contentView.bounds, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -71,8 +70,6 @@ extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if pvpStats.count > 1 {
-//            return CGSize(width: contentView.frame.width - CGFloat(2 * cellPadding), height: (contentView.frame.height - CGFloat(cellPadding)))
         return CGSize(width: contentView.frame.width - CGFloat(cellPadding), height: (contentView.frame.height - CGFloat(cellPadding)))
     }
     
