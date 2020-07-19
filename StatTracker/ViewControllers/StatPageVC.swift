@@ -14,17 +14,17 @@ class StatPageVC: UIViewController {
         didSet {
             print("Stats Received")
             UserCharacterStats.sort(by: self.sortCharacters(this:that:))
-            cellEssentialsStats = [
-                [UserCharacterStats[currentDisplayedCharacterIndex].allPvP, UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive],
-                [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
-                [self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner]
-            ]
         }
     }
     
     var currentUserBeingDisplayed = String()
     var currentDisplayedCharacterIndex = Int() {
         didSet {
+            cellEssentialsStats = [
+                [UserCharacterStats[currentDisplayedCharacterIndex].allPvP, UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive],
+                [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
+                [self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner]
+            ]
             rootCollectionView.reloadData()
         }
     }
@@ -60,12 +60,14 @@ class StatPageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        navigationItem.title = self.currentUserBeingDisplayed
         currentDisplayedCharacterIndex = 0
         setUpRootCollectionView()
     }
     
     func setUpRootCollectionView() {
+        navigationItem.title = self.currentUserBeingDisplayed
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
+        
         view.addSubview(rootCollectionView)
         rootCollectionView.backgroundColor = .black
         
