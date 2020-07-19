@@ -31,7 +31,7 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(PvPStats.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.6)
+        collectionView.backgroundColor = UIColor(red: 36/255, green: 41/255, blue: 46/255, alpha: 1)
         return collectionView
     }()
         

@@ -22,7 +22,7 @@ struct FetchCharacterStatsRequest {
 
     init(memberShipType: Int, destinyMembershipId: String, characterId: String) {
         
-        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Account/\(destinyMembershipId)/Character/\(characterId)/Stats/?modes=7,19,63,75,69,70,84"
+        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Account/\(destinyMembershipId)/Character/\(characterId)/Stats/?modes=5,7,19,63,75,69,84"
 
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
 

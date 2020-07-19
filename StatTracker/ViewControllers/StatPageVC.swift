@@ -14,6 +14,11 @@ class StatPageVC: UIViewController {
         didSet {
             print("Stats Received")
             UserCharacterStats.sort(by: self.sortCharacters(this:that:))
+            cellEssentialsStats = [
+                [UserCharacterStats[currentDisplayedCharacterIndex].allPvP, UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive],
+                [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
+                [self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner]
+            ]
         }
     }
     
@@ -26,6 +31,12 @@ class StatPageVC: UIViewController {
     
     let cellId = "statCell"
     let headerId = "statCellHeader"
+    let headerEssentials: [String] = ["PvP: Quickplay & Competitive", "Crucible: Trials of Osiris", "Cruciible: Iron Banner"]
+    let cellEssentialsImages: [[String]] = [["valor", "glory"], ["trials2"], ["ironbanner"]]
+    let cellEssentialsBgColor: [[UIColor]] = [[UIColor.black, UIColor.black], [UIColor.black], [UIColor.black]]
+    let cellEssentialsTextColor: [[UIColor]] = [[UIColor.orange, UIColor.red], [UIColor.yellow], [UIColor.yellow]]
+    var cellEssentialsStats = [[PVPGameModeAllTime?]]()
+    
     let rootCV_CellPadding = 16
     
     lazy var  rootCollectionView: UICollectionView = {
@@ -91,35 +102,14 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
         
-        if indexPath.section == 0 {
-            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].pvpQuickplay
-            let statArray = [stats, self.UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive]
-            cell.pvpStats = statArray
-            cell.currentIndex = self.currentDisplayedCharacterIndex
-            cell.img = ["valor", "glory"]
-            cell.bgColor = [.black, .black]
-            cell.textColor = [.orange, .red]
-        }
-        else if indexPath.section == 1 {
-            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris
-            let statArray = [stats]
-            cell.pvpStats = statArray
-            cell.currentIndex = self.currentDisplayedCharacterIndex
-            cell.img = ["trials2"]
-            cell.bgColor = [.black]
-            cell.textColor = [.yellow]
-        }
-        else if indexPath.section == 2 {
-            let stats = self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner
-            let statArray = [stats]
-            cell.pvpStats = statArray
-            cell.currentIndex = self.currentDisplayedCharacterIndex
-            cell.img = ["ironbanner"]
-            cell.bgColor = [.black]
-            cell.textColor = [.yellow]
-        }
+        cell.pvpStats       =   self.cellEssentialsStats[indexPath.section]
+        cell.currentIndex   =   self.currentDisplayedCharacterIndex
+        cell.img            =   self.cellEssentialsImages[indexPath.section]
+        cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
+        cell.textColor      =   self.cellEssentialsTextColor[indexPath.section]
         
         cell.setUpCellCollectionView()
         return cell
@@ -132,6 +122,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StatCellHeader
+        header.headerTitle = self.headerEssentials[indexPath.section]
         header.setUpHeader()
         return header
     }

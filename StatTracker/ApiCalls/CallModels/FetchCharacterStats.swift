@@ -19,7 +19,7 @@ struct FetchCharacterStats: Decodable {
 
 struct GameModes: Decodable {
     var allPvE:             PVE_AllTime?
-    var pvpQuickplay:       PVPGameModeAllTime?
+    var allPvP:             PVPGameModeAllTime?
     var pvpCompetitive:     PVPGameModeAllTime?
     var trials_of_osiris:   PVPGameModeAllTime?
     var ironBanner:         PVPGameModeAllTime?
@@ -28,7 +28,7 @@ struct GameModes: Decodable {
     
     private enum GameModeTypes: String, CodingKey {
         case allPvE             = "allPvE"
-        case pvpQuickplay       = "pvpQuickplay"
+        case allPvP             = "allPvP"
         case pvpCompetitive     = "pvpCompetitive"
         case trials_of_osiris   = "trials_of_osiris"
         case ironBanner         = "ironBanner"
@@ -40,7 +40,7 @@ struct GameModes: Decodable {
         let values = try decoder.container(keyedBy: GameModeTypes.self)
         
         allPvE              = try? values.decode(PVE_AllTime.self, forKey: .allPvE)
-        pvpQuickplay        = try? values.decode(PVPGameModeAllTime.self, forKey: .pvpQuickplay)
+        allPvP              = try? values.decode(PVPGameModeAllTime.self, forKey: .allPvP)
         pvpCompetitive      = try? values.decode(PVPGameModeAllTime.self, forKey: .pvpCompetitive)
         trials_of_osiris    = try? values.decode(PVPGameModeAllTime.self, forKey: .trials_of_osiris)
         ironBanner          = try? values.decode(PVPGameModeAllTime.self, forKey: .ironBanner)
@@ -62,12 +62,14 @@ struct PVPGameModeAllTimeStats: Decodable {
     var efficiency:             StatsNoPGA
     var killsDeathsRatio:       StatsNoPGA
     var killsDeathsAssists:     StatsNoPGA
+    var winLossRatio:           StatsNoPGA
     
     var assists:                StatsPGA
     var kills:                  StatsPGA
     var deaths:                 StatsPGA
     var precisionKills:         StatsPGA
     var suicides:               StatsPGA
+    var secondsPlayed:          StatsPGA
 }
 
 

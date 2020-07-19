@@ -79,14 +79,14 @@ class PvPStats: UICollectionViewCell {
         if let pvp = self.pvpStats {
             sample1.vals = ["\(pvp.allTime.kills.basic.displayValue)", "\(pvp.allTime.assists.basic.displayValue)", "\(pvp.allTime.deaths.basic.displayValue)", "\(pvp.allTime.activitiesEntered.basic.displayValue)"]
             
-            sample2.vals = ["\(pvp.allTime.suicides.basic.displayValue)", "\(pvp.allTime.killsDeathsRatio.basic.displayValue)", "\(pvp.allTime.killsDeathsAssists.basic.displayValue)", "\(pvp.allTime.efficiency.basic.displayValue)"]
+            sample2.vals = ["\(round((pvp.allTime.activitiesWon.basic.value / pvp.allTime.activitiesEntered.basic.value) * 100))%", "\(pvp.allTime.killsDeathsRatio.basic.displayValue)", "\(pvp.allTime.killsDeathsAssists.basic.displayValue)", "\(pvp.allTime.secondsPlayed.basic.displayValue)"]
         } else {
             sample1.vals = ["0", "0", "0", "0"]
             sample2.vals = ["0", "0", "0", "0"]
         }
         
         sample1.titles = ["Kills", "Assists", "Deaths", "Matches"]
-        sample2.titles = ["Suicides", "KD", "KAD", "Efficiency"]
+        sample2.titles = ["W/L", "KD", "KAD", "Time Played"]
         
         sample1.bgColor = self.bgColor
         sample2.bgColor = self.bgColor
