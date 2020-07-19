@@ -8,11 +8,13 @@
 
 import UIKit
 
-class PvPStatDisplayCollectionView: UICollectionViewCell {
+class StatCellCollectionView: UICollectionViewCell {
     
-    let cellId = "pveCell"
+    let pvpCellId = "pvCell"
+    let gambitCellId = "gambitCell"
     let cellPadding = 16
     var pvpStats = [PVPGameModeAllTime?]()
+    var gambitStats = [GambitModeAllTime?]()
     var img = [String]()
     var bgColor = [UIColor]()
     var textColor = [UIColor]()
@@ -30,7 +32,10 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
         let collectionView = UICollectionView(frame: self.contentView.bounds, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(PvPStats.self, forCellWithReuseIdentifier: cellId)
+        
+        collectionView.register(PvPStats.self, forCellWithReuseIdentifier: pvpCellId)
+        collectionView.register(GambitStats.self, forCellWithReuseIdentifier: gambitCellId)
+
         collectionView.backgroundColor = UIColor(red: 36/255, green: 41/255, blue: 46/255, alpha: 1)
         return collectionView
     }()
@@ -60,9 +65,10 @@ class PvPStatDisplayCollectionView: UICollectionViewCell {
 }
 
 
-extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension StatCellCollectionView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pvpStats.count
+        if !pvpStats.isEmpty {return pvpStats.count}
+        return gambitStats.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -74,14 +80,27 @@ extension PvPStatDisplayCollectionView: UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStats
-        cell.cornerRadiusFromParent = 25
-        cell.pvpStats = self.pvpStats[indexPath.row]
-        cell.currentIndex = self.currentIndex
-        cell.imageName = img[indexPath.row]
-        cell.bgColor = self.bgColor[indexPath.row]
-        cell.textColor = self.textColor[indexPath.row]
-        cell.setUpRootStackView()
-        return cell
+        if !pvpStats.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pvpCellId, for: indexPath) as! PvPStats
+            cell.cornerRadiusFromParent = 25
+            cell.pvpStats = self.pvpStats[indexPath.row]
+            cell.currentIndex = self.currentIndex
+            cell.imageName = img[indexPath.row]
+            cell.bgColor = self.bgColor[indexPath.row]
+            cell.textColor = self.textColor[indexPath.row]
+            cell.setUpRootStackView()
+            return cell
+
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gambitCellId, for: indexPath) as! GambitStats
+            cell.cornerRadiusFromParent = 25
+            cell.gambitStats = self.gambitStats[indexPath.row]
+            cell.currentIndex = self.currentIndex
+            cell.imageName = img[indexPath.row]
+            cell.bgColor = self.bgColor[indexPath.row]
+            cell.textColor = self.textColor[indexPath.row]
+            cell.setUpRootStackView()
+            return cell
+        }
     }
 }

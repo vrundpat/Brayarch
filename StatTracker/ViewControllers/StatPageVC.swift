@@ -20,23 +20,28 @@ class StatPageVC: UIViewController {
     var currentUserBeingDisplayed = String()
     var currentDisplayedCharacterIndex = Int() {
         didSet {
-            cellEssentialsStats = [
+            pvpEssentialStats = [
                 [UserCharacterStats[currentDisplayedCharacterIndex].allPvP, UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive],
                 [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
                 [self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner]
             ]
             rootCollectionView.reloadData()
+            
+            gambitEssentialStats = [
+                [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_gambit, UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_mamba]
+            ]
         }
     }
     
     let cellId = "statCell"
     let headerId = "statCellHeader"
-    let headerEssentials: [String] = ["PvP: Quickplay & Competitive", "Crucible: Trials of Osiris", "Cruciible: Iron Banner"]
-    let cellEssentialsImages: [[String]] = [["valor", "glory"], ["trials2"], ["ironbanner"]]
-    let cellEssentialsBgColor: [[UIColor]] = [[UIColor.black, UIColor.black], [UIColor.black], [UIColor.black]]
-    let cellEssentialsTextColor: [[UIColor]] = [[UIColor.orange, UIColor.red], [UIColor.yellow], [UIColor.yellow]]
-    var cellEssentialsStats = [[PVPGameModeAllTime?]]()
-    
+    var headerSwipeText = ["Swipe >>", "", "", "Swipe >>"]
+    let headerEssentials: [String] = ["PvP: Quickplay & Competitive", "Crucible: Trials of Osiris", "Cruciible: Iron Banner", "Gambit & Gambit Prime"]
+    let cellEssentialsImages: [[String]] = [["valor", "glory"], ["trials2"], ["ironbanner"], ["gambit", "gambitprime"]]
+    let cellEssentialsBgColor: [[UIColor]] = [[UIColor.black, UIColor.black], [UIColor.black], [UIColor.black], [UIColor(red: 15/255, green: 32/255, blue: 42/255, alpha: 1), UIColor(red: 19/255, green: 78/255, blue: 60/255, alpha: 1)]]
+    let cellEssentialsTextColor: [[UIColor]] = [[UIColor.orange, UIColor.red], [UIColor.yellow], [UIColor.yellow], [UIColor.white, UIColor.white]]
+    var pvpEssentialStats = [[PVPGameModeAllTime?]]()
+    var gambitEssentialStats = [[GambitModeAllTime?]]()
     let rootCV_CellPadding = 16
     
     lazy var  rootCollectionView: UICollectionView = {
@@ -46,22 +51,23 @@ class StatPageVC: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(PvPStatDisplayCollectionView.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(StatCellCollectionView.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(StatCellHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
         return collectionView
     }()
-
-    @objc func toggle() {
-        if currentDisplayedCharacterIndex != UserCharacterStats.count - 1 { currentDisplayedCharacterIndex += 1 }
-        else { currentDisplayedCharacterIndex = 0 }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
         currentDisplayedCharacterIndex = 0
         setUpRootCollectionView()
+    }
+    
+    @objc func toggle() {
+        if currentDisplayedCharacterIndex == 0 && UserCharacterStats.count == 1 { return }
+        if currentDisplayedCharacterIndex != UserCharacterStats.count - 1 { currentDisplayedCharacterIndex += 1 }
+        else { currentDisplayedCharacterIndex = 0 }
     }
     
     func setUpRootCollectionView() {
@@ -92,7 +98,7 @@ class StatPageVC: UIViewController {
 extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,15 +110,20 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StatCellCollectionView
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PvPStatDisplayCollectionView
+        cell.pvpStats.removeAll()
+        cell.gambitStats.removeAll()
         
-        cell.pvpStats       =   self.cellEssentialsStats[indexPath.section]
         cell.currentIndex   =   self.currentDisplayedCharacterIndex
         cell.img            =   self.cellEssentialsImages[indexPath.section]
         cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
         cell.textColor      =   self.cellEssentialsTextColor[indexPath.section]
         
+        if indexPath.section < 3 {
+            cell.pvpStats = self.pvpEssentialStats[indexPath.section]
+        } else { cell.gambitStats = self.gambitEssentialStats[0] }
+ 
         cell.setUpCellCollectionView()
         return cell
     }
@@ -125,6 +136,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StatCellHeader
         header.headerTitle = self.headerEssentials[indexPath.section]
+        header.swipetext = self.headerSwipeText[indexPath.section]
         header.setUpHeader()
         return header
     }

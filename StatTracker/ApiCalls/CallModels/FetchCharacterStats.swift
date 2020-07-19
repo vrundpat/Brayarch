@@ -157,6 +157,7 @@ struct GambitModeAllTimeStats: Decodable {
     var precisionKills:                 StatsPGA
     var suicides:                       StatsPGA
     var orbsDropped:                    StatsPGA
+    var secondsPlayed:                  StatsPGA
 }
 
 

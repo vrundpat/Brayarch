@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320135D424C4F9BA004F235F /* GambitStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320135D324C4F9BA004F235F /* GambitStats.swift */; };
 		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
-		326CE20924C1F37800A79D8F /* PvPStatDisplayCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20824C1F37800A79D8F /* PvPStatDisplayCollectionView.swift */; };
+		326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */; };
 		326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* PvPStats.swift */; };
 		326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20E24C2175B00A79D8F /* Extensions.swift */; };
 		3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */; };
@@ -51,8 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320135D324C4F9BA004F235F /* GambitStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambitStats.swift; sourceTree = "<group>"; };
 		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
-		326CE20824C1F37800A79D8F /* PvPStatDisplayCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStatDisplayCollectionView.swift; sourceTree = "<group>"; };
+		326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellCollectionView.swift; sourceTree = "<group>"; };
 		326CE20B24C2115100A79D8F /* PvPStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStats.swift; sourceTree = "<group>"; };
 		326CE20E24C2175B00A79D8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianSearchTableVC.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 		326CE20A24C1F37D00A79D8F /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				326CE20824C1F37800A79D8F /* PvPStatDisplayCollectionView.swift */,
+				326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */,
 				326CE20D24C2115500A79D8F /* ChildViewCells */,
 			);
 			path = CollectionViewCells;
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				326CE20B24C2115100A79D8F /* PvPStats.swift */,
+				320135D324C4F9BA004F235F /* GambitStats.swift */,
 				32BB064D24C273F4007F0AD7 /* TextStackView.swift */,
 				321D440124C3CDAA007796C0 /* StatCellHeader.swift */,
 			);
@@ -388,7 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */,
-				326CE20924C1F37800A79D8F /* PvPStatDisplayCollectionView.swift in Sources */,
+				326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */,
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
 				32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */,
@@ -402,6 +405,7 @@
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */,
 				32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */,
+				320135D424C4F9BA004F235F /* GambitStats.swift in Sources */,
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
 				326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */,
 				321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */,
