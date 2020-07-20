@@ -110,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320135D524C5066B004F235F /* CollectionViewHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				321D440124C3CDAA007796C0 /* StatCellHeader.swift */,
+			);
+			path = CollectionViewHeaders;
+			sourceTree = "<group>";
+		};
 		326CE20A24C1F37D00A79D8F /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +133,6 @@
 				326CE20B24C2115100A79D8F /* PvPStats.swift */,
 				320135D324C4F9BA004F235F /* GambitStats.swift */,
 				32BB064D24C273F4007F0AD7 /* TextStackView.swift */,
-				321D440124C3CDAA007796C0 /* StatCellHeader.swift */,
 			);
 			path = ChildViewCells;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 			children = (
 				32C5C1B424B8F05C00839B36 /* HomePageVC.swift */,
 				32C5C1B724B8F41200839B36 /* StatPageVC.swift */,
+				320135D524C5066B004F235F /* CollectionViewHeaders */,
 				32F80CFD24BCB96000B9EFEC /* ChildViewControllers */,
 				326CE20A24C1F37D00A79D8F /* CollectionViewCells */,
 			);

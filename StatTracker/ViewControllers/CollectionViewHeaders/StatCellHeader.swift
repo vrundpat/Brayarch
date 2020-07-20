@@ -25,7 +25,7 @@ class StatCellHeader: UICollectionReusableView {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.textColor = .white
         titleView.backgroundColor = UIColor(red: 36/255, green: 41/255, blue: 46/255, alpha: 1)
-        titleView.textAlignment = .center
+        titleView.textAlignment = .right
         titleView.layer.masksToBounds = true
         titleView.isEditable = false
         titleView.showsHorizontalScrollIndicator = false
@@ -35,13 +35,13 @@ class StatCellHeader: UICollectionReusableView {
     let title: UITextView = {
         let titleView = UITextView()
         titleView.font = UIFont(name: "DINAlternate-Bold", size: 25)
-        titleView.textContainerInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        titleView.textContainerInset = UIEdgeInsets(top: 55, left: 0, bottom: 0, right: 0)
         return titleView
     }()
 
     let swipeText: UITextView = {
         let swipeText = UITextView()
-        swipeText.font = UIFont(name: "DINAlternate-Bold", size: 12)
+        swipeText.font = UIFont(name: "DINAlternate-Bold", size: 14)
         return swipeText
     }()
         
@@ -56,7 +56,10 @@ class StatCellHeader: UICollectionReusableView {
     func setUpHeader() {
         
         self.setUpTextView(titleView: title)
+        title.textAlignment = .center
+        
         self.setUpTextView(titleView: swipeText)
+        swipeText.textContainerInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 15)
         
         self.addSubview(headerStackView)
         
@@ -67,9 +70,9 @@ class StatCellHeader: UICollectionReusableView {
         swipeText.text = self.swipetext
         
         headerStackView.addArrangedSubview(title)
-        headerStackView.addArrangedSubview(swipeText)
+        //headerStackView.addArrangedSubview(swipeText)
         
-        title.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75).isActive = true
-        swipeText.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
+        //title.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.70).isActive = true
+        //swipeText.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30).isActive = true
     }
 }

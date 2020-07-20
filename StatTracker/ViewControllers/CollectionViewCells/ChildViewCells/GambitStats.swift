@@ -21,6 +21,7 @@ class GambitStats: UICollectionViewCell {
     var imageName = String()
     var bgColor = UIColor()
     var textColor = UIColor()
+    var swipetext = String()
     
     let sample1 = StackViewText()
     let sample2 = StackViewText()
@@ -72,6 +73,7 @@ class GambitStats: UICollectionViewCell {
         gameModeImage.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
         gameModeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         gameModeImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        // gameModeImage.addTextToImage(drawText: swipetext, atPoint: CGPoint(x: contentView.frame.width - 100, y: 10), imgView: gameModeImage)
         
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true

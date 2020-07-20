@@ -17,6 +17,17 @@ class HomePageVC: UIViewController {
     var apiDataModel: APIEssentialsController!
     let tableSearchview = GuardianSearchTableVC()
     
+    lazy var navigationTitle: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = "StatTracker"
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 38)
+        textView.textColor = .white
+        textView.backgroundColor = .clear
+        textView.textAlignment = .center
+        return textView
+    }()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -51,14 +62,14 @@ class HomePageVC: UIViewController {
         addChildViewController(child: tableSearchview)
         tableSearchview.apiDataModel = self.apiDataModel
     }
-    
+
     func setUpNavigationSearchController() {
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         
+        navigationItem.titleView = navigationTitle
         navigationItem.searchController = tableSearchview.guardianSearchController
-            
-        navigationItem.title = "StatTracker"
+                
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black

@@ -21,6 +21,7 @@ class PvPStats: UICollectionViewCell {
     var imageName = String()
     var bgColor = UIColor()
     var textColor = UIColor()
+    var swipetext = String()
     
     let sample1 = StackViewText()
     let sample2 = StackViewText()
@@ -33,11 +34,19 @@ class PvPStats: UICollectionViewCell {
         return iv
     }()
     
+    var swipeText: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = "Swipe"
+        textView.textColor = .white
+        return textView
+    }()
+    
     var rootStackView: UIStackView = {
         let rootSV = UIStackView()
         rootSV.translatesAutoresizingMaskIntoConstraints = false
         rootSV.axis = .vertical
-        rootSV.backgroundColor = .white
+        rootSV.backgroundColor = UIColor.clear
         return rootSV
     }()
 
@@ -45,7 +54,7 @@ class PvPStats: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .yellow
+        stackView.backgroundColor = .clear
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -72,6 +81,7 @@ class PvPStats: UICollectionViewCell {
         gameModeImage.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
         gameModeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         gameModeImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        // gameModeImage.addTextToImage(drawText: "", atPoint: CGPoint(x: contentView.frame.width - 100, y: 10), imgView: gameModeImage)
         
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
@@ -109,8 +119,42 @@ class PvPStats: UICollectionViewCell {
 
 extension UIView {
 
-   func roundCorners(corners:CACornerMask, radius: CGFloat) {
+    func roundCorners(corners:CACornerMask, radius: CGFloat) {
       self.layer.cornerRadius = radius
       self.layer.maskedCorners = corners
-   }
+    }
+    
+    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+        let textColor = UIColor.white
+        let textFont = UIFont(name: "DINAlternate-Bold", size: 12)!
+
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+
+        let textFontAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+            ] as [NSAttributedString.Key : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+
+        let rect = CGRect(origin: point, size: image.size)
+        text.draw(in: rect, withAttributes: textFontAttributes)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
+    }
+    
+    func addTextToImage(drawText text: String, atPoint point: CGPoint, imgView: UIImageView) {
+        let lblNew = UITextView()
+        lblNew.frame = CGRect(x: point.x, y: point.y, width: 100, height: 40)
+        lblNew.textAlignment = .right
+        lblNew.font = UIFont(name: "DINAlternate-Bold", size: 12)
+        lblNew.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        lblNew.text = text
+        lblNew.textColor = UIColor.white
+        lblNew.backgroundColor = .clear
+        imgView.addSubview(lblNew)
+    }
 }

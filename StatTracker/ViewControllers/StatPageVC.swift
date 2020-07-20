@@ -17,6 +17,16 @@ class StatPageVC: UIViewController {
         }
     }
     
+    lazy var navigationTitle: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 20)
+        textView.textColor = .white
+        textView.backgroundColor = .clear
+        textView.textAlignment = .center
+        return textView
+    }()
+    
     var currentUserBeingDisplayed = String()
     var currentDisplayedCharacterIndex = Int() {
         didSet {
@@ -25,11 +35,12 @@ class StatPageVC: UIViewController {
                 [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
                 [self.UserCharacterStats[currentDisplayedCharacterIndex].ironBanner]
             ]
-            rootCollectionView.reloadData()
             
             gambitEssentialStats = [
                 [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_gambit, UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_mamba]
             ]
+            
+            rootCollectionView.reloadData()
         }
     }
     
@@ -71,7 +82,9 @@ class StatPageVC: UIViewController {
     }
     
     func setUpRootCollectionView() {
-        navigationItem.title = self.currentUserBeingDisplayed
+//        navigationTitle.text = "\(currentUserBeingDisplayed)"
+//        navigationItem.titleView = navigationTitle
+        navigationItem.title = "\(currentUserBeingDisplayed)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
         
         view.addSubview(rootCollectionView)
@@ -112,9 +125,6 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StatCellCollectionView
         
-        cell.pvpStats.removeAll()
-        cell.gambitStats.removeAll()
-        
         cell.currentIndex   =   self.currentDisplayedCharacterIndex
         cell.img            =   self.cellEssentialsImages[indexPath.section]
         cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
@@ -132,7 +142,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 90)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StatCellHeader
         header.headerTitle = self.headerEssentials[indexPath.section]
