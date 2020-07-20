@@ -69,7 +69,7 @@ class HomePageVC: UIViewController {
         
         navigationItem.titleView = navigationTitle
         navigationItem.searchController = tableSearchview.guardianSearchController
-                
+
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
