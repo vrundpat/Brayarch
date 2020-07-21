@@ -60,6 +60,15 @@ class GambitStats: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func getGambitStats(mode: GambitModeAllTime?) {
+        if let gambit = mode {
+            sample1.vals = ["\(gambit.allTime.kills.basic.displayValue)", "\(gambit.allTime.assists.basic.displayValue)", "\(gambit.allTime.deaths.basic.displayValue)", "\(gambit.allTime.activitiesEntered.basic.displayValue)"]
+            
+            sample2.vals = ["\(round((gambit.allTime.activitiesWon.basic.value / gambit.allTime.activitiesEntered.basic.value) * 100))%", "\(gambit.allTime.motesDeposited.basic.displayValue)", "\(gambit.allTime.invasions.basic.displayValue)", "\(gambit.allTime.secondsPlayed.basic.displayValue)"]
+            statsFound = true
+        }
+    }
+    
     func setUpRootStackView() {
         
         contentView.addSubview(rootStackView)
@@ -74,24 +83,12 @@ class GambitStats: UICollectionViewCell {
         gameModeImage.roundCorners(corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: CGFloat(25))
         gameModeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6).isActive = true
         gameModeImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        // gameModeImage.addTextToImage(drawText: swipetext, atPoint: CGPoint(x: contentView.frame.width - 100, y: 10), imgView: gameModeImage)
         
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
-        if let gambit = gambitStats[0] {
-            sample1.vals = ["\(gambit.allTime.kills.basic.displayValue)", "\(gambit.allTime.assists.basic.displayValue)", "\(gambit.allTime.deaths.basic.displayValue)", "\(gambit.allTime.activitiesEntered.basic.displayValue)"]
-            
-            sample2.vals = ["\(round((gambit.allTime.activitiesWon.basic.value / gambit.allTime.activitiesEntered.basic.value) * 100))%", "\(gambit.allTime.motesDeposited.basic.displayValue)", "\(gambit.allTime.invasions.basic.displayValue)", "\(gambit.allTime.secondsPlayed.basic.displayValue)"]
-            statsFound = true
-        }
-        
-        if let gambit_prime = gambitStats[1] {
-            sample1.vals = ["\(gambit_prime.allTime.kills.basic.displayValue)", "\(gambit_prime.allTime.assists.basic.displayValue)", "\(gambit_prime.allTime.deaths.basic.displayValue)", "\(gambit_prime.allTime.activitiesEntered.basic.displayValue)"]
-            
-            sample2.vals = ["\(round((gambit_prime.allTime.activitiesWon.basic.value / gambit_prime.allTime.activitiesEntered.basic.value) * 100))%", "\(gambit_prime.allTime.motesDeposited.basic.displayValue)", "\(gambit_prime.allTime.invasions.basic.displayValue)", "\(gambit_prime.allTime.secondsPlayed.basic.displayValue)"]
-            statsFound = true
-        }
+        self.getGambitStats(mode: self.gambitStats[0])
+        self.getGambitStats(mode: self.gambitStats[1])
         
         if let gambit = gambitStats[0] {
             if let gambit_prime = gambitStats[1] {

@@ -26,6 +26,7 @@ class StatCellCollectionView: UICollectionViewCell {
     var img = [String]()
     var bgColor = [UIColor]()
     var textColor = [UIColor]()
+    
     var currentIndex = Int() {
         didSet {
             CellCollectionView.reloadData()
@@ -52,7 +53,6 @@ class StatCellCollectionView: UICollectionViewCell {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // setUpCellCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +91,7 @@ extension StatCellCollectionView: UICollectionViewDelegateFlowLayout, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if !pvpStats.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pvpCellId, for: indexPath) as! PvPStats
             cell.cornerRadiusFromParent = 25

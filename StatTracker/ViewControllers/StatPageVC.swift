@@ -61,9 +61,7 @@ class StatPageVC: UIViewController {
                 [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_gambit, UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_mamba]
             ]
             
-            pveEssentialStats = [
-                [UserCharacterStats[currentDisplayedCharacterIndex].allPvE],
-            ]
+            pveEssentialStats = [[UserCharacterStats[currentDisplayedCharacterIndex].allPvE]]
             
             rootCollectionView.reloadData()
     
@@ -105,7 +103,7 @@ class StatPageVC: UIViewController {
     var gambitEssentialStats = [[GambitModeAllTime?]]()
     var pveEssentialStats = [[PVE_AllTime?]]()
     let rootCV_CellPadding = 16
-    let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .blue, padding: 0)
+    let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .white, padding: 0)
     
     lazy var  rootCollectionView: UICollectionView = {
         
@@ -132,7 +130,7 @@ class StatPageVC: UIViewController {
     }
     
     func removeOverlayAndDisplayStats() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.loading.stopAnimating()
             self.loading.isHidden = true
             self.view.backgroundColor = .clear
@@ -221,4 +219,3 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         return cell
     }
 }
-
