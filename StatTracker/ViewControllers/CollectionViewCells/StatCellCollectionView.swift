@@ -10,6 +10,12 @@ import UIKit
 
 class StatCellCollectionView: UICollectionViewCell {
     
+    var currnetUserDestinyMembershipId = String()
+    var currentUserMembershipType = Int()
+    var currentUserCharacter = String()
+    var currentUserActivityHistory: Activities?
+    var parentRef: StatPageVC?
+    
     let pvpCellId = "pvpCell"
     let gambitCellId = "gambitCell"
     let pveCellId = "pveCell"
@@ -121,14 +127,14 @@ extension StatCellCollectionView: UICollectionViewDelegateFlowLayout, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: 3, destinyMembershipId: "4611686018483441868", characterId: "2305843009403238791", mode: "5")
-            characterActivityHistory.getActivityHistory { [weak self] result in
-                switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let activityHistory):
-                        print(activityHistory)
-                }
+        let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: self.currentUserMembershipType, destinyMembershipId: self.currnetUserDestinyMembershipId, characterId: self.currentUserCharacter, mode: "5")
+        characterActivityHistory.getActivityHistory { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let activityHistory):
+                    print(activityHistory)
             }
         }
+    }
 }

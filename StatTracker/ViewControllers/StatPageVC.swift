@@ -14,6 +14,7 @@ class StatPageVC: UIViewController {
         didSet {
             print("Stats Received")
             UserCharacterStats.sort(by: self.sortCharacters(this:that:))
+            print(currentUserCharacterIds) // Somehow sort the characterIds array based on the order the UserCharacterStats was sorted
         }
     }
     
@@ -40,6 +41,11 @@ class StatPageVC: UIViewController {
     }()
     
     var currentUserBeingDisplayed = String()
+    var currentUserDestinyMembershipId = String()
+    var currentUserMembershipType = Int()
+    var currentUserCharacterIds = [String]()
+
+    
     var currentDisplayedCharacterIndex = Int() {
         didSet {
             pvpEssentialStats = [
@@ -114,6 +120,17 @@ class StatPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+//        loadingIndicator.startAnimating();
+//        alert.view.addSubview(loadingIndicator)
+//        present(alert, animated: true, completion: nil)
+//        do { sleep(5) }
+//        dismiss(animated: false, completion: nil)
+        
         view.backgroundColor = .clear
         currentDisplayedCharacterIndex = 0
         setUpRootCollectionView()
@@ -175,6 +192,11 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         cell.img            =   self.cellEssentialsImages[indexPath.section]
         cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
         cell.textColor      =   self.cellEssentialsTextColor[indexPath.section]
+        
+        cell.currentUserMembershipType          = self.currentUserMembershipType
+        cell.currnetUserDestinyMembershipId     = self.currentUserDestinyMembershipId
+        cell.currentUserCharacter               = self.currentUserCharacterIds[currentDisplayedCharacterIndex]
+        cell.parentRef                          = self
         
         if indexPath.section == 0 { cell.pveStats = self.pveEssentialStats[0] }
         else if indexPath.section >= 1 && indexPath.section <= 4 { cell.pvpStats = self.pvpEssentialStats[indexPath.section] }
