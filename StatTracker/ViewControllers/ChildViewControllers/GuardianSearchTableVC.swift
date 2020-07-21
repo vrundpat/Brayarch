@@ -74,9 +74,6 @@ class GuardianSearchTableVC: UIViewController {
                     case .success(let characterIds):
                         self?.characterIdsArray = characterIds
                         group.leave()
-//                        for id in characterIds {
-//                            self?.makeFetchCharacterStatsRequest(memberShipId: destinyMembershipId, char_id: id)
-//                        }
                 }
             }
     }
@@ -129,6 +126,7 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
             for id in self.characterIdsArray {
                 group2.enter()
                 self.makeFetchCharacterStatsRequest(memberShipId: self.data[indexPath.row].membershipId, char_id: id, group: group2)
+                group2.wait()
             }
             group2.notify(queue: .main) {
                 print(self.characterStatArray.count)

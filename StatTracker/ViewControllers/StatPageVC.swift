@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class StatPageVC: UIViewController {
     
     var UserCharacterStats = [GameModes]() {
         didSet {
             print("Stats Received")
-            UserCharacterStats.sort(by: self.sortCharacters(this:that:))
+            //UserCharacterStats.sort(by: self.sortCharacters(this:that:))
             print(currentUserCharacterIds) // Somehow sort the characterIds array based on the order the UserCharacterStats was sorted
         }
     }
@@ -104,6 +105,7 @@ class StatPageVC: UIViewController {
     var gambitEssentialStats = [[GambitModeAllTime?]]()
     var pveEssentialStats = [[PVE_AllTime?]]()
     let rootCV_CellPadding = 16
+    let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .blue, padding: 0)
     
     lazy var  rootCollectionView: UICollectionView = {
         
@@ -117,23 +119,28 @@ class StatPageVC: UIViewController {
         
         return collectionView
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNVActivityIndiacatorView()
+        loading.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            self.loading.stopAnimating()
+            self.loading.isHidden = true
+            self.view.backgroundColor = .clear
+            self.currentDisplayedCharacterIndex = 0
+            self.setUpRootCollectionView()
+        })
+    }
+    
+    func setUpNVActivityIndiacatorView() {
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loading)
         
-//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-//        loadingIndicator.startAnimating();
-//        alert.view.addSubview(loadingIndicator)
-//        present(alert, animated: true, completion: nil)
-//        do { sleep(5) }
-//        dismiss(animated: false, completion: nil)
-        
-        view.backgroundColor = .clear
-        currentDisplayedCharacterIndex = 0
-        setUpRootCollectionView()
+        loading.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        loading.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loading.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loading.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     @objc func toggle() {
