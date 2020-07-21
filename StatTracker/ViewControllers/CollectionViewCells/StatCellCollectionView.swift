@@ -119,4 +119,16 @@ extension StatCellCollectionView: UICollectionViewDelegateFlowLayout, UICollecti
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: 3, destinyMembershipId: "4611686018483441868", characterId: "2305843009403238791", mode: "5")
+            characterActivityHistory.getActivityHistory { [weak self] result in
+                switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let activityHistory):
+                        print(activityHistory)
+                }
+            }
+        }
 }

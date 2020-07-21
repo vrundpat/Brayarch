@@ -10,6 +10,8 @@
 		320135D424C4F9BA004F235F /* GambitStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320135D324C4F9BA004F235F /* GambitStats.swift */; };
 		320FEDF024C6612900008C56 /* PvEStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320FEDEF24C6612900008C56 /* PvEStats.swift */; };
 		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
+		323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511D24C73EC000EF543F /* FetchActivityHistory.swift */; };
+		323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */; };
 		326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */; };
 		326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* PvPStats.swift */; };
 		326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20E24C2175B00A79D8F /* Extensions.swift */; };
@@ -56,6 +58,8 @@
 		320135D324C4F9BA004F235F /* GambitStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambitStats.swift; sourceTree = "<group>"; };
 		320FEDEF24C6612900008C56 /* PvEStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvEStats.swift; sourceTree = "<group>"; };
 		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
+		323E511D24C73EC000EF543F /* FetchActivityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistory.swift; sourceTree = "<group>"; };
+		323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistoryRequest.swift; sourceTree = "<group>"; };
 		326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellCollectionView.swift; sourceTree = "<group>"; };
 		326CE20B24C2115100A79D8F /* PvPStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStats.swift; sourceTree = "<group>"; };
 		326CE20E24C2175B00A79D8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */,
 				32C2D01724BE8E8600A172CF /* FetchCharacterIdsRequest.swift */,
 				3285801024BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift */,
+				323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */,
 			);
 			path = ApiCalls;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 				328C752124BBD3330063CE3D /* FindPlayers.swift */,
 				32C2D01524BE874D00A172CF /* FetchCharacterIds.swift */,
 				3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */,
+				323E511D24C73EC000EF543F /* FetchActivityHistory.swift */,
 			);
 			path = CallModels;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */,
+				323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */,
 				326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */,
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
@@ -410,6 +417,7 @@
 				3285801124BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift in Sources */,
 				32C2D01624BE874D00A172CF /* FetchCharacterIds.swift in Sources */,
 				3285800F24BF6DE300E8EAA1 /* FetchCharacterStats.swift in Sources */,
+				323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */,
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
 				32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */,
