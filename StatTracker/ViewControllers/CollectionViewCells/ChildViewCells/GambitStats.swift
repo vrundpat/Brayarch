@@ -16,12 +16,13 @@ class GambitStats: UICollectionViewCell {
         }
     }
     
-    var gambitStats: GambitModeAllTime?
+    var gambitStats = [GambitModeAllTime?]()
     var currentIndex = Int()
     var imageName = String()
     var bgColor = UIColor()
     var textColor = UIColor()
     var swipetext = String()
+    var statsFound = false
     
     let sample1 = StackViewText()
     let sample2 = StackViewText()
@@ -78,17 +79,48 @@ class GambitStats: UICollectionViewCell {
         statHolderStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         statHolderStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
-        if let pvp = self.gambitStats {
-            sample1.vals = ["\(pvp.allTime.kills.basic.displayValue)", "\(pvp.allTime.assists.basic.displayValue)", "\(pvp.allTime.deaths.basic.displayValue)", "\(pvp.allTime.activitiesEntered.basic.displayValue)"]
+        if let gambit = gambitStats[0] {
+            sample1.vals = ["\(gambit.allTime.kills.basic.displayValue)", "\(gambit.allTime.assists.basic.displayValue)", "\(gambit.allTime.deaths.basic.displayValue)", "\(gambit.allTime.activitiesEntered.basic.displayValue)"]
             
-            sample2.vals = ["\(round((pvp.allTime.activitiesWon.basic.value / pvp.allTime.activitiesEntered.basic.value) * 100))%", "\(pvp.allTime.motesDeposited.basic.displayValue)", "\(pvp.allTime.invasions.basic.displayValue)", "\(pvp.allTime.secondsPlayed.basic.displayValue)"]
-        } else {
+            sample2.vals = ["\(round((gambit.allTime.activitiesWon.basic.value / gambit.allTime.activitiesEntered.basic.value) * 100))%", "\(gambit.allTime.motesDeposited.basic.displayValue)", "\(gambit.allTime.invasions.basic.displayValue)", "\(gambit.allTime.secondsPlayed.basic.displayValue)"]
+            statsFound = true
+        }
+        
+        if let gambit_prime = gambitStats[1] {
+            sample1.vals = ["\(gambit_prime.allTime.kills.basic.displayValue)", "\(gambit_prime.allTime.assists.basic.displayValue)", "\(gambit_prime.allTime.deaths.basic.displayValue)", "\(gambit_prime.allTime.activitiesEntered.basic.displayValue)"]
+            
+            sample2.vals = ["\(round((gambit_prime.allTime.activitiesWon.basic.value / gambit_prime.allTime.activitiesEntered.basic.value) * 100))%", "\(gambit_prime.allTime.motesDeposited.basic.displayValue)", "\(gambit_prime.allTime.invasions.basic.displayValue)", "\(gambit_prime.allTime.secondsPlayed.basic.displayValue)"]
+            statsFound = true
+        }
+        
+        if let gambit = gambitStats[0] {
+            if let gambit_prime = gambitStats[1] {
+                sample1.vals = [
+                    "\(Int(gambit.allTime.kills.basic.value + gambit_prime.allTime.kills.basic.value))",
+                    "\(Int(gambit.allTime.assists.basic.value + gambit_prime.allTime.assists.basic.value))",
+                    "\(Int(gambit.allTime.deaths.basic.value + gambit_prime.allTime.deaths.basic.value))",
+                    "\(Int(gambit.allTime.activitiesEntered.basic.value + gambit_prime.allTime.activitiesEntered.basic.value))"
+                ]
+    
+                sample2.vals = [
+                    "\(round(((gambit.allTime.activitiesWon.basic.value + gambit_prime.allTime.activitiesWon.basic.value) / (gambit.allTime.activitiesEntered.basic.value + gambit_prime.allTime.activitiesEntered.basic.value)) * 100))%",
+                    "\(Int(gambit.allTime.motesDeposited.basic.value + gambit_prime.allTime.motesDeposited.basic.value))",
+                    "\(Int(gambit.allTime.invasions.basic.value + gambit_prime.allTime.invasions.basic.value))",
+                    "\(Int(gambit.allTime.secondsPlayed.basic.value + gambit_prime.allTime.secondsPlayed.basic.value))"
+                ]
+                statsFound = true
+            }
+        }
+        
+        if !statsFound {
             sample1.vals = ["0", "0", "0", "0"]
             sample2.vals = ["0", "0", "0", "0"]
         }
         
+        statsFound.toggle()
+        
         sample1.titles = ["Kills", "Assists", "Deaths", "Matches"]
-        sample2.titles = ["W/L", "Motes Banked", "Invations", "Time Played"]
+        sample2.titles = ["W/L", "Motes Banked", "Invasions", "Time Played"]
         
         sample1.bgColor = self.bgColor
         sample2.bgColor = self.bgColor

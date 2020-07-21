@@ -25,6 +25,10 @@ class HomePageVC: UIViewController {
         textView.textColor = .white
         textView.backgroundColor = .clear
         textView.textAlignment = .center
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.showsHorizontalScrollIndicator = false
+        textView.showsVerticalScrollIndicator = false 
         return textView
     }()
         
@@ -69,7 +73,7 @@ class HomePageVC: UIViewController {
         
         navigationItem.titleView = navigationTitle
         navigationItem.searchController = tableSearchview.guardianSearchController
-
+            
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
@@ -92,7 +96,7 @@ class HomePageVC: UIViewController {
         descriptionText.text = "Choose your platform, and find your Guardian."
         descriptionText.font = UIFont(name: "DINAlternate-Bold", size: 16)
         descriptionText.textColor = .white
-        descriptionText.alpha = CGFloat(0.5)
+        descriptionText.alpha = CGFloat(0.8)
         
         view.addSubview(descriptionText)
 

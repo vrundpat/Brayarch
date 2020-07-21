@@ -24,13 +24,26 @@ class StatPageVC: UIViewController {
         textView.textColor = .white
         textView.backgroundColor = .clear
         textView.textAlignment = .center
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.showsHorizontalScrollIndicator = false
+        textView.showsVerticalScrollIndicator = false 
         return textView
+    }()
+    
+    lazy var bgImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "statBg-1")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleToFill
+        return imageView
     }()
     
     var currentUserBeingDisplayed = String()
     var currentDisplayedCharacterIndex = Int() {
         didSet {
             pvpEssentialStats = [
+                [],
                 [UserCharacterStats[currentDisplayedCharacterIndex].allPvP],
                 [UserCharacterStats[currentDisplayedCharacterIndex].pvpCompetitive],
                 [UserCharacterStats[currentDisplayedCharacterIndex].trials_of_osiris],
@@ -38,8 +51,11 @@ class StatPageVC: UIViewController {
             ]
             
             gambitEssentialStats = [
-                [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_gambit],
-                [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_mamba]
+                [UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_gambit, UserCharacterStats[currentDisplayedCharacterIndex].pvecomp_mamba]
+            ]
+            
+            pveEssentialStats = [
+                [UserCharacterStats[currentDisplayedCharacterIndex].allPvE],
             ]
             
             rootCollectionView.reloadData()
@@ -52,37 +68,35 @@ class StatPageVC: UIViewController {
     
     let cellId = "statCell"
     let headerId = "statCellHeader"
-    var headerSwipeText = ["Swipe >>", "", "", "Swipe >>", "", ""]
-
-    let headerEssentials: [String] = ["PvP: Quickplay", "PvP: Competitive", "Crucible: Trials of Osiris", "Cruciible: Iron Banner", "Gambit", "Gambit Prime"]
     
     let cellEssentialsImages: [[String]] = [
+        ["vanguard"],
         ["valor"],
         ["glory"],
-        ["trials2"],
+        ["trials"],
         ["ironbanner"],
         ["gambit"],
-        ["gambitprime"]
     ]
     let cellEssentialsBgColor: [[UIColor]] = [
+        [UIColor(red: 58/255, green: 74/255, blue: 99/255, alpha: 1)],
         [UIColor(red: 11/255, green: 11/255, blue: 11/255, alpha: 1)],
         [UIColor(red: 5/255, green: 5/255, blue: 0/255, alpha: 1)],
-        [UIColor(red: 12/155, green: 13/155, blue: 15/155, alpha: 1)],
-        [UIColor.black],
-        [UIColor(red: 15/255, green: 32/255, blue: 42/255, alpha: 1)],
-        [UIColor(red: 19/255, green: 78/255, blue: 60/255, alpha: 1)]
+        [UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)],
+        [UIColor(red: 52/255, green: 87/255, blue: 70/255, alpha: 1)],
+        [UIColor(red: 33/255, green: 38/255, blue: 44/255, alpha: 1)],
     ]
     let cellEssentialsTextColor: [[UIColor]] = [
+        [UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)],
         [UIColor.orange],
         [UIColor.red],
-        [UIColor.yellow],
-        [UIColor(red: 166/255, green: 145/255, blue: 72/255, alpha: 1)],
-        [UIColor.white],
-        [UIColor.white]
+        [UIColor(red: 196/255, green: 193/255, blue: 37/255, alpha: 1)],
+        [UIColor(red: 149/255, green: 203/255, blue: 175/255, alpha: 1)],
+        [UIColor(red: 113/255, green: 200/255, blue: 158/255, alpha: 1)],
     ]
     
     var pvpEssentialStats = [[PVPGameModeAllTime?]]()
     var gambitEssentialStats = [[GambitModeAllTime?]]()
+    var pveEssentialStats = [[PVE_AllTime?]]()
     let rootCV_CellPadding = 16
     
     lazy var  rootCollectionView: UICollectionView = {
@@ -100,7 +114,7 @@ class StatPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .clear
         currentDisplayedCharacterIndex = 0
         setUpRootCollectionView()
     }
@@ -112,11 +126,15 @@ class StatPageVC: UIViewController {
     }
     
     func setUpRootCollectionView() {
+        
+        view.addSubview(bgImageView)
+        
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
 
         view.addSubview(rootCollectionView)
-        rootCollectionView.backgroundColor = .black
+        //rootCollectionView.backgroundColor = .black
+        rootCollectionView.backgroundColor = .clear
         
         // Constriants
         rootCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -138,13 +156,9 @@ class StatPageVC: UIViewController {
 // Collection View Extenstions
 extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 6
-    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int { return 6 }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return 1 }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: CGFloat(400))
@@ -155,30 +169,18 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         
         cell.pvpStats.removeAll()
         cell.gambitStats.removeAll()
+        cell.pveStats.removeAll()
         
         cell.currentIndex   =   self.currentDisplayedCharacterIndex
         cell.img            =   self.cellEssentialsImages[indexPath.section]
         cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
         cell.textColor      =   self.cellEssentialsTextColor[indexPath.section]
         
-        if indexPath.section <= 3 { cell.pvpStats = self.pvpEssentialStats[indexPath.section] }
-        else if indexPath.section == 4 { cell.gambitStats = self.gambitEssentialStats[0] }
-        else if indexPath.section == 5 { cell.gambitStats = self.gambitEssentialStats[1] }
+        if indexPath.section == 0 { cell.pveStats = self.pveEssentialStats[0] }
+        else if indexPath.section >= 1 && indexPath.section <= 4 { cell.pvpStats = self.pvpEssentialStats[indexPath.section] }
+        else if indexPath.section == 5 { cell.gambitStats = self.gambitEssentialStats[0] }
         
         cell.setUpCellCollectionView()
         return cell
     }
-    
-    // Header
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: view.frame.width, height: 90)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StatCellHeader
-//        header.headerTitle = self.headerEssentials[indexPath.section]
-//        header.swipetext = self.headerSwipeText[indexPath.section]
-//        header.setUpHeader()
-//        return header
-//    }
 }

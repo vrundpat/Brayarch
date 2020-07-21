@@ -95,6 +95,8 @@ struct PVE_AllTimeStats: Decodable {
     var adventuresCompleted:            StatsPGA
     var suicides:                       StatsPGA
     var orbsDropped:                    StatsPGA
+    var secondsPlayed:                  StatsPGA
+
     
     var weaponKillsAutoRifle:           StatsPGA
     var weaponKillsBeamRifle:           StatsPGA
