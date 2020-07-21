@@ -110,11 +110,15 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.font = UIFont(name: "APpleSDGothicNeo-SemiBold", size: 16)
         cell.backgroundColor = .black
         cell.textLabel?.textColor = .white
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let destinationVC = StatPageVC()
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+                
         let group = DispatchGroup()
         group.enter()
         
@@ -130,15 +134,14 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
             }
             group2.notify(queue: .main) {
                 print(self.characterStatArray.count)
-                let destinationVC = StatPageVC()
                 
                 destinationVC.currentUserCharacterIds = self.characterIdsArray
                 destinationVC.UserCharacterStats = self.characterStatArray
                 destinationVC.currentUserBeingDisplayed = self.data[indexPath.row].displayName
                 destinationVC.currentUserDestinyMembershipId = self.data[indexPath.row].membershipId
                 destinationVC.currentUserMembershipType = Int(self.apiDataModel.apiEssentials.memberShipType)
+                destinationVC.removeOverlayAndDisplayStats()
                 
-                self.navigationController?.pushViewController(destinationVC, animated: true)
                 self.characterStatArray.removeAll()
                 self.characterIdsArray.removeAll()
             }

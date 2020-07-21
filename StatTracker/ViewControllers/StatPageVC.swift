@@ -119,12 +119,20 @@ class StatPageVC: UIViewController {
         
         return collectionView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = .black
+        setUpNVActivityIndiacatorView()
+        loading.startAnimating()
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNVActivityIndiacatorView()
-        loading.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+    }
+    
+    func removeOverlayAndDisplayStats() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             self.loading.stopAnimating()
             self.loading.isHidden = true
             self.view.backgroundColor = .clear
@@ -213,3 +221,4 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         return cell
     }
 }
+
