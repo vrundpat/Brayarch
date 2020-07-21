@@ -64,31 +64,35 @@ class GuardianSearchTableVC: UIViewController {
         guardianTableView.register(UITableViewCell.self, forCellReuseIdentifier: "guardianCell")
     }
     
-    func makeFetchCharacterIdsRequest(destinyMembershipId: String) {
+    func makeFetchCharacterIdsRequest(destinyMembershipId: String, group: DispatchGroup) {
         let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: destinyMembershipId)
             characterIdsStruct.getCharacterIds { [weak self] result in
                 switch result {
                     case .failure(let error):
                         print(error)
+                        group.leave()
                     case .success(let characterIds):
                         self?.characterIdsArray = characterIds
-                        for id in characterIds {
-                            self?.makeFetchCharacterStatsRequest(memberShipId: destinyMembershipId, char_id: id)
-                        }
+                        group.leave()
+//                        for id in characterIds {
+//                            self?.makeFetchCharacterStatsRequest(memberShipId: destinyMembershipId, char_id: id)
+//                        }
                 }
             }
     }
     
-    func makeFetchCharacterStatsRequest(memberShipId: String, char_id: String) {
+    func makeFetchCharacterStatsRequest(memberShipId: String, char_id: String, group: DispatchGroup) {
 
         let characterStatsStruct = FetchCharacterStatsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: memberShipId, characterId: char_id)
             characterStatsStruct.getCharacterStats { [weak self] result in
                 switch result {
                     case .failure(let error):
                         print(error)
+                        group.leave()
                 case .success(let characterStats):
                     print("Get character stats call was made!")
                     self?.characterStatArray.append(characterStats)
+                    group.leave()
                 }
             }
     }
@@ -100,10 +104,7 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
             
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data.count }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // return UITableView.automaticDimension
-        return 65
-    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 65 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "guardianCell", for: indexPath)
@@ -117,38 +118,18 @@ extension GuardianSearchTableVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let group = DispatchGroup()        
+        let group = DispatchGroup()
         group.enter()
         
-        let characterIdsStruct = FetchCharacterIdsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: self.data[indexPath.row].membershipId)
-        characterIdsStruct.getCharacterIds { [weak self] result in
-            switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let characterIds):
-                    self?.characterIdsArray = characterIds
-                    group.leave()
-            }
-        }
+        self.makeFetchCharacterIdsRequest(destinyMembershipId: self.data[indexPath.row].membershipId, group: group)
         
         group.notify(queue: .main) {
             
             let group2 = DispatchGroup()
             for id in self.characterIdsArray {
                 group2.enter()
-                let characterStatsStruct = FetchCharacterStatsRequest(memberShipType: Int(self.apiDataModel.apiEssentials.memberShipType), destinyMembershipId: self.data[indexPath.row].membershipId, characterId: id)
-                characterStatsStruct.getCharacterStats { [weak self] result in
-                    switch result {
-                        case .failure(let error):
-                            print(error)
-                    case .success(let characterStats):
-                        print("Get character stats call was made!")
-                        self?.characterStatArray.append(characterStats)
-                        group2.leave()
-                    }
-                }
+                self.makeFetchCharacterStatsRequest(memberShipId: self.data[indexPath.row].membershipId, char_id: id, group: group2)
             }
-            
             group2.notify(queue: .main) {
                 print(self.characterStatArray.count)
                 let destinationVC = StatPageVC()
