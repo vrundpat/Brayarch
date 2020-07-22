@@ -232,7 +232,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         if indexPath.section == 4 { mode = "19" }
         if indexPath.section == 5 { mode = "64" }
 
-        
+        print("Mode: \(mode)")
         let destinationVC = ActivityHistoryPageVC()
         self.navigationController?.pushViewController(destinationVC, animated: true)
 

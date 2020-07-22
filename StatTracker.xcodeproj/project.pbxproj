@@ -33,6 +33,7 @@
 		32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B424B8F05C00839B36 /* HomePageVC.swift */; };
 		32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B724B8F41200839B36 /* StatPageVC.swift */; };
 		32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */; };
+		32DA83F824C8CDF8007CF874 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DA83F724C8CDF8007CF874 /* ActivityCell.swift */; };
 		32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */; };
 		32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */; };
 		32FEA60C24C89EC000AC31FF /* ActivityHistoryPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FEA60B24C89EC000AC31FF /* ActivityHistoryPageVC.swift */; };
@@ -88,6 +89,7 @@
 		32C5C1B424B8F05C00839B36 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		32C5C1B724B8F41200839B36 /* StatPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageVC.swift; sourceTree = "<group>"; };
 		32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatHandler.swift; sourceTree = "<group>"; };
+		32DA83F724C8CDF8007CF874 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiDataModel.swift; sourceTree = "<group>"; };
 		32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformButton.swift; sourceTree = "<group>"; };
 		32FEA60B24C89EC000AC31FF /* ActivityHistoryPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryPageVC.swift; sourceTree = "<group>"; };
@@ -254,6 +256,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		32DA83F624C8CDAE007CF874 /* TableviewCells */ = {
+			isa = PBXGroup;
+			children = (
+				32DA83F724C8CDF8007CF874 /* ActivityCell.swift */,
+			);
+			path = TableviewCells;
+			sourceTree = "<group>";
+		};
 		32F80CFA24BCB0E200B9EFEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +288,7 @@
 				326CE20D24C2115500A79D8F /* StatCellEssentials */,
 				32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */,
 				32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */,
+				32DA83F624C8CDAE007CF874 /* TableviewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,6 +572,7 @@
 				32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */,
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */,
+				32DA83F824C8CDF8007CF874 /* ActivityCell.swift in Sources */,
 				32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */,
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
 				326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */,
