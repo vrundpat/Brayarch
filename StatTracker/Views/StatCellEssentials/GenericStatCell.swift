@@ -108,6 +108,9 @@ class GenericStatCell: UICollectionViewCell {
         sample1.textColor = self.textColor
         sample2.textColor = self.textColor
         
+        sample1.topInset = CGFloat(15)
+        sample2.topInset = CGFloat(15)
+        
         sample1.setUpStack()
         sample2.setUpStack()
     }

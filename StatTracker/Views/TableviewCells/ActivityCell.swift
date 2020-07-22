@@ -10,6 +10,34 @@ import UIKit
 
 class ActivityCell: UITableViewCell {
     
+    var activity: ActivityInformation? {
+        didSet {
+            if let completion = activity?.values.completed?.basic.displayValue {
+                if completion == "Yes" { standingStatusBar.backgroundColor = .green }
+                else { standingStatusBar.backgroundColor = .darkGray }
+            }
+            
+            if let outcome = activity?.values.standing?.basic.displayValue {
+                if outcome == "Victory" { standingStatusBar.backgroundColor = .green }
+                else { standingStatusBar.backgroundColor = .red }
+            }
+            
+            statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
+            statRow.vals.removeAll()
+            
+            if let history = activity {
+                if let kills = history.values.kills { statRow.vals.append(kills.basic.displayValue) }
+                if let assists = history.values.assists { statRow.vals.append(assists.basic.displayValue) }
+                if let deaths = history.values.deaths { statRow.vals.append(deaths.basic.displayValue) }
+                if let kd = history.values.killsDeathsRatio { statRow.vals.append(kd.basic.displayValue) }
+            }
+            
+            statRow.setUpStack()
+        }
+    }
+    
+    let statRow = StackViewText()
+    
     var activityHistroyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +64,15 @@ class ActivityCell: UITableViewCell {
         return textField
     }()
     
+    lazy var statStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        self.backgroundColor = .black
+        return stackView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setUpCellStackView()
@@ -60,14 +97,20 @@ class ActivityCell: UITableViewCell {
     func setUpStackViewSubviews() {
         self.activityHistroyStackView.addArrangedSubview(standingStatusBar)
         self.activityHistroyStackView.addArrangedSubview(statField)
+        self.activityHistroyStackView.addArrangedSubview(statStackView)
         
-        //standingStatusBar.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
         standingStatusBar.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.01).isActive = true
+        statField.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.39).isActive = true
+        statStackView.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.6).isActive = true
         
-        //statField.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
-        statField.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.99).isActive = true
+        statRow.bgColor = .black
+        statRow.textColor = .white
+        statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
+        statRow.vals = ["20", "20", "20", "2.1"]
+        statRow.topInset = CGFloat(25)
+        statRow.setUpStack()
         
-//        self.activityHistroyStackView.addArrangedSubview(standingStatusBar)
-//        self.activityHistroyStackView.addArrangedSubview(statField)
+        statStackView.addArrangedSubview(statRow)
+
     }
 }
