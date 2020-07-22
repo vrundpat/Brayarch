@@ -101,7 +101,7 @@ class StatPageVC: UIViewController {
         [UIColor(red: 149/255, green: 203/255, blue: 175/255, alpha: 1)],
         [UIColor(red: 113/255, green: 200/255, blue: 158/255, alpha: 1)],
     ]
-    
+        
     var pvpEssentialStats = [[PVPGameModeAllTime?]]()
     var gambitEssentialStats = [[GambitModeAllTime?]]()
     var pveEssentialStats = [[PVE_AllTime?]]()
@@ -120,16 +120,12 @@ class StatPageVC: UIViewController {
         
         return collectionView
     }()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+            
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .black
         setUpNVActivityIndiacatorView()
         loading.startAnimating()
-    }
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     func removeOverlayAndDisplayStats() {
@@ -227,15 +223,39 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: self.currentUserMembershipType, destinyMembershipId: self.currentUserDestinyMembershipId, characterId: self.currentUserCharacterIds[currentDisplayedCharacterIndex], mode: "5")
+        var mode = String()
+        
+        if indexPath.section == 0 { mode = "7" }
+        if indexPath.section == 1 { mode = "5" }
+        if indexPath.section == 2 { mode = "69" }
+        if indexPath.section == 3 { mode = "84" }
+        if indexPath.section == 4 { mode = "19" }
+        if indexPath.section == 5 { mode = "64" }
+
+        
+        let destinationVC = ActivityHistoryPageVC()
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+
+        let group = DispatchGroup()
+        group.enter()
+        
+        let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: self.currentUserMembershipType, destinyMembershipId: self.currentUserDestinyMembershipId, characterId: self.currentUserCharacterIds[currentDisplayedCharacterIndex], mode: mode)
     
         characterActivityHistory.getActivityHistory { [weak self] result in
             switch result {
                 case .failure(let error):
                     print(error)
+                    group.leave()
+
                 case .success(let activityHistory):
-                    print(activityHistory)
+                    print(activityHistory.activities.count)
+                    destinationVC.data = activityHistory.activities
+                    group.leave()
             }
+        }
+        
+        group.notify(queue: .main) {
+            destinationVC.removeOverlayAndDisplayStats()
         }
     }
 }

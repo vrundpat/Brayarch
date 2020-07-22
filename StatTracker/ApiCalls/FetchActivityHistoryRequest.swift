@@ -42,7 +42,7 @@ struct FetchActivityHistoryRequest {
                 let decoder = JSONDecoder()
                 let getActivityHistoryResponse = try decoder.decode(FetchActivityHistoryResponse.self, from: jsonData)
                 let activityHistory = getActivityHistoryResponse.Response
-                completion(.success(activityHistory))
+                completion(.success(activityHistory ?? Activities(activities: [])))
 
             } catch {
                 completion(.failure(.cannotProcessData))
