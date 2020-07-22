@@ -9,13 +9,10 @@
 /* Begin PBXBuildFile section */
 		1FB3F2F53861565B38AF7F35 /* Pods_StatTracker_StatTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A71E538221DF69763C8DB3 /* Pods_StatTracker_StatTrackerUITests.framework */; };
 		233386631A7692E160B0670F /* Pods_StatTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87891F684DBCE83D1C1076 /* Pods_StatTracker.framework */; };
-		320135D424C4F9BA004F235F /* GambitStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320135D324C4F9BA004F235F /* GambitStats.swift */; };
-		320FEDF024C6612900008C56 /* PvEStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320FEDEF24C6612900008C56 /* PvEStats.swift */; };
 		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
 		323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511D24C73EC000EF543F /* FetchActivityHistory.swift */; };
 		323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */; };
-		326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */; };
-		326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* PvPStats.swift */; };
+		326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* GenericStatCell.swift */; };
 		326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20E24C2175B00A79D8F /* Extensions.swift */; };
 		3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */; };
 		3285800F24BF6DE300E8EAA1 /* FetchCharacterStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */; };
@@ -35,6 +32,7 @@
 		32C5C1A524B8EA3E00839B36 /* StatTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1A424B8EA3E00839B36 /* StatTrackerUITests.swift */; };
 		32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B424B8F05C00839B36 /* HomePageVC.swift */; };
 		32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C1B724B8F41200839B36 /* StatPageVC.swift */; };
+		32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */; };
 		32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */; };
 		32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */; };
 		EAD807CBE3CB72004BC66C4C /* Pods_StatTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AA747F75DC2898EE4D63DA /* Pods_StatTrackerTests.framework */; };
@@ -59,13 +57,10 @@
 
 /* Begin PBXFileReference section */
 		04AA747F75DC2898EE4D63DA /* Pods_StatTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StatTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		320135D324C4F9BA004F235F /* GambitStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambitStats.swift; sourceTree = "<group>"; };
-		320FEDEF24C6612900008C56 /* PvEStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvEStats.swift; sourceTree = "<group>"; };
 		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
 		323E511D24C73EC000EF543F /* FetchActivityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistory.swift; sourceTree = "<group>"; };
 		323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistoryRequest.swift; sourceTree = "<group>"; };
-		326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellCollectionView.swift; sourceTree = "<group>"; };
-		326CE20B24C2115100A79D8F /* PvPStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PvPStats.swift; sourceTree = "<group>"; };
+		326CE20B24C2115100A79D8F /* GenericStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStatCell.swift; sourceTree = "<group>"; };
 		326CE20E24C2175B00A79D8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3273D35624BA320200FC47AE /* GuardianSearchTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianSearchTableVC.swift; sourceTree = "<group>"; };
 		3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharacterStats.swift; sourceTree = "<group>"; };
@@ -91,6 +86,7 @@
 		32C5C1A624B8EA3E00839B36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32C5C1B424B8F05C00839B36 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
 		32C5C1B724B8F41200839B36 /* StatPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatPageVC.swift; sourceTree = "<group>"; };
+		32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatHandler.swift; sourceTree = "<group>"; };
 		32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiDataModel.swift; sourceTree = "<group>"; };
 		32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformButton.swift; sourceTree = "<group>"; };
 		3753C813879F6EDD97726230 /* Pods-StatTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker.debug.xcconfig"; path = "Target Support Files/Pods-StatTracker/Pods-StatTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,24 +135,13 @@
 			path = CollectionViewHeaders;
 			sourceTree = "<group>";
 		};
-		326CE20A24C1F37D00A79D8F /* CollectionViewCells */ = {
+		326CE20D24C2115500A79D8F /* StatCellEssentials */ = {
 			isa = PBXGroup;
 			children = (
-				326CE20824C1F37800A79D8F /* StatCellCollectionView.swift */,
-				326CE20D24C2115500A79D8F /* ChildViewCells */,
-			);
-			path = CollectionViewCells;
-			sourceTree = "<group>";
-		};
-		326CE20D24C2115500A79D8F /* ChildViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				326CE20B24C2115100A79D8F /* PvPStats.swift */,
-				320135D324C4F9BA004F235F /* GambitStats.swift */,
-				320FEDEF24C6612900008C56 /* PvEStats.swift */,
+				326CE20B24C2115100A79D8F /* GenericStatCell.swift */,
 				32BB064D24C273F4007F0AD7 /* TextStackView.swift */,
 			);
-			path = ChildViewCells;
+			path = StatCellEssentials;
 			sourceTree = "<group>";
 		};
 		326CE21024C2176400A79D8F /* AppExtensions */ = {
@@ -270,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */,
+				32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,7 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				320135D524C5066B004F235F /* CollectionViewHeaders */,
-				326CE20A24C1F37D00A79D8F /* CollectionViewCells */,
+				326CE20D24C2115500A79D8F /* StatCellEssentials */,
 				32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */,
 				32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */,
 			);
@@ -557,7 +543,6 @@
 			files = (
 				32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */,
 				323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */,
-				326CE20924C1F37800A79D8F /* StatCellCollectionView.swift in Sources */,
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
 				32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */,
@@ -569,13 +554,12 @@
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
 				32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */,
+				32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */,
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */,
 				32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */,
-				320135D424C4F9BA004F235F /* GambitStats.swift in Sources */,
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
-				320FEDF024C6612900008C56 /* PvEStats.swift in Sources */,
-				326CE20C24C2115100A79D8F /* PvPStats.swift in Sources */,
+				326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */,
 				321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */,
 				32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */,
 			);

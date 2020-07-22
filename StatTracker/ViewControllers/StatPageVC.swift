@@ -11,6 +11,8 @@ import NVActivityIndicatorView
 
 class StatPageVC: UIViewController {
     
+    var test = StatHandler()
+    
     var UserCharacterStats = [GameModes]() {
         didSet {
             print("Stats Received")
@@ -72,6 +74,7 @@ class StatPageVC: UIViewController {
     }
     
     let cellId = "statCell"
+    let pvpCellId = "pvpCell"
     let headerId = "statCellHeader"
     
     let cellEssentialsImages: [[String]] = [
@@ -112,7 +115,7 @@ class StatPageVC: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(StatCellCollectionView.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(GenericStatCell.self, forCellWithReuseIdentifier: pvpCellId)
         collectionView.register(StatCellHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
         return collectionView
@@ -195,27 +198,44 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StatCellCollectionView
         
-        cell.pvpStats.removeAll()
-        cell.gambitStats.removeAll()
-        cell.pveStats.removeAll()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pvpCellId, for: indexPath) as! GenericStatCell
         
-        cell.currentIndex   =   self.currentDisplayedCharacterIndex
-        cell.img            =   self.cellEssentialsImages[indexPath.section]
-        cell.bgColor        =   self.cellEssentialsBgColor[indexPath.section]
-        cell.textColor      =   self.cellEssentialsTextColor[indexPath.section]
+        cell.cornerRadiusFromParent = 25
+        cell.imageName = self.cellEssentialsImages[indexPath.section][0]
+        cell.bgColor = self.cellEssentialsBgColor[indexPath.section][0]
+        cell.textColor = self.cellEssentialsTextColor[indexPath.section][0]
         
-        cell.currentUserMembershipType          = self.currentUserMembershipType
-        cell.currnetUserDestinyMembershipId     = self.currentUserDestinyMembershipId
-        cell.currentUserCharacter               = self.currentUserCharacterIds[currentDisplayedCharacterIndex]
-        cell.parentRef                          = self
+        if indexPath.section == 0 {
+            cell.titles = [["Kills", "Assists", "Deaths", "Activities"], ["Orbs Made", "KD", "Suicides", "Time Played"]]
+            cell.values = self.test.pveValues(mode: self.pveEssentialStats[0][0])
+        }
         
-        if indexPath.section == 0 { cell.pveStats = self.pveEssentialStats[0] }
-        else if indexPath.section >= 1 && indexPath.section <= 4 { cell.pvpStats = self.pvpEssentialStats[indexPath.section] }
-        else if indexPath.section == 5 { cell.gambitStats = self.gambitEssentialStats[0] }
+        if indexPath.section >= 1 && indexPath.section <= 4 {
+            cell.titles = [["Kills", "Assists", "Deaths", "Matches"], ["W/L", "KD", "KAD", "Time Played"]]
+            cell.values = self.test.pvpValues(mode: self.pvpEssentialStats[indexPath.section][0])
+        }
         
-        cell.setUpCellCollectionView()
+        if indexPath.section == 5 {
+            cell.titles = [["Kills", "Assists", "Deaths", "Matches"], ["W/L", "Motes Banked", "Invasions", "Time Played"]]
+            cell.values = self.test.gambitValues(mode: self.gambitEssentialStats[0])
+        }
+        
+        cell.setUpRootStackView()
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let characterActivityHistory = FetchActivityHistoryRequest(memberShipType: self.currentUserMembershipType, destinyMembershipId: self.currentUserDestinyMembershipId, characterId: self.currentUserCharacterIds[currentDisplayedCharacterIndex], mode: "5")
+    
+        characterActivityHistory.getActivityHistory { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let activityHistory):
+                    print(activityHistory)
+            }
+        }
     }
 }

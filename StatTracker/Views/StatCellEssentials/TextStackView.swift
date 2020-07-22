@@ -15,12 +15,12 @@ class StackViewText: UIStackView {
     
     var textColor = UIColor()
     var bgColor = UIColor()
-    
+        
     let sample1 = OverlappedText()
     let sample2 = OverlappedText()
     let sample3 = OverlappedText()
     let sample4 = OverlappedText()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -34,39 +34,20 @@ class StackViewText: UIStackView {
         axis = .horizontal
         distribution = .fillEqually
         translatesAutoresizingMaskIntoConstraints = false
-                
-        sample1.titles = self.titles[0]
-        sample2.titles = self.titles[1]
-        sample3.titles = self.titles[2]
-        sample4.titles = self.titles[3]
         
-        sample1.vals = self.vals[0]
-        sample2.vals = self.vals[1]
-        sample3.vals = self.vals[2]
-        sample4.vals = self.vals[3]
+        let overLappedTextArray = [sample1, sample2, sample3, sample4]
         
-        sample1.textColor = self.textColor
-        sample2.textColor = self.textColor
-        sample3.textColor = self.textColor
-        sample4.textColor = self.textColor
-        
-        sample1.bgColor = self.bgColor
-        sample2.bgColor = self.bgColor
-        sample3.bgColor = self.bgColor
-        sample4.bgColor = self.bgColor
-
-        sample1.setUpOverlayText()
-        sample2.setUpOverlayText()
-        sample3.setUpOverlayText()
-        sample4.setUpOverlayText()
-    
-        addArrangedSubview(sample1)
-        addArrangedSubview(sample2)
-        addArrangedSubview(sample3)
-        addArrangedSubview(sample4)
+        for overlappedTextPosition in 0...self.titles.count - 1 {
+            let sample1 = overLappedTextArray[overlappedTextPosition]
+            sample1.titles = self.titles[overlappedTextPosition]
+            sample1.vals = self.vals[overlappedTextPosition]
+            sample1.textColor = self.textColor
+            sample1.bgColor = self.bgColor
+            sample1.setUpOverlayText()
+            addArrangedSubview(sample1)
+        }
     }
 }
-
 
 
 
