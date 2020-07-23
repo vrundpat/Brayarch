@@ -179,6 +179,15 @@ class StatPageVC: UIViewController {
     func sortCharacters(this: GameModes, that: GameModes) -> Bool {
         return Int((this.allPvE?.allTime.kills.basic.value)!) > Int((that.allPvE?.allTime.kills.basic.value)!)
     }
+    
+    func getClickedMode(section: Int) -> String {
+        if section == 0 { return "PvE" }
+        else if section == 1 { return "PvP: Quickply" }
+        else if section == 2 { return "PvP: Competitive" }
+        else if section == 3 { return "Trials of Osiris" }
+        else if section == 4 { return "Iron Banner" }
+        else { return "Gambit/Gambit Prime" }
+    }
 }
 
 
@@ -250,6 +259,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
                 case .success(let activityHistory):
                     print(activityHistory.activities.count)
                     destinationVC.data = activityHistory.activities
+                    destinationVC.currentMode = self?.getClickedMode(section: indexPath.section) as! String
                     group.leave()
             }
         }

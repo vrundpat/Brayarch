@@ -22,6 +22,7 @@
 		32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */; };
 		32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BB064D24C273F4007F0AD7 /* TextStackView.swift */; };
 		32BB483624BE2B92001530CA /* bgVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 32BB483524BE2B92001530CA /* bgVideo.mp4 */; };
+		32C0A67624C9FCD300FF09DF /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0A67524C9FCD300FF09DF /* ChartCell.swift */; };
 		32C2D01624BE874D00A172CF /* FetchCharacterIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2D01524BE874D00A172CF /* FetchCharacterIds.swift */; };
 		32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2D01724BE8E8600A172CF /* FetchCharacterIdsRequest.swift */; };
 		32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C18224B8EA3900839B36 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatFormButtonStackView.swift; sourceTree = "<group>"; };
 		32BB064D24C273F4007F0AD7 /* TextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStackView.swift; sourceTree = "<group>"; };
 		32BB483524BE2B92001530CA /* bgVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgVideo.mp4; path = ../../../bgVideo.mp4; sourceTree = "<group>"; };
+		32C0A67524C9FCD300FF09DF /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		32C2D01524BE874D00A172CF /* FetchCharacterIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharacterIds.swift; sourceTree = "<group>"; };
 		32C2D01724BE8E8600A172CF /* FetchCharacterIdsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharacterIdsRequest.swift; sourceTree = "<group>"; };
 		32C5C17F24B8EA3900839B36 /* StatTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +288,7 @@
 			children = (
 				320135D524C5066B004F235F /* CollectionViewHeaders */,
 				326CE20D24C2115500A79D8F /* StatCellEssentials */,
+				32C0A67524C9FCD300FF09DF /* ChartCell.swift */,
 				32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */,
 				32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */,
 				32DA83F624C8CDAE007CF874 /* TableviewCells */,
@@ -567,6 +570,7 @@
 				323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */,
 				3273D35724BA320200FC47AE /* GuardianSearchTableVC.swift in Sources */,
 				32C5C1B824B8F41200839B36 /* StatPageVC.swift in Sources */,
+				32C0A67624C9FCD300FF09DF /* ChartCell.swift in Sources */,
 				32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */,
 				32FEA60C24C89EC000AC31FF /* ActivityHistoryPageVC.swift in Sources */,
 				32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */,
