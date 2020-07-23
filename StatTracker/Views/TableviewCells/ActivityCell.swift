@@ -30,12 +30,14 @@ class ActivityCell: UITableViewCell {
                 if let assists = history.values.assists { statRow.vals.append(assists.basic.displayValue) }
                 if let deaths = history.values.deaths { statRow.vals.append(deaths.basic.displayValue) }
                 if let kd = history.values.killsDeathsRatio { statRow.vals.append(kd.basic.displayValue) }
+                statField.image = UIImage(named: imageName)
             }
             
             statRow.setUpStack()
         }
     }
     
+    var imageName = String()
     let statRow = StackViewText()
     
     var activityHistroyStackView: UIStackView = {
@@ -54,14 +56,10 @@ class ActivityCell: UITableViewCell {
         return view
     }()
     
-    lazy var statField: UITextView = {
-        let textField = UITextView()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Testing the cell"
-        textField.textColor = .white
-        textField.backgroundColor = .black
-        textField.textAlignment = .center
-        return textField
+    lazy var statField: UIImageView  = {
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        return imgView
     }()
     
     lazy var statStackView: UIStackView = {
@@ -102,11 +100,11 @@ class ActivityCell: UITableViewCell {
         standingStatusBar.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.01).isActive = true
         statField.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.39).isActive = true
         statStackView.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.6).isActive = true
-        
+                
         statRow.bgColor = .black
         statRow.textColor = .white
         statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
-        statRow.vals = ["20", "20", "20", "2.1"]
+        statRow.vals = ["", "", "", ""]
         statRow.topInset = CGFloat(25)
         statRow.setUpStack()
         

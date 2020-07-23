@@ -21,7 +21,7 @@ struct FetchActivityHistoryRequest {
 
     init(memberShipType: Int, destinyMembershipId: String, characterId: String, mode: String) {
         
-        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Account/\(destinyMembershipId)/Character/\(characterId)/Stats/Activities/?mode=\(mode)&count=15"
+        let resourceString = "https://bungie.net/Platform/Destiny2/\(memberShipType)/Account/\(destinyMembershipId)/Character/\(characterId)/Stats/Activities/?mode=\(mode)&count=20"
 
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
 

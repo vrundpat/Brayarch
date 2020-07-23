@@ -182,7 +182,7 @@ class StatPageVC: UIViewController {
     
     func getClickedMode(section: Int) -> String {
         if section == 0 { return "PvE" }
-        else if section == 1 { return "PvP: Quickply" }
+        else if section == 1 { return "PvP: Quickplay" }
         else if section == 2 { return "PvP: Competitive" }
         else if section == 3 { return "Trials of Osiris" }
         else if section == 4 { return "Iron Banner" }
@@ -243,6 +243,9 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
 
         print("Mode: \(mode)")
         let destinationVC = ActivityHistoryPageVC()
+        destinationVC.currentUserBeingDisplayed = self.currentUserBeingDisplayed
+        destinationVC.currentMode = self.getClickedMode(section: indexPath.section)
+        
         self.navigationController?.pushViewController(destinationVC, animated: true)
 
         let group = DispatchGroup()
@@ -259,7 +262,6 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
                 case .success(let activityHistory):
                     print(activityHistory.activities.count)
                     destinationVC.data = activityHistory.activities
-                    destinationVC.currentMode = self?.getClickedMode(section: indexPath.section) as! String
                     group.leave()
             }
         }
