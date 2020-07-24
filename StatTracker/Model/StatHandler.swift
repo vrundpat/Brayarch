@@ -76,8 +76,9 @@ struct StatHandler {
                         "\(round(((gambit.allTime.activitiesWon.basic.value + gambit_prime.allTime.activitiesWon.basic.value) / (gambit.allTime.activitiesEntered.basic.value + gambit_prime.allTime.activitiesEntered.basic.value)) * 100))%",
                         "\(Int(gambit.allTime.motesDeposited.basic.value + gambit_prime.allTime.motesDeposited.basic.value))",
                         "\(Int(gambit.allTime.invasions.basic.value + gambit_prime.allTime.invasions.basic.value))",
-                        "\(Int(gambit.allTime.secondsPlayed.basic.value + gambit_prime.allTime.secondsPlayed.basic.value))"
+                        secondsToHoursMinutesSeconds(seconds: Int(gambit.allTime.secondsPlayed.basic.value + gambit_prime.allTime.secondsPlayed.basic.value))
                     ])
+                
                     
                     return statEssentials
                 }
@@ -88,5 +89,23 @@ struct StatHandler {
         }
         
         return statEssentials
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> String {
+        print(seconds)
+        return castTimeToString(h: seconds / 3600, m: (seconds % 3600) / 60, s: (seconds % 3600) % 60)
+    }
+    
+    func castTimeToString(h: Int, m: Int, s: Int) -> String {
+        if h == 0 && m == 0 { return "\(s)s" }
+        else if h == 0 { return "\(m)m \(s)s" }
+        else if h < 24 { return "\(h)h \(m)m" }
+        else {
+            if h % 24 == 0 { return "\(h / 24)d" }
+            else {
+                let d = h / 24
+                return "\(d)d \(h - (d * 24))h"
+            }
+        }
     }
 }

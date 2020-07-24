@@ -115,6 +115,6 @@ class ChartCell: UICollectionViewCell {
         chartView.data = chart
         
         chartTitleTextView.text = chartTitle + " in recent \(mode) matches"
-        tableViewCellTitle.text = "Recent \(mode) Activity"
+        tableViewCellTitle.text = "\(mode) Activity"
     }
 }
