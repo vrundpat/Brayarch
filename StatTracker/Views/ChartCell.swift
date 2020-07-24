@@ -45,26 +45,11 @@ class ChartCell: UICollectionViewCell {
         return textView
     }()
     
-    lazy var tableViewCellTitle: UITextView = {
-        let textView = UITextView()
-        textView.backgroundColor = .black
-        textView.textColor = .white
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont(name: "DINAlternate-Bold", size: 26)
-        textView.textContainerInset = UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 0)
-        textView.backgroundColor = .black
-        textView.isEditable = false
-        textView.showsVerticalScrollIndicator = false
-        textView.showsHorizontalScrollIndicator = false
-        textView.textAlignment = .left
-        return textView
-    }()
-    
     lazy var chartView: LineChartView = {
         let chart = LineChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.rightAxis.drawLabelsEnabled = true
-        chart.chartDescription?.text = "Testing!"
+        chart.chartDescription?.text = "Last 15 matches"
         chart.chartDescription?.textColor = .white
         chart.legend.enabled = false
         
@@ -95,11 +80,9 @@ class ChartCell: UICollectionViewCell {
         
         chartStackView.addArrangedSubview(chartTitleTextView)
         chartStackView.addArrangedSubview(chartView)
-        chartStackView.addArrangedSubview(tableViewCellTitle)
         
         chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.05).isActive = true
-        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.85).isActive = true
-        tableViewCellTitle.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.1).isActive = true
+        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.95).isActive = true
     }
     
     func setUpChartView() {
@@ -115,6 +98,5 @@ class ChartCell: UICollectionViewCell {
         chartView.data = chart
         
         chartTitleTextView.text = chartTitle + " in recent \(mode) matches"
-        tableViewCellTitle.text = "\(mode) Activity"
     }
 }

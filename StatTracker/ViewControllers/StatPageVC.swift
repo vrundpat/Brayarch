@@ -158,6 +158,7 @@ class StatPageVC: UIViewController {
         
         view.addSubview(bgImageView)
         
+        navigationController?.hidesBarsOnSwipe = true
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
 
