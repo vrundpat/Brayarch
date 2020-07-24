@@ -36,7 +36,7 @@ class ChartCell: UICollectionViewCell {
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont(name: "DINAlternate-Bold", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         textView.backgroundColor = .black
         textView.isEditable = false
         textView.showsVerticalScrollIndicator = false
@@ -80,8 +80,8 @@ class ChartCell: UICollectionViewCell {
         chartStackView.addArrangedSubview(chartTitleTextView)
         chartStackView.addArrangedSubview(chartView)
         
-        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.05).isActive = true
-        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.95).isActive = true
+        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.07).isActive = true
+        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.93).isActive = true
     }
     
     func setUpChartView() {

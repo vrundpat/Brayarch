@@ -160,6 +160,7 @@ class StatPageVC: UIViewController {
         
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
+        navigationController?.hidesBarsOnSwipe = true
 
         view.addSubview(rootCollectionView)
         //rootCollectionView.backgroundColor = .black
