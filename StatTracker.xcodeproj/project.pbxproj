@@ -23,6 +23,7 @@
 		328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752124BBD3330063CE3D /* FindPlayers.swift */; };
 		328C752524BBD58A0063CE3D /* SearchPlayersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */; };
 		32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */; };
+		32A916E524CBA47400DF311B /* CarnageReportPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A916E424CBA47400DF311B /* CarnageReportPageVC.swift */; };
 		32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BB064D24C273F4007F0AD7 /* TextStackView.swift */; };
 		32BB483624BE2B92001530CA /* bgVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 32BB483524BE2B92001530CA /* bgVideo.mp4 */; };
 		32C0A67624C9FCD300FF09DF /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0A67524C9FCD300FF09DF /* ChartCell.swift */; };
@@ -77,6 +78,7 @@
 		328C752124BBD3330063CE3D /* FindPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlayers.swift; sourceTree = "<group>"; };
 		328C752424BBD58A0063CE3D /* SearchPlayersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayersRequest.swift; sourceTree = "<group>"; };
 		32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatFormButtonStackView.swift; sourceTree = "<group>"; };
+		32A916E424CBA47400DF311B /* CarnageReportPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnageReportPageVC.swift; sourceTree = "<group>"; };
 		32BB064D24C273F4007F0AD7 /* TextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStackView.swift; sourceTree = "<group>"; };
 		32BB483524BE2B92001530CA /* bgVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgVideo.mp4; path = ../../../bgVideo.mp4; sourceTree = "<group>"; };
 		32C0A67524C9FCD300FF09DF /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				32C5C1B424B8F05C00839B36 /* HomePageVC.swift */,
 				32C5C1B724B8F41200839B36 /* StatPageVC.swift */,
 				32FEA60B24C89EC000AC31FF /* ActivityHistoryPageVC.swift */,
+				32A916E424CBA47400DF311B /* CarnageReportPageVC.swift */,
 				32F80CFD24BCB96000B9EFEC /* ChildViewControllers */,
 			);
 			path = ViewControllers;
@@ -593,6 +596,7 @@
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
 				326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */,
 				321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */,
+				32A916E524CBA47400DF311B /* CarnageReportPageVC.swift in Sources */,
 				32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
