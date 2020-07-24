@@ -35,13 +35,28 @@ class ChartCell: UICollectionViewCell {
         textView.backgroundColor = .black
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont(name: "DINAlternate-Bold", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 18)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         textView.backgroundColor = .black
         textView.isEditable = false
         textView.showsVerticalScrollIndicator = false
         textView.showsHorizontalScrollIndicator = false
         textView.textAlignment = .center
+        return textView
+    }()
+    
+    lazy var tableViewCellTitle: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .black
+        textView.textColor = .white
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 26)
+        textView.textContainerInset = UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 0)
+        textView.backgroundColor = .black
+        textView.isEditable = false
+        textView.showsVerticalScrollIndicator = false
+        textView.showsHorizontalScrollIndicator = false
+        textView.textAlignment = .left
         return textView
     }()
     
@@ -51,6 +66,7 @@ class ChartCell: UICollectionViewCell {
         chart.rightAxis.drawLabelsEnabled = true
         chart.chartDescription?.text = "Testing!"
         chart.chartDescription?.textColor = .white
+        chart.legend.enabled = false
         
         chart.xAxis.labelPosition = XAxis.LabelPosition.bottom
         chart.xAxis.labelTextColor = .white
@@ -79,9 +95,11 @@ class ChartCell: UICollectionViewCell {
         
         chartStackView.addArrangedSubview(chartTitleTextView)
         chartStackView.addArrangedSubview(chartView)
+        chartStackView.addArrangedSubview(tableViewCellTitle)
         
-        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.07).isActive = true
-        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.93).isActive = true
+        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.05).isActive = true
+        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.85).isActive = true
+        tableViewCellTitle.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.1).isActive = true
     }
     
     func setUpChartView() {
@@ -97,5 +115,6 @@ class ChartCell: UICollectionViewCell {
         chartView.data = chart
         
         chartTitleTextView.text = chartTitle + " in recent \(mode) matches"
+        tableViewCellTitle.text = "Recent \(mode) Activity"
     }
 }
