@@ -158,12 +158,10 @@ class StatPageVC: UIViewController {
         
         view.addSubview(bgImageView)
         
-        navigationController?.hidesBarsOnSwipe = true
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(toggle))
 
         view.addSubview(rootCollectionView)
-        //rootCollectionView.backgroundColor = .black
         rootCollectionView.backgroundColor = .clear
         
         // Constriants
@@ -200,7 +198,8 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return 1 }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: CGFloat(400))
+        // return CGSize(width: view.frame.width - CGFloat(rootCV_CellPadding), height: CGFloat(400 - rootCV_CellPadding))
+        return CGSize(width: 410 - CGFloat(rootCV_CellPadding), height: CGFloat(400 - rootCV_CellPadding))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -78,7 +78,6 @@ struct StatHandler {
                         "\(Int(gambit.allTime.invasions.basic.value + gambit_prime.allTime.invasions.basic.value))",
                         secondsToHoursMinutesSeconds(seconds: Int(gambit.allTime.secondsPlayed.basic.value + gambit_prime.allTime.secondsPlayed.basic.value))
                     ])
-                
                     
                     return statEssentials
                 }
@@ -92,7 +91,6 @@ struct StatHandler {
     }
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> String {
-        print(seconds)
         return castTimeToString(h: seconds / 3600, m: (seconds % 3600) / 60, s: (seconds % 3600) % 60)
     }
     

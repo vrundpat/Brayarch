@@ -12,6 +12,8 @@
 		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
 		323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511D24C73EC000EF543F /* FetchActivityHistory.swift */; };
 		323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */; };
+		324D0C8B24CB8CD000DF2D9A /* FetchPostCarnageReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324D0C8A24CB8CD000DF2D9A /* FetchPostCarnageReport.swift */; };
+		324D0C8D24CB901500DF2D9A /* FetchPostCarnageReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324D0C8C24CB901500DF2D9A /* FetchPostCarnageReportRequest.swift */; };
 		325E529D24CA53D800B0EE17 /* ActivityCellHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E529C24CA53D800B0EE17 /* ActivityCellHandler.swift */; };
 		326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20B24C2115100A79D8F /* GenericStatCell.swift */; };
 		326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CE20E24C2175B00A79D8F /* Extensions.swift */; };
@@ -64,6 +66,8 @@
 		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
 		323E511D24C73EC000EF543F /* FetchActivityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistory.swift; sourceTree = "<group>"; };
 		323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistoryRequest.swift; sourceTree = "<group>"; };
+		324D0C8A24CB8CD000DF2D9A /* FetchPostCarnageReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostCarnageReport.swift; sourceTree = "<group>"; };
+		324D0C8C24CB901500DF2D9A /* FetchPostCarnageReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostCarnageReportRequest.swift; sourceTree = "<group>"; };
 		325E529C24CA53D800B0EE17 /* ActivityCellHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellHandler.swift; sourceTree = "<group>"; };
 		326CE20B24C2115100A79D8F /* GenericStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStatCell.swift; sourceTree = "<group>"; };
 		326CE20E24C2175B00A79D8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				32C2D01724BE8E8600A172CF /* FetchCharacterIdsRequest.swift */,
 				3285801024BF737B00E8EAA1 /* FetchCharacterStatsRequest.swift */,
 				323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */,
+				324D0C8C24CB901500DF2D9A /* FetchPostCarnageReportRequest.swift */,
 			);
 			path = ApiCalls;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				32C2D01524BE874D00A172CF /* FetchCharacterIds.swift */,
 				3285800E24BF6DE300E8EAA1 /* FetchCharacterStats.swift */,
 				323E511D24C73EC000EF543F /* FetchActivityHistory.swift */,
+				324D0C8A24CB8CD000DF2D9A /* FetchPostCarnageReport.swift */,
 			);
 			path = CallModels;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BB064E24C273F4007F0AD7 /* TextStackView.swift in Sources */,
+				324D0C8D24CB901500DF2D9A /* FetchPostCarnageReportRequest.swift in Sources */,
 				323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */,
 				32C5C18324B8EA3900839B36 /* AppDelegate.swift in Sources */,
 				328C752224BBD3330063CE3D /* FindPlayers.swift in Sources */,
@@ -577,6 +584,7 @@
 				32946E5824BD123D00E52F16 /* PlatFormButtonStackView.swift in Sources */,
 				32FEA60C24C89EC000AC31FF /* ActivityHistoryPageVC.swift in Sources */,
 				32CEAC8724C7EB63003ECEA5 /* StatHandler.swift in Sources */,
+				324D0C8B24CB8CD000DF2D9A /* FetchPostCarnageReport.swift in Sources */,
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */,
 				32DA83F824C8CDF8007CF874 /* ActivityCell.swift in Sources */,

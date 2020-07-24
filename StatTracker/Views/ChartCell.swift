@@ -49,7 +49,7 @@ class ChartCell: UICollectionViewCell {
         let chart = LineChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.rightAxis.drawLabelsEnabled = true
-        chart.chartDescription?.text = "Last 15 matches"
+        chart.chartDescription?.text = "Last 20 matches"
         chart.chartDescription?.textColor = .white
         chart.legend.enabled = false
         

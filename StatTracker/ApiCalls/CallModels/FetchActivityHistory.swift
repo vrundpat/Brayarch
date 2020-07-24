@@ -64,4 +64,5 @@ struct ActivityValues: Decodable {
 
 struct ActivityDetails: Decodable {
     var mode: Int
+    var instanceId: String
 }
