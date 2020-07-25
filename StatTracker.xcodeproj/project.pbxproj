@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1FB3F2F53861565B38AF7F35 /* Pods_StatTracker_StatTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A71E538221DF69763C8DB3 /* Pods_StatTracker_StatTrackerUITests.framework */; };
 		233386631A7692E160B0670F /* Pods_StatTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A87891F684DBCE83D1C1076 /* Pods_StatTracker.framework */; };
+		3214ADFE24CC77CA006374BB /* CarnageReportTableviewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214ADFD24CC77CA006374BB /* CarnageReportTableviewHeader.swift */; };
+		3214AE0124CC8DB8006374BB /* CarnageReportPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3214AE0024CC8DB8006374BB /* CarnageReportPlayerCell.swift */; };
 		321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321D440124C3CDAA007796C0 /* StatCellHeader.swift */; };
 		323E511E24C73EC000EF543F /* FetchActivityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511D24C73EC000EF543F /* FetchActivityHistory.swift */; };
 		323E512024C7405300EF543F /* FetchActivityHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		04AA747F75DC2898EE4D63DA /* Pods_StatTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StatTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3214ADFD24CC77CA006374BB /* CarnageReportTableviewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnageReportTableviewHeader.swift; sourceTree = "<group>"; };
+		3214AE0024CC8DB8006374BB /* CarnageReportPlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnageReportPlayerCell.swift; sourceTree = "<group>"; };
 		321D440124C3CDAA007796C0 /* StatCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCellHeader.swift; sourceTree = "<group>"; };
 		323E511D24C73EC000EF543F /* FetchActivityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistory.swift; sourceTree = "<group>"; };
 		323E511F24C7405300EF543F /* FetchActivityHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchActivityHistoryRequest.swift; sourceTree = "<group>"; };
@@ -147,6 +151,14 @@
 				321D440124C3CDAA007796C0 /* StatCellHeader.swift */,
 			);
 			path = CollectionViewHeaders;
+			sourceTree = "<group>";
+		};
+		3214ADFF24CC77D0006374BB /* TableviewHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				3214ADFD24CC77CA006374BB /* CarnageReportTableviewHeader.swift */,
+			);
+			path = TableviewHeaders;
 			sourceTree = "<group>";
 		};
 		326CE20D24C2115500A79D8F /* StatCellEssentials */ = {
@@ -273,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				32DA83F724C8CDF8007CF874 /* ActivityCell.swift */,
+				3214AE0024CC8DB8006374BB /* CarnageReportPlayerCell.swift */,
 			);
 			path = TableviewCells;
 			sourceTree = "<group>";
@@ -304,6 +317,7 @@
 				32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */,
 				32946E5724BD123D00E52F16 /* PlatFormButtonStackView.swift */,
 				32DA83F624C8CDAE007CF874 /* TableviewCells */,
+				3214ADFF24CC77D0006374BB /* TableviewHeaders */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -596,8 +610,10 @@
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,
 				326CE20C24C2115100A79D8F /* GenericStatCell.swift in Sources */,
 				321D440224C3CDAA007796C0 /* StatCellHeader.swift in Sources */,
+				3214AE0124CC8DB8006374BB /* CarnageReportPlayerCell.swift in Sources */,
 				32A916E524CBA47400DF311B /* CarnageReportPageVC.swift in Sources */,
 				32C5C1B524B8F05C00839B36 /* HomePageVC.swift in Sources */,
+				3214ADFE24CC77CA006374BB /* CarnageReportTableviewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,8 @@ import NVActivityIndicatorView
 class CarnageReportPageVC: UIViewController {
     
     var data: [DestinyPlayerEntry]? { didSet { print("Received Carnage Report") } }
+    var currentUserDisplayName = String()
+    var currentUserIdentifier = String()
     let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .white, padding: 0)
     
     lazy var carnageReportTableView: UITableView = {
@@ -24,7 +26,7 @@ class CarnageReportPageVC: UIViewController {
         table_view.contentInset = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
         return table_view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -60,28 +62,46 @@ class CarnageReportPageVC: UIViewController {
         
         carnageReportTableView.delegate = self
         carnageReportTableView.dataSource = self
-        carnageReportTableView.register(UITableViewCell.self, forCellReuseIdentifier: "carnageReportCell")
+        carnageReportTableView.register(CarnageReportPlayerCell.self, forCellReuseIdentifier: "carnageReportCell")
+        carnageReportTableView.register(CarnageReportTableviewHeader.self, forHeaderFooterViewReuseIdentifier: "header")
+    }
+    
+    func getUserStats(userDisplayMembershipId: String) -> [String] {
+        for player in self.data! {
+            if player.player.destinyUserInfo.membershipId == userDisplayMembershipId {
+                let stats = player.values
+                return ["\(stats.kills.basic.displayValue)", "\(stats.deaths.basic.displayValue)", "\(stats.assists.basic.displayValue)", "\(stats.killsDeathsRatio.basic.displayValue)"]
+            }
+        }
+        return []
     }
 }
-
 
 extension CarnageReportPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return data!.count }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return CGFloat(100) }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return CGFloat(50) }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(535) }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(350) }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 535))
-        headerView.backgroundColor = .red
-        return headerView
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! CarnageReportTableviewHeader
+        header.currentUserDisplayName = self.currentUserDisplayName
+        header.currentUserIdentifier = self.currentUserIdentifier
+        header.bgImage = "statBg-1"
+        header.overlayImage = "nightfall"
+        header.gamemodeCategory = "Gamemode"
+        header.playerStats = self.getUserStats(userDisplayMembershipId: currentUserIdentifier)
+        header.setUpHeader()
+        return header
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carnageReportCell", for: indexPath)
-        cell.textLabel?.text = "Testing"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "carnageReportCell", for: indexPath) as! CarnageReportPlayerCell
+        cell.playerDisplayName = self.data![indexPath.row].player.destinyUserInfo.displayName
+        cell.playerStats = self.getUserStats(userDisplayMembershipId: self.data![indexPath.row].player.destinyUserInfo.membershipId)
         cell.backgroundColor = .black
+        cell.player = self.data![indexPath.row]
         return cell
     }
 }

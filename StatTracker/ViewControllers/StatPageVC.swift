@@ -245,7 +245,7 @@ extension StatPageVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         let destinationVC = ActivityHistoryPageVC()
         destinationVC.currentUserBeingDisplayed = self.currentUserBeingDisplayed
         destinationVC.currentMode = self.getClickedMode(section: indexPath.section)
-        
+        destinationVC.currentUserIdentifier = self.currentUserDestinyMembershipId
         self.navigationController?.pushViewController(destinationVC, animated: true)
 
         let group = DispatchGroup()
