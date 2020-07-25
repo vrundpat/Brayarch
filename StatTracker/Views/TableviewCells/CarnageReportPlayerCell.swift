@@ -36,7 +36,7 @@ class CarnageReportPlayerCell: UITableViewCell {
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont(name: "DINAlternate-Bold", size: 20)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        textView.textContainerInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         textView.backgroundColor = .clear
         textView.textAlignment = .center
         textView.isEditable = false
@@ -77,6 +77,6 @@ class CarnageReportPlayerCell: UITableViewCell {
         statRow.bgColor = .black
         statRow.textColor = .white
         statRow.titles = ["Kills", "Deaths", "Assists", "KD"]
-        statRow.topInset = CGFloat(5)
+        statRow.topInset = CGFloat(15)
     }
 }

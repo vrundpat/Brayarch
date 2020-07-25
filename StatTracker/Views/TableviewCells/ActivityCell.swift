@@ -23,6 +23,8 @@ class ActivityCell: UITableViewCell {
             }
             
             statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
+            statRow.bgColor = self.bgColor
+            statRow.textColor = self.textcolor
             statRow.vals.removeAll()
             
             if let history = activity {
@@ -39,6 +41,8 @@ class ActivityCell: UITableViewCell {
     
     var imageName = String()
     let statRow = StackViewText()
+    var bgColor: UIColor = .black
+    var textcolor: UIColor = .white
     
     var activityHistroyStackView: UIStackView = {
         let stackView = UIStackView()
@@ -101,8 +105,8 @@ class ActivityCell: UITableViewCell {
         statField.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.39).isActive = true
         statStackView.widthAnchor.constraint(equalTo: activityHistroyStackView.widthAnchor, multiplier: 0.6).isActive = true
                 
-        statRow.bgColor = .black
-        statRow.textColor = .white
+        statRow.bgColor = self.bgColor
+        statRow.textColor = self.textcolor
         statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
         statRow.vals = ["", "", "", ""]
         statRow.topInset = CGFloat(25)

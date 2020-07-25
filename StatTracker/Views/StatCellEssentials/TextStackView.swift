@@ -98,7 +98,7 @@ class OverlappedText: UIStackView {
         
         textLabel2.isEditable = false
         textLabel2.backgroundColor = UIColor.yellow
-        textLabel2.text  = "\(self.titles)"
+        textLabel2.text  = "\(self.titles)".uppercased()
         textLabel2.textAlignment = .center
         textLabel2.translatesAutoresizingMaskIntoConstraints = false
         textLabel2.textContainer.lineFragmentPadding = 0
