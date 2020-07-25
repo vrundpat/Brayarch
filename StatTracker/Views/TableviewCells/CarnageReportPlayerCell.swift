@@ -40,6 +40,7 @@ class CarnageReportPlayerCell: UITableViewCell {
         textView.backgroundColor = .clear
         textView.textAlignment = .center
         textView.isEditable = false
+        
         textView.isScrollEnabled = false
         textView.showsHorizontalScrollIndicator = false
         textView.showsVerticalScrollIndicator = false

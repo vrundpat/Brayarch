@@ -29,6 +29,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
     lazy var overlayImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.contentMode = .scaleAspectFill
         return imgView
     }()
     
@@ -120,7 +121,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
     }
     
     func setUpOverlayImageText() {
-        overlayImageView.widthAnchor.constraint(equalToConstant: CGFloat(125)).isActive = true
+        overlayImageView.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
         overlayImageView.heightAnchor.constraint(equalToConstant: CGFloat(125)).isActive = true
         overlayImageView.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true
         overlayImageView.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor).isActive = true
@@ -135,8 +136,8 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         headerBgImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         headerBgImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         headerBgImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        headerBgImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.70).isActive = true
-        
+        headerBgImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.75).isActive = true
+                
         standIndicationView.topAnchor.constraint(equalTo: headerBgImageView.bottomAnchor).isActive = true
         standIndicationView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         standIndicationView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
@@ -145,7 +146,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         carnageTableTitles.topAnchor.constraint(equalTo: standIndicationView.bottomAnchor).isActive = true
         carnageTableTitles.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         carnageTableTitles.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        carnageTableTitles.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.29).isActive = true
+        carnageTableTitles.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.24).isActive = true
     }
     
     func setUpStackViews() {
@@ -154,6 +155,18 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         
         standingIndicationTextView.heightAnchor.constraint(lessThanOrEqualTo: carnageTableTitles.heightAnchor, multiplier: 0.40).isActive = true
         statsticsTitleView.heightAnchor.constraint(lessThanOrEqualTo: carnageTableTitles.heightAnchor, multiplier: 0.60).isActive = true
+        
+    }
+}
 
+extension UIImageView
+{
+    func addBlurEffect()
+    {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
     }
 }

@@ -26,7 +26,7 @@ class CarnageReportPageVC: UIViewController {
         table_view.separatorColor = .white
         table_view.contentInsetAdjustmentBehavior = .never
         table_view.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        table_view.contentInset = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
+        table_view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return table_view
     }()
     
@@ -110,16 +110,17 @@ extension CarnageReportPageVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return CGFloat(75) }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(350) }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(400) }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! CarnageReportTableviewHeader
         let result = self.getStandingStatus(activity: self.currentActivity!)
+        let image_gamemode = activityHandler2.getImageName(i: self.currentActivity!, currentMode: self.currentMode)
         header.currentUserDisplayName = self.currentUserDisplayName
         header.currentUserIdentifier = self.currentUserIdentifier
-        header.bgImage = "statBg-1"
-        header.overlayImage = activityHandler2.getImageName(i: self.currentActivity!, currentMode: self.currentMode)
-        header.gamemodeCategory = "Gamemode"
+        header.bgImage = "test2"
+        header.overlayImage = image_gamemode[0] != "patrol2" && image_gamemode[0] != "nightmare5" ? image_gamemode[0] : image_gamemode[0] == "patrol2" ? "patrol2" : "nightmare"
+        header.gamemodeCategory = image_gamemode[1].uppercased()
         header.standingText = (result[0] as! String).uppercased()
         header.standingViewColor = result[1] as! UIColor
         header.playerStats = self.getUserStats(userDisplayMembershipId: currentUserIdentifier)
