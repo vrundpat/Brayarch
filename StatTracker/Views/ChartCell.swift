@@ -81,8 +81,8 @@ class ChartCell: UICollectionViewCell {
         chartStackView.addArrangedSubview(chartTitleTextView)
         chartStackView.addArrangedSubview(chartView)
         
-        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.05).isActive = true
-        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.95).isActive = true
+        chartTitleTextView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.15).isActive = true
+        chartView.heightAnchor.constraint(equalTo: chartStackView.heightAnchor, multiplier: 0.85).isActive = true
     }
     
     func setUpChartView() {

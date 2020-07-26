@@ -14,19 +14,24 @@ class CarnageReportPlayerCell: UITableViewCell {
         didSet {
             playerDisplayNameTextView.text = playerDisplayName
             statRow.vals = self.playerStats
+            statRow.bgColor = self.bgColor
+            statRow.textColor = self.textcolor
             statRow.setUpStack()
         }
     }
     
+    var bgColor = UIColor()
+    var textcolor = UIColor()
     var statRow = StackViewText()
     var playerDisplayName = String()
     var playerStats = [String]()
+    var fontSize = CGFloat(15)
     
     var playerEntryStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.backgroundColor = .black
+        stackView.backgroundColor = .clear
         stackView.distribution = .fill
         return stackView
     }()
@@ -75,9 +80,8 @@ class CarnageReportPlayerCell: UITableViewCell {
         playerDisplayNameTextView.widthAnchor.constraint(equalTo: playerEntryStackView.widthAnchor, multiplier: 0.40).isActive = true
         statRow.widthAnchor.constraint(equalTo: playerEntryStackView.widthAnchor, multiplier: 0.60).isActive = true
         
-        statRow.bgColor = .black
-        statRow.textColor = .white
         statRow.titles = ["Kills", "Deaths", "Assists", "KD"]
-        statRow.topInset = CGFloat(15)
+        statRow.topInset = CGFloat(20)
+        statRow.fontSize = self.fontSize
     }
 }

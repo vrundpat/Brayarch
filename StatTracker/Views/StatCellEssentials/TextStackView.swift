@@ -14,6 +14,7 @@ class StackViewText: UIStackView {
     var vals = [String]()
     
     var topInset: CGFloat?
+    var fontSize: CGFloat?
     
     var textColor = UIColor()
     var bgColor = UIColor()
@@ -46,6 +47,7 @@ class StackViewText: UIStackView {
             sample1.textColor = self.textColor
             sample1.bgColor = self.bgColor
             sample1.topInset = self.topInset
+            sample1.fontSize = self.fontSize
             sample1.setUpOverlayText()
             addArrangedSubview(sample1)
         }
@@ -64,6 +66,7 @@ class OverlappedText: UIStackView {
     var textColor = UIColor()
     var bgColor = UIColor()
     var topInset: CGFloat?
+    var fontSize: CGFloat?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,7 +89,7 @@ class OverlappedText: UIStackView {
         textLabel1.isEditable = false
         textLabel1.backgroundColor = UIColor.yellow
         textLabel1.text  = "\(self.vals)"
-        textLabel1.font = UIFont(name: "DINAlternate-Bold", size: 20)
+        textLabel1.font = UIFont(name: "DINAlternate-Bold", size: fontSize!)
         textLabel1.textAlignment = .center
         textLabel1.translatesAutoresizingMaskIntoConstraints = false
         textLabel1.textContainer.lineFragmentPadding = 0

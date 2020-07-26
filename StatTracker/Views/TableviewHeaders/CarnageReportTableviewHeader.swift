@@ -19,6 +19,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
     var currentUserIdentifier = String()
     var standingText = String()
     var standingViewColor: UIColor = .green
+    var tableViewTitlesBgColor: UIColor = .white
     
     lazy var headerBgImageView: UIImageView = {
         let imgView = UIImageView()
@@ -57,7 +58,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .black
+        stackView.backgroundColor = .clear
         stackView.distribution = .fill
         return stackView
     }()
@@ -115,21 +116,21 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         setUpHeaderView()
         setUpStackViews()
         
-        headerBgImageView.addSubview(overlayImageView)
+        //headerBgImageView.addSubview(overlayImageView)
         headerBgImageView.addSubview(gamemodeTitle)
         setUpOverlayImageText()
     }
     
     func setUpOverlayImageText() {
-        overlayImageView.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
-        overlayImageView.heightAnchor.constraint(equalToConstant: CGFloat(125)).isActive = true
-        overlayImageView.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true
-        overlayImageView.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor).isActive = true
-        
+//        overlayImageView.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
+//        overlayImageView.heightAnchor.constraint(equalToConstant: CGFloat(125)).isActive = true
+//        overlayImageView.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true
+//        overlayImageView.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor).isActive = true
+//
         gamemodeTitle.widthAnchor.constraint(equalToConstant: CGFloat(200)).isActive = true
         gamemodeTitle.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
         gamemodeTitle.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true
-        gamemodeTitle.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor, constant: 75).isActive = true
+        gamemodeTitle.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor, constant: 85).isActive = true
     }
     
     func setUpHeaderView() {
@@ -153,20 +154,11 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         carnageTableTitles.addArrangedSubview(standingIndicationTextView)
         carnageTableTitles.addArrangedSubview(statsticsTitleView)
         
+        standingIndicationTextView.backgroundColor = self.tableViewTitlesBgColor
+        statsticsTitleView.backgroundColor = self.tableViewTitlesBgColor
+        
         standingIndicationTextView.heightAnchor.constraint(lessThanOrEqualTo: carnageTableTitles.heightAnchor, multiplier: 0.40).isActive = true
         statsticsTitleView.heightAnchor.constraint(lessThanOrEqualTo: carnageTableTitles.heightAnchor, multiplier: 0.60).isActive = true
         
-    }
-}
-
-extension UIImageView
-{
-    func addBlurEffect()
-    {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(blurEffectView)
     }
 }

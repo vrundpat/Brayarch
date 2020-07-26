@@ -110,6 +110,7 @@ class ActivityCell: UITableViewCell {
         statRow.titles = ["Kills", "Assists", "Deaths", "KD"]
         statRow.vals = ["", "", "", ""]
         statRow.topInset = CGFloat(25)
+        statRow.fontSize = CGFloat(20)
         statRow.setUpStack()
         
         statStackView.addArrangedSubview(statRow)
