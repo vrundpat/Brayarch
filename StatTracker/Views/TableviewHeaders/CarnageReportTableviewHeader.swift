@@ -26,14 +26,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
-    
-    lazy var overlayImageView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.contentMode = .scaleAspectFill
-        return imgView
-    }()
-    
+
     lazy var gamemodeTitle: UITextView = {
         let textView = UITextView()
         textView.textColor = .white
@@ -103,7 +96,6 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
     func setUpHeader() {
         
         headerBgImageView.image = UIImage(named: bgImage)
-        overlayImageView.image = UIImage(named: overlayImage)
         gamemodeTitle.text = gamemodeCategory.uppercased()
         standIndicationView.backgroundColor = self.standingViewColor
         standingIndicationTextView.textColor = self.standingViewColor
@@ -122,11 +114,6 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
     }
     
     func setUpOverlayImageText() {
-//        overlayImageView.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
-//        overlayImageView.heightAnchor.constraint(equalToConstant: CGFloat(125)).isActive = true
-//        overlayImageView.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true
-//        overlayImageView.centerYAnchor.constraint(equalTo: headerBgImageView.centerYAnchor).isActive = true
-//
         gamemodeTitle.widthAnchor.constraint(equalToConstant: CGFloat(200)).isActive = true
         gamemodeTitle.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
         gamemodeTitle.centerXAnchor.constraint(equalTo: headerBgImageView.centerXAnchor).isActive = true

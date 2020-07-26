@@ -101,7 +101,7 @@ class CarnageReportPageVC: UIViewController {
             if activity.values.completed?.basic.displayValue == "Yes" { return ["Victory", UIColor(red: 14/255, green: 94/255, blue: 46/255, alpha: 1)] }
             else { return ["Uncompleted", UIColor(red: 121/255, green: 121/255, blue: 121/255, alpha: 1)] }
         } else {
-            return [(activity.values.standing?.basic.displayValue)!, (activity.values.standing?.basic.displayValue)! == "Victory" ? UIColor(red: 14/255, green: 94/255, blue: 46/255, alpha: 1) : UIColor.red]
+            return [(activity.values.standing?.basic.displayValue)!, (activity.values.standing?.basic.displayValue)! == "Victory" ? UIColor(red: 14/255, green: 94/255, blue: 46/255, alpha: 1) : UIColor(red: 193/255, green: 44/255, blue: 44/255, alpha: 1)]
         }
     }
     
@@ -117,6 +117,7 @@ class CarnageReportPageVC: UIViewController {
         else if  imageName == "forge2" { return [UIColor(red: 5/255, green: 17/255, blue: 31/255, alpha: 1), UIColor(red: 67/255, green: 75/255, blue: 98/255, alpha: 1)] }
         else if  imageName == "pvpcarnage" { return [UIColor(red: 108/255, green: 47/255, blue: 44/255, alpha: 1), UIColor(red: 172/255, green: 56/255, blue: 45/255, alpha: 1)] }
         else if imageName == "ironbanner2" { return [UIColor(red: 21/255, green: 19/255, blue: 20/255, alpha: 1), UIColor(red: 25/255, green: 29/255, blue: 28/255, alpha: 1)] }
+        else if imageName == "pvpcompcarnage" { return [UIColor(red: 32/255, green: 21/255, blue: 29/255, alpha: 1), UIColor(red: 56/255, green: 43/255, blue: 115/255, alpha: 1)] }
         else {return [UIColor.black, UIColor(red: 36/255, green: 41/255, blue: 46/255, alpha: 1)]}
     }
 }
@@ -126,7 +127,7 @@ extension CarnageReportPageVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return CGFloat(75) }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(400) }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return CGFloat(375) }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! CarnageReportTableviewHeader
@@ -160,6 +161,13 @@ extension CarnageReportPageVC: UITableViewDelegate, UITableViewDataSource {
             cell.bgColor = colors[0]
             cell.textcolor = .white
             cell.backgroundColor = colors[0]
+        }
+        
+        if self.data![indexPath.row].player.destinyUserInfo.membershipId == self.currentUserIdentifier {
+            cell.bgColor = UIColor(red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
+            cell.textcolor = .black
+            cell.backgroundColor = UIColor(red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
+            cell.playerDisplayNameTextView.textColor = .black
         }
         
         cell.player = self.data![indexPath.row]

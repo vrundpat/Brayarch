@@ -25,7 +25,7 @@ struct ActivityCellHandler {
         
         if currentMode == "Iron Banner"         { return ["ironbanner-1", "Iron Banner", "ironbanner2"] }
         if currentMode == "Trials of Osiris"    { return ["trials-1", "Trials of Osiris", "trials2"] }
-        if currentMode == "PvP: Competitive"    { return ["survival", "Competitive PvP", "pvpcarnage"] }
+        if currentMode == "PvP: Competitive"    { return ["survival", "Competitive PvP", "pvpcompcarnage"] }
         if currentMode == "Gambit/Gambit Prime" { return i.activityDetails.mode == 63 ? ["gambit-1", "Gambit", "gambit2"] : ["gambit-1", "Gambit Prime", "gambit2"] }
         if currentMode == "PvE"                 { return getPvEImage(activity: i) }
         if currentMode == "PvP: Quickplay"      { return getPvPImage(activity: i) }
