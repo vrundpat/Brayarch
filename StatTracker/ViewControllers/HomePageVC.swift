@@ -31,6 +31,12 @@ class HomePageVC: UIViewController {
         textView.showsVerticalScrollIndicator = false 
         return textView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()

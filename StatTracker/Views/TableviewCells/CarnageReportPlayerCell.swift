@@ -13,6 +13,8 @@ class CarnageReportPlayerCell: UITableViewCell {
     var player: DestinyPlayerEntry? {
         didSet {
             playerDisplayNameTextView.text = playerDisplayName
+            if playerDisplayNameTextView.text.count <= 15 { playerDisplayNameTextView.textContainerInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0) } else {playerDisplayNameTextView.textContainerInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)}
+
             statRow.vals = self.playerStats
             statRow.bgColor = self.bgColor
             statRow.textColor = self.textcolor
@@ -41,11 +43,9 @@ class CarnageReportPlayerCell: UITableViewCell {
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = UIFont(name: "DINAlternate-Bold", size: 20)
-        textView.textContainerInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         textView.backgroundColor = .clear
         textView.textAlignment = .center
         textView.isEditable = false
-        
         textView.isScrollEnabled = false
         textView.showsHorizontalScrollIndicator = false
         textView.showsVerticalScrollIndicator = false

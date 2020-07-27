@@ -43,6 +43,7 @@
 		32DA83F824C8CDF8007CF874 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DA83F724C8CDF8007CF874 /* ActivityCell.swift */; };
 		32F80CF924BCB0DC00B9EFEC /* apiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */; };
 		32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */; };
+		32F90A2124CE5C6F00D44B89 /* CarnageReportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F90A2024CE5C6F00D44B89 /* CarnageReportHandler.swift */; };
 		32FEA60C24C89EC000AC31FF /* ActivityHistoryPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FEA60B24C89EC000AC31FF /* ActivityHistoryPageVC.swift */; };
 		EAD807CBE3CB72004BC66C4C /* Pods_StatTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AA747F75DC2898EE4D63DA /* Pods_StatTrackerTests.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,7 @@
 		32DA83F724C8CDF8007CF874 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiDataModel.swift; sourceTree = "<group>"; };
 		32F80D0224BCCCA900B9EFEC /* PlatformButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformButton.swift; sourceTree = "<group>"; };
+		32F90A2024CE5C6F00D44B89 /* CarnageReportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnageReportHandler.swift; sourceTree = "<group>"; };
 		32FEA60B24C89EC000AC31FF /* ActivityHistoryPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryPageVC.swift; sourceTree = "<group>"; };
 		3753C813879F6EDD97726230 /* Pods-StatTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StatTracker.debug.xcconfig"; path = "Target Support Files/Pods-StatTracker/Pods-StatTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		3A87891F684DBCE83D1C1076 /* Pods_StatTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StatTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 				32F80CF824BCB0DC00B9EFEC /* apiDataModel.swift */,
 				32CEAC8624C7EB63003ECEA5 /* StatHandler.swift */,
 				325E529C24CA53D800B0EE17 /* ActivityCellHandler.swift */,
+				32F90A2024CE5C6F00D44B89 /* CarnageReportHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				32C5C18524B8EA3900839B36 /* SceneDelegate.swift in Sources */,
 				32C2D01824BE8E8600A172CF /* FetchCharacterIdsRequest.swift in Sources */,
 				32DA83F824C8CDF8007CF874 /* ActivityCell.swift in Sources */,
+				32F90A2124CE5C6F00D44B89 /* CarnageReportHandler.swift in Sources */,
 				325E529D24CA53D800B0EE17 /* ActivityCellHandler.swift in Sources */,
 				32F80D0324BCCCA900B9EFEC /* PlatformButton.swift in Sources */,
 				326CE20F24C2175B00A79D8F /* Extensions.swift in Sources */,

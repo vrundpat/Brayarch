@@ -165,7 +165,7 @@ extension GuardianSearchTableVC: UISearchBarDelegate {
                         self?.data = players
                 }
             }
-        }  else { self.data = [] }
+        } else { self.data = [] }
     }
     
     

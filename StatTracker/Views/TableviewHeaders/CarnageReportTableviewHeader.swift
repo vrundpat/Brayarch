@@ -73,7 +73,7 @@ class CarnageReportTableviewHeader: UITableViewHeaderFooterView {
         let textView = UITextView()
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont(name: "DINAlternate-Bold", size: 26)
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 21)
         textView.text = "Post Match Statistics".uppercased()
         textView.textContainerInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         textView.backgroundColor = .clear

@@ -20,7 +20,7 @@ struct SearchPlayersRequest {
     let API_KEY = "ba1b26f5d69a4c1180a5686d4e5b2cf2"
     
     init(searchText: String, memberShipType: Int) {
-        let resourceString = "https://bungie.net/Platform/Destiny2/SearchDestinyPlayer/\(memberShipType)/\(searchText)/"
+        let resourceString = "https://bungie.net/Platform/Destiny2/SearchDestinyPlayer/\(memberShipType)/\(searchText)/?returnOriginalProfile=false"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         
         self.resourceURL = URLRequest(url: resourceURL)
