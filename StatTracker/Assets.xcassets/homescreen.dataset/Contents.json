@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "homescreen.mov",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

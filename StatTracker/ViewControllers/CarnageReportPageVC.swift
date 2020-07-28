@@ -158,6 +158,7 @@ extension CarnageReportPageVC: UITableViewDelegate, UITableViewDataSource {
             cell.bgColor = UIColor(red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
             cell.textcolor = .black
             cell.backgroundColor = UIColor(red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
+            cell.playerDisplayNameTextView.text = "Sample User"
             cell.playerDisplayNameTextView.textColor = .black
         }
         

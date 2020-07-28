@@ -20,8 +20,8 @@ class HomePageVC: UIViewController {
     lazy var navigationTitle: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "StatTracker"
-        textView.font = UIFont(name: "DINAlternate-Bold", size: 38)
+        textView.text = "Brayarch Statistics"
+        textView.font = UIFont(name: "DINAlternate-Bold", size: 33)
         textView.textColor = .white
         textView.backgroundColor = .clear
         textView.textAlignment = .center
