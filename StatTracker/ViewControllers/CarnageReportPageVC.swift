@@ -12,11 +12,13 @@ import NVActivityIndicatorView
 class CarnageReportPageVC: UIViewController {
     
     var data: [DestinyPlayerEntry]? { didSet { print("Received Carnage Report") } }
+    let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .white, padding: 0)
+
     var currentUserDisplayName = String()
     var currentUserIdentifier = String()
-    let loading = NVActivityIndicatorView(frame: .zero, type: .audioEqualizer, color: .white, padding: 0)
     var currentActivity: ActivityInformation?
     var currentMode = String()
+    
     var activityHandler2 = ActivityCellHandler()
     var carnageEssentials = CarnageReportEssentials()
     
