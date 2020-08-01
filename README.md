@@ -17,7 +17,7 @@ Note: Due to the conversion of the previously `.mp4` files to `.gif`, there is s
 
 
 ## Running this Porject
-##### Note: Cocoapods is required to run this project, install it if not already done so.
+##### Note: Cocoapods is required to run this project.
 Recommended IDE: Xcode
 ##### In your preferred Terminal / Command-line interface, navigate to the cloned project's root and execute: `pod install`
 ##### Now, a file by the name of `StatTracker.xcworkspace` should be present
