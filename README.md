@@ -19,6 +19,12 @@ Note: Due to the conversion of the previously `.mp4` files to `.gif`, there is s
 ## Running this Porject
 ##### Note: Cocoapods is required to run this project.
 Recommended IDE: Xcode
-##### In your preferred Terminal / Command-line interface, navigate to the cloned project's root and execute: `pod install`
+##### In your preferred Terminal / Command-line interface, navigate to the cloned project's root and execute: `pod init`
+##### Now you should have a file named `Podfile` in the directory. Next, execute `nano Podfile`
+##### Under `# Pods for StatTracker`, paste the following:
+  `pod 'NVActivityIndicatorView'`<br/>
+    `pod 'Charts'`
+##### Press the following in the given order: `control + X`, `Y` and `Enter`
+##### Finally, execute `pod install` in the project directory
 ##### Now, a file by the name of `StatTracker.xcworkspace` should be present
 ##### Open `StatTracker.xcworkspace` and run the project!
