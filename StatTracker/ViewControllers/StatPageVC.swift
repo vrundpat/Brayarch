@@ -123,7 +123,7 @@ class StatPageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
             
