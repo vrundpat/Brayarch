@@ -1,5 +1,5 @@
 # Brayarch Statistics
-A Destiny 2 stat tracker made using Swift, UIKit, and Cocoapods with programmatic UI.
+A Destiny 2 stat tracker iOS application made using Swift, UIKit, and Cocoapods with programmatic UI.
 
 Note: Due to the conversion of the previously `.mp4` files to `.gif`, there is some noticable frame and quality loss
 
