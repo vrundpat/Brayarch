@@ -16,7 +16,7 @@ Note: Due to the conversion of the previously `.mp4` files to `.gif`, there is s
 <img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/dungeoncarnagereport.imageset/dungeoncarnagereport.png" >  | <img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/ironbannercarnagereport.imageset/ironbannercarnagereport.png" >       |<img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/trialscarnagereport.imageset/trialscarnagereport.png" >       |<img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/strikecarnagereport.imageset/strikecarnagereport.png" >        |
 
 
-## Running this Porject
+## Running this Project
 ##### Note: Cocoapods is required to run this project.
 Recommended IDE: Xcode
 ##### In your preferred Terminal / Command-line interface, navigate to the cloned project's root and execute: `pod init`
