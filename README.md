@@ -4,7 +4,7 @@ A Destiny 2 stat tracker iOS application made using Swift, UIKit, and Cocoapods 
 [![Language](https://img.shields.io/badge/Language-Swift-blue)](https://shields.io/) 
 [![UI](https://img.shields.io/badge/UI-Programmatic-blue)](https://shields.io/)
 [![Package Manager](https://img.shields.io/badge/Package%20Manager-Cocoapods-pink)](https://shields.io/)
-[![Version](https://img.shields.io/badge/Version-1..0.0-green)]()
+[![Version](https://img.shields.io/badge/Version-1.0.0-green)]()
 [![Release](https://img.shields.io/badge/Release-In%20Progress-orange)]()
 
 ## App Preview
