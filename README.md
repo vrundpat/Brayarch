@@ -20,15 +20,24 @@ A Destiny 2 stat tracker iOS application made using Swift, UIKit, and Cocoapods 
 <img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/dungeoncarnagereport.imageset/dungeoncarnagereport.png" >  | <img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/ironbannercarnagereport.imageset/ironbannercarnagereport.png" >       |<img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/trialscarnagereport.imageset/trialscarnagereport.png" >       |<img src="https://github.com/vrundpat/BrayarchStatistics/blob/master/StatTracker/Assets.xcassets/strikecarnagereport.imageset/strikecarnagereport.png" >        |
 
 
-## Running this Project
-##### Note: Cocoapods is required to run this project.
-Recommended IDE: Xcode
-##### In your preferred Terminal / Command-line interface, navigate to the cloned project's root and execute: `pod init`
-##### Now you should have a file named `Podfile` in the directory. Next, execute `nano Podfile`
-##### Under `# Pods for StatTracker`, paste the following:
-  `pod 'NVActivityIndicatorView'`<br/>
-    `pod 'Charts'`
-##### Press the following in the given order: `control + X`, `Y` and `Enter`
-##### Finally, execute `pod install` in the project directory
-##### Now, a file by the name of `StatTracker.xcworkspace` should be present
-##### Open `StatTracker.xcworkspace` and run the project!
+## Running Brayarch
+### Cocoapods is required to run this project.
+
+#### In the project root, run the following commands:
+```bash 
+ `pod init`
+ ```
+ 
+ ####  Now you should have a file named `Podfile` in the directory. Open the Podfile and paste the following:
+ ```bash
+    pod 'NVActivityIndicatorView'
+    pod 'Charts'
+ ```
+ 
+Then, install the pulled libraries via:
+```baah
+  pod install
+```
+
+Now, a file by the name of `StatTracker.xcworkspace` should be present <br/>
+Open `StatTracker.xcworkspace` and run the project!
